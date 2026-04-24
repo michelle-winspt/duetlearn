@@ -1,0 +1,32 @@
+[
+  {
+    "id": "keratoconus-101",
+    "title_zh": "圓錐角膜入門五階段",
+    "title_en": "Keratoconus 101: A 5-Step Path",
+    "description_zh": "從生活風險、影像診斷、外科治療到精準醫療，一條龍認識這個漸進性眼疾。",
+    "description_en": "From risk factors and imaging to surgery and precision medicine — the full picture of a progressive cornea disease.",
+    "emoji": "🩺",
+    "color": "#5B8DEF",
+    "articles": ["PMC10053648", "PMC11131720", "PMC10906208", "PMC9963660", "PMC10656708"]
+  },
+  {
+    "id": "brain-learning",
+    "title_zh": "大腦與學習科學",
+    "title_en": "Brain & Learning Science",
+    "description_zh": "睡眠如何幫你預測未來、雙語大腦怎麼處理新模式、二重奏中兩顆大腦如何同步。",
+    "description_en": "Sleep, bilingualism, brain synchrony in music, and the psychology of classroom feedback.",
+    "emoji": "🧠",
+    "color": "#A78BFA",
+    "articles": ["PMC13095118", "PMC13096162", "PMC8473838", "PMC13085316"]
+  },
+  {
+    "id": "ai-health",
+    "title_zh": "AI × 健康科技",
+    "title_en": "AI Meets Health",
+    "description_zh": "機器學習如何預測疾病進展，遺傳資料如何揭露隱藏的風險因子。",
+    "description_en": "Machine learning for clinical prediction and genetic-data approaches to risk discovery.",
+    "emoji": "🤖",
+    "color": "#10B981",
+    "articles": ["PMC11016769", "PMC13062002"]
+  }
+]

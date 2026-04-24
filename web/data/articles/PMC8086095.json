@@ -1,0 +1,155 @@
+{
+  "id": "PMC8086095",
+  "pmc_id": "PMC8086095",
+  "original_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8086095/",
+  "original_citation": "Zhang S, et al. 2021. Frontiers in Psychology. 12. 653066.",
+  "original_license": "CC-BY 4.0",
+  "title_en": "The Harmony of Concentration: How Music Intensity Affects Reading Comprehension",
+  "title_zh": "專注的律動：音樂強度與情緒如何影響閱讀理解成效",
+  "tldr_en": "This study examines how background music's loudness and emotional tone influence a student's ability to understand text. Researchers discovered that while soft, happy music can be helpful, high-intensity music significantly hinders cognitive performance regardless of the mood.",
+  "tldr_zh": "本研究探討背景音樂的音量與情緒如何影響學生的閱讀理解能力。研究發現，雖然柔和且愉快的音樂可能有助於學習，但高音量的音樂不論情緒為何，都會顯著阻礙認知表現。",
+  "category": "Psychology",
+  "tags": ["CognitivePerformance", "MusicPsychology", "LearningEnvironment", "ReadingComprehension"],
+  "difficulty": "C1",
+  "estimated_minutes": 10,
+  "multilevel": false,
+  "research_design": {
+    "sample": "136 Chinese university students with a mean age of 20.4 years.",
+    "method": "A 2-by-2 between-subjects experimental design varying music intensity and emotional valence during reading tasks.",
+    "key_finding": "High-intensity music significantly impaired reading comprehension scores compared to low-intensity conditions (p < 0.05).",
+    "limitation": "The study relied on short-term laboratory tasks, which may not fully capture long-term study habits or individual musical preferences."
+  },
+  "article_en": "The influence of background music on cognitive tasks remains a contentious subject in psychological literature. While some proponents of the arousal-preference hypothesis suggest that pleasant music can enhance performance by improving mood, the irrelevant sound effect theory posits that any auditory distraction competes for the limited resources of the central executive system. This study aims to reconcile these perspectives by investigating how musical intensity and emotional valence interact to influence reading comprehension among university students. Determining the optimal auditory environment is crucial for academic success in higher education.\n\nThe researchers implemented a two-by-two between-subjects experimental design involving 136 university students. Participants were randomly assigned to one of four conditions, crossing music intensity, categorized as high or low decibel levels, with emotional valence, which describes music as either positive or negative. This randomized approach was chosen to minimize individual variability and isolate the effects of the specific musical variables. During the experiment, participants read standardized academic texts while their comprehension accuracy and completion times were recorded, providing quantitative data on their cognitive performance.\n\nThe results indicated a significant main effect for music intensity, demonstrating that high-intensity music consistently impaired reading comprehension scores across both emotional valences (p < 0.05). Interestingly, the data suggested that low-intensity, positive-valence music actually facilitated slightly better outcomes than a silent control group, which aligns with the arousal-preference hypothesis. However, once the intensity threshold was crossed, the music became an extraneous cognitive load that exceeded the capacity of the central executive system, leading to a marked decrement in performance regardless of the music's mood.\n\nA critical discussion within the paper centers on the trade-off between laboratory control and ecological validity. To ensure the results were not confounded by personal nostalgia or individual differences in musical taste, the researchers used standardized, unfamiliar music. While this enhanced internal validity, it simultaneously limited the study's generalizability to real-world studying habits. In a naturalistic setting, students typically select familiar music that they personally enjoy, which might modulate the cognitive interference observed in this study. The authors acknowledge that the inhibitory effects of loud music might be less severe when the listener has a strong preference for the tracks being played.\n\nUltimately, the study underscores the importance of intentionality when selecting a study environment. For cognitively demanding tasks such as reading comprehension, the findings recommend the use of low-volume music with a positive emotional tone to strike a balance between providing a pleasant atmosphere and preserving mental bandwidth. Educators and students should be cautious about high-energy, loud playlists during deep study sessions, as the resulting cognitive interference can significantly reduce the efficiency of information processing. Future research could investigate whether personality traits, such as extraversion, further influence individual sensitivity to these musical parameters.",
+  "article_zh": "關於背景音樂對認知任務影響的爭論在心理學研究中已持續數十年。兩種主要的框架經常發生衝突：喚起偏好假設認為，愉快的聽覺刺激可以透過改善情緒來提升表現；而無關聲音效應理論則主張背景噪音會消耗有限的認知資源。本研究旨在透過調查音樂強度與情緒效價如何交互作用，進而影響大學生的閱讀理解能力，來調和這些觀點。確定最佳的聽覺環境對於高等教育的學業成功至關重要。\n\n研究團隊招募了 136 名中國大學生，並實施了二乘二的受試者間實驗設計。這種設計讓研究人員可以交叉分析兩個獨立變項：音樂強度（高分貝與低分貝等級）以及情緒效價（正向與負向色調）。透過採用受試者間方法，作者極小化了練習效應，因為每位參與者僅在一個特定的條件下進行閱讀任務。當參與者閱讀標準化的學術文本時，研究人員測量了理解準確度與完成任務所需的時間，為比較四個實驗組提供了定量基礎。\n\n統計分析顯示音樂強度具有顯著的主效應，證明在兩種情緒效價下，高強度音樂皆會持續損害閱讀理解分數（p < 0.05）。有趣的是，數據顯示低強度、正效價的音樂所產生的結果略優於安靜的對照組，這與喚起偏好假設相符。然而，一旦超過強度閾值，無論音樂的情緒基調為何，音樂都會變成額外的認知負荷，超過了中央執行系統的容量，導致表現明顯下降。\n\n論文中一個關鍵的討論集中在實驗室控制與生態效度之間的權衡。為了確保結果不會受到個人懷舊情懷或音樂品味個體差異的干擾，研究人員使用了標準化的、不熟悉的音樂。雖然這增強了內部效度，但同時也限制了研究結果對現實學習習慣的普遍性。在自然環境中，學生通常會選擇自己喜歡的熟悉音樂，這可能會調節本研究中觀察到的認知干擾。作者承認，當聽者對播放的曲目有強烈偏好時，大聲音樂的抑制效果可能不會那麼嚴重。\n\n最終，這項研究強調了在選擇學習環境時目的性的重要性。對於像閱讀理解這樣需要高度認知資源的任務，研究結果建議使用音量較低且情緒色調正向的音樂，以在提供愉快氛圍與保留心理頻寬之間取得平衡。教育工作者與學生應警惕在深度學習期間播放高能量或大聲的音樂，因為產生的認知干擾會顯著降低資訊處理的效率。未來的研究可以調查人格特質（如外向性）是否會進一步影響個人對這些音樂參數的敏感度。",
+  "glossary": [
+    {
+      "term": "Valence",
+      "ipa": "/ˈveɪ.ləns/",
+      "pos": "n.",
+      "translation": "效價",
+      "definition_en": "How happy or sad an emotion feels — positive valence means pleasant, negative means unpleasant.",
+      "definition_zh": "描述一種情緒是正面（愉快）還是負面（不愉快）的特性。"
+    },
+    {
+      "term": "Arousal",
+      "ipa": "/əˈraʊ.zəl/",
+      "pos": "n.",
+      "translation": "覺醒 / 喚起",
+      "definition_en": "A state of being physically and mentally awake and alert.",
+      "definition_zh": "身體和心理上處於清醒和警覺的狀態。"
+    },
+    {
+      "term": "Extraneous",
+      "ipa": "/ekˈstreɪ.ni.əs/",
+      "pos": "adj.",
+      "translation": "額外的 / 無關的",
+      "definition_en": "Not belonging to or directly related to the main subject or task.",
+      "definition_zh": "不屬於或不直接與主要主題或任務相關的。"
+    },
+    {
+      "term": "Conducive",
+      "ipa": "/kənˈduː.sɪv/",
+      "pos": "adj.",
+      "translation": "有助於...的",
+      "definition_en": "Making it easy for something good to happen.",
+      "definition_zh": "使某事容易發生或存在的。"
+    },
+    {
+      "term": "Quantify",
+      "ipa": "/ˈkwɒn.tɪ.faɪ/",
+      "pos": "v.",
+      "translation": "量化",
+      "definition_en": "To measure something using numbers.",
+      "definition_zh": "使用數字測量或表達某事物的數量。"
+    },
+    {
+      "term": "Ecological Validity",
+      "ipa": "/ˌiː.kəˈlɒdʒ.ɪ.kəl vəˈlɪd.ə.ti/",
+      "pos": "phrase",
+      "translation": "生態效度",
+      "definition_en": "The extent to which the results of a study can be applied to real-life situations.",
+      "definition_zh": "研究結果可以應用於現實生活情況的程度。"
+    }
+  ],
+  "quiz": [
+    {
+      "section": "comprehension",
+      "q": "What was the main finding regarding music intensity in the study?",
+      "options": [
+        "A. High-intensity music consistently improved reading scores.",
+        "B. High-intensity music consistently impaired reading scores.",
+        "C. High-intensity music only affected students with a negative mood.",
+        "D. Music intensity had no significant effect on comprehension."
+      ],
+      "answer": "B",
+      "hint": "Check the third paragraph discussing statistical results.",
+      "explain_zh": "研究結果明確指出，在各種情緒下，高強度的音樂都會損害閱讀理解分數。"
+    },
+    {
+      "section": "comprehension",
+      "q": "Which musical condition resulted in performance slightly better than the silent control group?",
+      "options": [
+        "A. High-intensity, positive-valence music.",
+        "B. Low-intensity, negative-valence music.",
+        "C. Low-intensity, positive-valence music.",
+        "D. No condition was better than silence."
+      ],
+      "answer": "C",
+      "hint": "Check the results in the third paragraph.",
+      "explain_zh": "數據顯示，低音量且正向的情緒音樂對表現有輕微的促進作用。"
+    },
+    {
+      "section": "comprehension",
+      "q": "Why did the researchers use a between-subjects design in their experiment?",
+      "options": [
+        "A. To save time and recruit fewer participants.",
+        "B. To avoid practice effects from participants repeating the task.",
+        "C. To ensure that everyone heard all four types of music.",
+        "D. To observe how an individual's score changes over several days."
+      ],
+      "answer": "B",
+      "hint": "Refer to the method description in the second paragraph.",
+      "explain_zh": "受試者間設計確保每人只做一次任務，防止參與者因為重複練習而提高分數，從而干擾實驗變項的觀察。"
+    },
+    {
+      "section": "application",
+      "q": "A student needs to study for a very difficult calculus exam. Based on this study, what would be the most effective background choice?",
+      "options": [
+        "A. A loud rock music playlist to stay energized.",
+        "B. High-volume pop music with happy themes.",
+        "C. Low-volume classical music with a pleasant tone.",
+        "D. A fast-paced podcast where people talk about math."
+      ],
+      "answer": "C",
+      "hint": "Think about the cognitive load and recommendations in the final paragraph.",
+      "explain_zh": "對於需要高度集中精神的複雜任務（如微積分），低音量且愉快的音樂能減少額外的認知負擔。"
+    },
+    {
+      "section": "application",
+      "q": "If a student chooses to listen to their own favorite loud songs while studying, how might their results differ from the laboratory participants?",
+      "options": [
+        "A. They would experience significantly more interference than the subjects.",
+        "B. Personal preference and familiarity might reduce the negative impact of the loudness.",
+        "C. Their reading speed would double immediately because they are happy.",
+        "D. There would be no difference because volume is the only factor that matters."
+      ],
+      "answer": "B",
+      "hint": "Consider the discussion on familiarity and ecological validity in the fourth paragraph.",
+      "explain_zh": "文中提到，現實生活中的熟悉感與偏好可能會調節音樂產生的干擾，讓抑制效果沒那麼嚴重。"
+    },
+    {
+      "section": "critique",
+      "q": "The authors acknowledge that using standardized, unfamiliar music affects 'ecological validity.' Why might this be a significant limitation?",
+      "options": [
+        "A. It means the statistical analysis is no longer accurate.",
+        "B. It makes it harder to apply the results to how people actually study at home.",
+        "C. It proves that university students are not interested in music.",
+        "D. It suggests that the decibel levels were not measured correctly."
+      ],
+      "answer": "B",
+      "hint": "Check the fourth paragraph regarding the applicability of the findings.",
+      "explain_zh": "生態效度低意味著實驗情境與現實落差較大。因為人在家中唸書會選自己喜歡且熟悉的歌，而本研究使用陌生的標準音樂，可能誇大了音樂的干擾性。"
+    }
+  ],
+  "speaking_prompt": "You are a learning consultant giving a workshop to university freshmen. ① Explain the difference between music intensity and emotional valence. ② Describe the core findings of the 2021 study regarding music intensity and comprehension scores. ③ Evaluate whether a student should listen to their favorite upbeat playlist during an intense study session, based on the study's results and limitations. Maintain a professional and evidence-based tone. Start your advice now."
+}

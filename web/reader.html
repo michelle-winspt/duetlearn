@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Duet — 雙聲 · 讀懂世界的科學</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314201A'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23C8923F'%3ED%3C/text%3E%3C/svg%3E">
+<meta name="description" id="meta-desc" content="雙語科學論文閱讀 · CC-BY 開放科學論文重寫成 CEFR B1-B2 雙語文章 + 互動測驗。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Duet 雙聲">
+<meta property="og:title" id="og-title" content="Duet 雙聲">
+<meta property="og:description" id="og-desc" content="雙語科學閱讀">
+<meta property="og:url" id="og-url" content="https://duetlearn.com/reader.html">
+<meta property="og:image" content="https://duetlearn.com/img/og-cover.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duetlearn.com/img/og-cover.svg">
+<link rel="canonical" id="canonical-link" href="https://duetlearn.com/reader.html">
+<script type="application/ld+json" id="article-jsonld"></script>
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/common.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14201A;
+    --bg-card: #1F2D26;
+    --bg-soft: #1A2620;
+    --ink: #F5EFE6;
+    --ink-muted: #95938A;
+    --accent: #C8923F;
+    --accent-soft: rgba(200,146,63,0.12);
+    --error: #C5503D;
+    --success: #6FAA7F;
+    --border: rgba(245,239,230,0.08);
+  }
+  [data-theme="light"] {
+    --bg: #F5EFE6;
+    --bg-card: #FFFFFF;
+    --bg-soft: #EFE8DD;
+    --ink: #1F4438;
+    --ink-muted: #6B6354;
+    --accent: #B8763A;
+    --accent-soft: rgba(184,118,58,0.1);
+    --border: rgba(31,68,56,0.12);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', 'Noto Serif TC', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s, color 0.2s;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 32px 24px 96px; }
+
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 48px;
+  }
+  .brand { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+  .brand-sub { color: var(--ink-muted); font-size: 15px; margin-left: 10px; font-family: 'Noto Serif TC', serif; }
+  .controls { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+  .controls button {
+    background: none; border: 1px solid var(--border); color: var(--ink);
+    border-radius: 8px; padding: 6px 12px; cursor: pointer;
+    font-family: inherit; font-size: 14px;
+  }
+
+  .meta { display: flex; gap: 8px; flex-wrap: wrap; color: var(--ink-muted); font-size: 13px; margin-bottom: 16px; }
+  .meta span { padding: 3px 10px; background: var(--bg-card); border-radius: 999px; }
+
+  h1.title-en {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(30px, 6vw, 48px); line-height: 1.15; font-weight: 700;
+    margin: 8px 0 12px; letter-spacing: -0.02em;
+    overflow-wrap: break-word; word-break: normal; hyphens: auto;
+  }
+  h2.title-zh {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px; font-weight: 600; color: var(--ink-muted);
+    margin: 0 0 24px;
+  }
+  .citation { color: var(--ink-muted); font-size: 13px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+  .citation a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+
+  .tldr { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 18px 22px; border-radius: 4px; margin: 32px 0; }
+  .tldr-label { font-family: 'Fraunces', serif; color: var(--accent); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+  .tldr-en { font-style: italic; }
+  .tldr-zh { font-family: 'Noto Serif TC', serif; color: var(--ink-muted); margin-top: 8px; font-size: 16px; font-style: normal; }
+
+  /* Multi-level selector */
+  #level-bar {
+    background: var(--bg-card); border:1px solid var(--accent); border-radius:12px;
+    padding:14px 18px; margin: 0 0 24px;
+  }
+  #level-bar .lb-head { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+  #level-bar .lb-title { font-family:'Fraunces',serif; font-size:14px; font-weight:600; color:var(--accent); }
+  #level-bar .lb-hint { font-size:12px; color:var(--ink-muted); }
+  #level-bar .lb-tabs { display:flex; gap:6px; flex-wrap:wrap; }
+  #level-bar .lb-tab {
+    flex:1; min-width:70px; padding:8px 8px; background:var(--bg-soft);
+    border:1px solid var(--border); border-radius:8px; cursor:pointer;
+    font-family:inherit; font-size:13px; color:var(--ink); transition:all 0.15s;
+    text-align:center;
+  }
+  @media (max-width:560px) {
+    #level-bar .lb-tab .lb-meta { display:none; }
+    #level-bar .lb-tab { min-width:0; padding:8px 4px; }
+    #level-bar .lb-tab .lb-name { font-size:13px; }
+  }
+  #level-banner {
+    margin: 12px 0 0; padding: 10px 14px;
+    background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 4px;
+    font-size: 13px; color: var(--ink-muted); line-height: 1.55;
+  }
+  #level-banner strong { color: var(--accent); }
+  /* fade transition for article body */
+  #article.fading, .tldr.fading { opacity: 0.25; transition: opacity 0.18s; }
+  #article, .tldr { transition: opacity 0.25s; }
+  #level-bar .lb-tab:hover { border-color:var(--accent); }
+  #level-bar .lb-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  #level-bar .lb-tab .lb-name { font-family:'Fraunces',serif; font-weight:700; font-size:14px; display:block; }
+  #level-bar .lb-tab .lb-meta { font-size:10px; opacity:0.75; margin-top:1px; }
+
+  /* Read-aloud control bar (prominent, above TLDR area) */
+  .read-aloud-bar {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 999px;
+    padding: 8px 12px; margin: 24px 0;
+  }
+  .ra-btn {
+    background: none; border: 1px solid var(--border); color: var(--ink);
+    border-radius: 999px; padding: 7px 12px; cursor: pointer;
+    font-family: inherit; font-size: 14px; transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ra-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .ra-btn:disabled { opacity: 0.32; cursor: not-allowed; }
+  .ra-primary { background: var(--accent); color: #fff; border-color: var(--accent); padding: 8px 18px; font-weight: 600; }
+  .ra-primary:hover:not(:disabled) { background: var(--accent); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(200,146,63,0.35); }
+  .ra-primary.playing { background: var(--success); border-color: var(--success); }
+  .ra-speed {
+    background: var(--bg-soft); border: 1px solid var(--border); color: var(--ink);
+    border-radius: 8px; padding: 6px 8px; font-family: inherit; font-size: 13px; cursor: pointer;
+  }
+  .ra-speed:focus-visible { outline: 2px solid var(--accent); }
+  .ra-status { font-size: 12px; color: var(--ink-muted); margin-left: auto; }
+  @media (max-width: 560px) {
+    .read-aloud-bar { border-radius: 14px; padding: 10px; }
+    .ra-primary { flex: 1 0 100%; justify-content: center; order: -1; padding: 10px; }
+    .ra-primary .ra-text { display: inline; }
+    .ra-status { width: 100%; text-align: center; order: 99; margin-left: 0; padding-top: 4px; }
+  }
+
+  .lang-toggle { display: flex; gap: 4px; background: var(--bg-card); border-radius: 999px; padding: 4px; margin: 32px 0 24px; width: fit-content; border: 1px solid var(--border); }
+  .lang-toggle button {
+    background: none; border: none; color: var(--ink-muted);
+    padding: 6px 18px; border-radius: 999px; cursor: pointer;
+    font-family: inherit; font-size: 14px; transition: all 0.15s;
+  }
+  .lang-toggle button.active { background: var(--accent); color: white; }
+
+  article h3 { font-family: 'Fraunces', serif; font-size: 26px; margin: 44px 0 16px; font-weight: 600; }
+  article p { margin: 0 0 22px; }
+
+  /* Glossary terms: dashed underline, click opens floating popup */
+  .term {
+    border-bottom: 1px dashed rgba(200,146,63,0.6);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .term:hover { background: var(--accent-soft); border-radius: 2px; }
+
+  /* Fixed-position floating term popup (no inline positioning = no layout bugs) */
+  .term-popup {
+    position: fixed;
+    background: var(--bg-card);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px 36px 14px 16px;
+    max-width: min(320px, 88vw);
+    min-width: 200px;
+    font-size: 14px; line-height: 1.55;
+    z-index: 9500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+    font-family: 'Source Serif 4','Noto Serif TC',serif;
+    animation: tp-in 0.14s ease-out;
+  }
+  @keyframes tp-in {
+    from { opacity:0; transform:scale(0.94) translateY(4px); }
+    to   { opacity:1; transform:scale(1)    translateY(0); }
+  }
+  .term-popup .tp-close {
+    position:absolute; top:8px; right:10px;
+    background:none; border:none; color:var(--ink-muted);
+    font-size:18px; cursor:pointer; padding:0 4px; line-height:1;
+  }
+  .term-popup .tp-close:hover { color:var(--ink); }
+  .term-popup .tp-head { display:flex; align-items:baseline; gap:6px; margin-bottom:4px; }
+  .term-popup .tp-term { font-family:'Fraunces',serif; font-weight:600; color:var(--accent); font-size:15px; }
+  .term-popup .tp-pos  { font-size:11px; color:var(--ink-muted); font-style:italic; }
+  .term-popup .tp-trans { font-family:'Noto Serif TC',serif; font-size:15px; color:var(--ink); font-weight:600; margin:6px 0 4px; }
+  .term-popup .tp-def  { font-size:13px; color:var(--ink); line-height:1.55; }
+  .term-popup .tp-def-zh { font-size:12px; color:var(--ink-muted); margin-top:6px; padding-top:6px; border-top:1px solid var(--border); font-family:'Noto Serif TC',serif; }
+
+  .zh-shadow { display: none; font-family: 'Noto Serif TC', serif; color: var(--ink-muted); padding: 10px 14px; background: var(--bg-soft); border-radius: 4px; font-size: 16px; margin-top: -12px; margin-bottom: 22px; line-height: 1.7; }
+  body.show-zh .zh-shadow { display: block; }
+  body.zh-only .article-en > p, body.zh-only .article-en > h3 { display: none; }
+  body.zh-only .zh-shadow { display: block; background: none; padding: 0; margin: 0 0 22px; font-size: 18px; line-height: 1.75; color: var(--ink); }
+  body.zh-only .zh-shadow.h3-shadow { font-family: 'Fraunces', 'Noto Serif TC', serif; font-size: 26px; margin: 44px 0 16px; font-weight: 600; }
+  body.zh-only h1.title-en { display: none; }
+  body.zh-only h2.title-zh { color: var(--ink); font-size: 36px; margin-bottom: 20px; }
+  body.zh-only .tldr-en { display: none; }
+  body.zh-only .tldr-zh { font-size: 18px; color: var(--ink); }
+  body.zh-only .quiz-q .q-text { display: none; }
+  body.zh-only .quiz-q .q-text-zh { color: var(--ink); font-size: 16px; margin-bottom: 16px; }
+  body.zh-only .glossary-item .def { display: none; }
+
+  .glossary { margin: 56px 0 32px; padding: 28px; background: var(--bg-card); border-radius: 10px; border: 1px solid var(--border); }
+  .glossary h4 { font-family: 'Fraunces', serif; margin: 0 0 16px; font-size: 20px; font-weight: 600; }
+  .glossary-item { padding: 14px 0; border-top: 1px solid var(--border); }
+  .glossary-item:first-of-type { border-top: none; padding-top: 0; }
+  .glossary-item .term-name { font-family: 'Fraunces', serif; font-weight: 600; color: var(--accent); font-size: 16px; }
+  .glossary-item .ipa { color: var(--ink-muted); margin-left: 8px; font-size: 13px; font-style: italic; }
+  .glossary-item { display: block; }
+  .glossary-item .pos-tag { display: inline-block; font-size: 11px; color: var(--ink-muted); background: var(--bg-soft); padding: 1px 7px; border-radius: 4px; margin-left: 8px; font-style: italic; font-family: 'Source Serif 4', serif; }
+  .glossary-item .trans { font-family: 'Noto Serif TC', serif; font-size: 17px; color: var(--ink); font-weight: 600; margin-top: 6px; }
+  .glossary-item .def { font-size: 14px; color: var(--ink-muted); margin-top: 6px; line-height: 1.5; }
+  .glossary-item .def-zh { font-size: 13px; color: var(--ink-muted); margin-top: 2px; font-family: 'Noto Serif TC', serif; line-height: 1.6; }
+
+  /* Reading progress bar (NYT-style sticky) */
+  #reading-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px;
+    background: transparent; z-index: 200; pointer-events: none;
+  }
+  #reading-progress .rp-fill {
+    height: 100%; width: 0%; background: var(--accent);
+    transition: width 0.1s linear;
+    box-shadow: 0 0 6px rgba(200,146,63,0.6);
+  }
+
+  /* Share button */
+  .share-row { display: flex; gap: 8px; margin: 24px 0; flex-wrap: wrap; }
+  .share-btn {
+    background: var(--bg-card); border: 1px solid var(--border); color: var(--ink);
+    padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: inherit;
+    font-size: 13px; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .share-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Print styles */
+  @media print {
+    header, .lang-toggle, #level-bar, #quiz, #article-nav, #quiz-float, footer,
+    .speak-btn, .term-speak, .para-speak, #music-btn, #theme-toggle, #reading-progress,
+    .share-row, .more-articles { display: none !important; }
+    body { background: #fff !important; color: #000 !important; font-size: 12pt; }
+    .container { max-width: 100%; padding: 0; }
+    .term { border-bottom: none !important; }
+    .term-popup { display: none !important; }
+    .zh-shadow { display: block !important; color: #555 !important; padding: 0 !important; background: transparent !important; }
+  }
+
+  /* Reader mini-HUD */
+  .mini-hud {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--ink-muted);
+    padding: 5px 11px; border: 1px solid var(--border); border-radius: 999px;
+    font-family: 'Fraunces', serif; font-weight: 600;
+  }
+  .mini-hud .mh-streak { color: #FF8C42; }
+  .mini-hud .mh-xp { color: var(--accent); }
+  .mini-hud .mh-sep { color: var(--ink-muted); opacity: 0.4; }
+  @media (max-width:560px) { .mini-hud { display:none; } }
+
+  /* Badge unlock celebration */
+  .badge-unlock {
+    position: fixed; top: 80px; left: 50%; transform: translateX(-50%); z-index: 10000;
+    pointer-events: none;
+    animation: bu-in 2.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .bu-card {
+    background: linear-gradient(135deg, var(--bg-card), var(--accent-soft));
+    border: 2px solid var(--accent); border-radius: 14px;
+    padding: 16px 24px; text-align: center;
+    box-shadow: 0 16px 48px rgba(200,146,63,0.4);
+    min-width: 220px;
+  }
+  .bu-emoji { font-size: 44px; margin-bottom: 4px; animation: bu-spin 0.8s ease-out; }
+  .bu-label { font-family: 'Fraunces', serif; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
+  .bu-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-top: 4px; }
+  @keyframes bu-in {
+    0%   { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.7); }
+    15%  { opacity: 1; transform: translateX(-50%) translateY(0) scale(1.08); }
+    25%  { transform: translateX(-50%) translateY(0) scale(1); }
+    85%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+  }
+  @keyframes bu-spin { from { transform: rotate(-180deg) scale(0.5); } to { transform: rotate(0) scale(1); } }
+
+  /* XP toast */
+  .xp-toast {
+    position: fixed; bottom: 80px; right: 20px; z-index: 9999;
+    background: var(--accent); color: #fff; padding: 10px 18px; border-radius: 999px;
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 14px;
+    box-shadow: 0 6px 24px rgba(200,146,63,0.4);
+    animation: xp-pop 1.8s ease-out forwards;
+  }
+  @keyframes xp-pop {
+    0%   { opacity: 0; transform: translateY(10px) scale(0.8); }
+    15%  { opacity: 1; transform: translateY(0) scale(1.1); }
+    25%  { transform: translateY(0) scale(1); }
+    85%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-12px); }
+  }
+
+  /* Speak buttons */
+  .speak-btn, .term-speak, .para-speak {
+    background: none; border: none; cursor: pointer; padding: 1px 4px; margin-left: 4px;
+    font-size: 13px; opacity: 0.5; transition: opacity 0.15s, transform 0.1s; color: inherit;
+  }
+  .speak-btn:hover, .term-speak:hover, .para-speak:hover { opacity: 1; transform: scale(1.15); }
+  .speak-btn.speaking, .term-speak.speaking, .para-speak.speaking {
+    opacity: 1; color: var(--accent);
+    animation: speak-pulse 1s ease-in-out infinite;
+  }
+  @keyframes speak-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+  .glossary-item .speak-btn { color: var(--accent); opacity: 0.75; }
+  /* Dictionary hint banner */
+  .dict-hint {
+    background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 8px;
+    padding: 10px 14px; margin: 16px 0; font-size: 13px; color: var(--ink);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  }
+  .dict-hint button { background: none; border: none; color: var(--ink-muted); font-size: 18px; cursor: pointer; padding: 0 4px; }
+  .dict-hint button:hover { color: var(--ink); }
+
+  /* Dictionary popup (double-click any word) */
+  .dict-popup {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--bg-card); border: 1px solid var(--accent); border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    padding: 16px 20px; max-width: min(420px, 92vw); min-width: 280px;
+    z-index: 9000; animation: dp-up 0.25s ease-out;
+  }
+  @keyframes dp-up { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+  .dict-popup .dp-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .dict-popup .dp-head strong { font-family: 'Fraunces', serif; font-size: 22px; color: var(--accent); }
+  .dict-popup .dp-close { background: none; border: none; color: var(--ink-muted); font-size: 22px; cursor: pointer; padding: 0 4px; line-height: 1; }
+  .dict-popup .dp-close:hover { color: var(--ink); }
+  .dict-popup .dp-phon { color: var(--ink-muted); font-size: 13px; margin-bottom: 6px; font-style: italic; }
+  .dict-popup .dp-actions { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .dict-popup .dp-speak, .dict-popup .dp-save {
+    background: var(--bg-soft); border: 1px solid var(--border); color: var(--ink);
+    padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-family: inherit;
+  }
+  .dict-popup .dp-speak:hover, .dict-popup .dp-save:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .dict-popup .dp-save { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .dict-popup .dp-save:disabled { opacity: 0.6; cursor: default; }
+  .dict-popup .dp-meaning { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+  .dict-popup .dp-meaning:first-of-type { border-top: none; padding-top: 0; }
+  .dict-popup .dp-pos { font-size: 11px; color: var(--accent); font-style: italic; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
+  .dict-popup .dp-def { font-size: 14px; line-height: 1.55; margin-bottom: 4px; color: var(--ink); }
+  .dict-popup .dp-ex { font-size: 12px; color: var(--ink-muted); font-style: italic; margin-bottom: 4px; padding-left: 8px; border-left: 2px solid var(--border); }
+
+  /* current paragraph being read aloud */
+  .article-en p.ra-current {
+    background: var(--accent-soft); border-left: 3px solid var(--accent);
+    padding: 6px 12px; border-radius: 4px; margin-left: -12px;
+    transition: background 0.3s;
+  }
+
+  /* paragraph speak: persistent icon at left margin, always visible */
+  .article-en > p { position: relative; }
+  .para-speak {
+    position: absolute; top: 4px; left: -34px;
+    opacity: 0.4; font-size: 14px; padding: 4px 7px;
+    background: var(--bg-card); border-radius: 6px; border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .para-speak:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 760px) {
+    .para-speak { position: static; display: inline-block; margin-bottom: 6px; opacity: 0.6; left:auto; }
+  }
+
+  .quiz { margin: 64px 0 32px; }
+  .quiz-header { font-family: 'Fraunces', serif; font-size: 30px; margin-bottom: 4px; font-weight: 700; }
+  .quiz-sub { color: var(--ink-muted); margin-bottom: 24px; font-size: 15px; }
+  .quiz-section-label { font-family: 'Fraunces', serif; font-size: 12px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin: 32px 0 12px; font-weight: 600; }
+  .quiz-q { background: var(--bg-card); padding: 24px; border-radius: 10px; margin-bottom: 16px; border: 1px solid var(--border); }
+  .quiz-q .q-text { font-size: 16px; margin-bottom: 4px; line-height: 1.5; }
+  .quiz-q .q-text-zh { font-size: 14px; color: var(--ink-muted); margin-bottom: 16px; font-family: 'Noto Serif TC', serif; }
+  .quiz-q label { display: block; padding: 11px 16px; margin-bottom: 8px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.15s; font-size: 15px; line-height: 1.45; }
+  .quiz-q label:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .quiz-q label.selected { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+  .quiz-q label.correct { border-color: var(--success); background: rgba(111,170,127,0.12); box-shadow: inset 3px 0 0 var(--success); }
+  .quiz-q label.wrong { border-color: var(--error); background: rgba(197,80,61,0.1); box-shadow: inset 3px 0 0 var(--error); }
+  .quiz-q input { display: none; }
+  .quiz-q .feedback { margin-top: 12px; padding: 14px 16px; border-radius: 6px; font-size: 14px; line-height: 1.6; display: none; }
+  .quiz-q .feedback.show { display: block; }
+  .quiz-q .feedback.hint { background: var(--accent-soft); border-left: 3px solid var(--accent); }
+  .quiz-q .feedback.answer { background: rgba(111,170,127,0.1); border-left: 3px solid var(--success); }
+  .quiz-q .feedback strong { color: var(--accent); }
+  .quiz-q .feedback.answer strong { color: var(--success); }
+  .quiz-q .submit { margin-top: 12px; background: var(--accent); color: #14201A; border: none; padding: 8px 22px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; }
+  .quiz-q .submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .source-section { margin: 64px 0 32px; }
+  .source-section summary {
+    font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600;
+    cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px;
+    padding: 20px 24px; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; user-select: none;
+  }
+  .source-section summary::-webkit-details-marker { display: none; }
+  .source-section summary::after { content: '＋'; color: var(--accent); margin-left: auto; font-size: 18px; }
+  details[open] .source-section summary::after { content: '－'; }
+  .source-body { padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; }
+  .source-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-family: 'Fraunces', serif; font-weight: 600; margin-bottom: 12px; }
+  .source-citation { font-size: 13px; color: var(--ink-muted); margin-bottom: 16px; line-height: 1.6; }
+  .source-citation a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+  .cite-btn { background:none; border:1px solid var(--border); color:var(--ink-muted); font-size:12px; padding:3px 10px; border-radius:6px; cursor:pointer; font-family:inherit; transition:all 0.15s; }
+  .cite-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .source-abstract { font-size: 15px; line-height: 1.75; border-left: 3px solid var(--border); padding-left: 16px; color: var(--ink); }
+
+
+  /* ── Vocabulary Preview Card ── */
+  .vocab-preview {
+    margin: 24px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .vocab-preview-label {
+    font-family: 'Fraunces', serif;
+    font-size: 11px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .vocab-chips {
+    display: flex; gap: 8px;
+    flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px; scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .vocab-chips::-webkit-scrollbar { height: 4px; }
+  .vocab-chips::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .vocab-chip {
+    background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 14px; cursor: pointer; transition: all 0.15s; text-align: left;
+    font-family: inherit; flex-shrink: 0; min-width: 100px; max-width: 200px;
+  }
+  .vocab-chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .vc-term  { font-family: 'Fraunces', serif; font-weight: 600; color: var(--accent); font-size: 14px; display: block; }
+  .vc-trans { font-family: 'Noto Serif TC', serif; font-size: 12px; color: var(--ink-muted); display: block; margin-top: 2px; }
+  .vc-pos   { font-size: 10px; color: var(--ink-muted); font-style: italic; display: block; }
+
+  /* ── Track context pill ── */
+  .track-pill {
+    border-radius: 999px !important;
+    font-size: 12px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: default;
+  }
+
+  /* ── Post-quiz Reflection ── */
+  .reflection-card {
+    background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 18px; margin-top: 16px; text-align: left;
+  }
+  .reflection-label {
+    font-family: 'Fraunces', serif; font-size: 11px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; margin-bottom: 8px;
+  }
+  .reflection-q { font-size: 14px; color: var(--ink); margin-bottom: 10px; line-height: 1.5; }
+  .reflection-input {
+    width: 100%; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 10px 12px;
+    font-family: 'Source Serif 4', 'Noto Serif TC', serif;
+    font-size: 14px; color: var(--ink); resize: none; min-height: 64px; box-sizing: border-box;
+  }
+  .reflection-input:focus { outline: none; border-color: var(--accent); }
+  .reflection-card .reflection-save {
+    display: inline-block; width: auto; margin-top: 8px;
+    background: none !important; border: 1px solid var(--accent) !important;
+    color: var(--accent) !important; border-radius: 6px; padding: 5px 14px !important;
+    font-family: inherit; font-size: 12px; font-weight: 400 !important;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .reflection-card .reflection-save:hover:not(:disabled) { background: var(--accent-soft) !important; }
+  .reflection-card .reflection-save:disabled { opacity: 0.5; cursor: default; }
+
+  /* finish card secondary button style */
+  .finish-btn-secondary {
+    background: var(--bg-soft) !important; color: var(--ink) !important;
+    border: 1px solid var(--border) !important; font-weight: 400 !important;
+    font-size: 13px !important; padding: 9px !important;
+  }
+
+  /* confetti dot (JS-injected) */
+  .confetti-dot { position: fixed; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; z-index: 9999; }
+
+  /* quiz progress - floating pill */
+  #quiz-float {
+    position: fixed; bottom: 28px; right: 20px; z-index: 100;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 8px 16px 10px;
+    font-size: 13px; color: var(--ink-muted);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    display: none; flex-direction: column; align-items: center; gap: 4px;
+    min-width: 90px;
+  }
+  #quiz-float.visible { display: flex; }
+  #quiz-float .pf-label { font-size: 11px; letter-spacing: 0.08em; }
+  #quiz-float .pf-bar { width: 68px; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  #quiz-float .pf-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+
+  /* more articles */
+  .more-articles { margin: 64px 0 0; }
+  .more-articles h4 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; margin: 0 0 6px; }
+  .more-articles .more-sub { color: var(--ink-muted); font-size: 14px; margin-bottom: 24px; }
+  .article-grid { display: grid; gap: 14px; }
+  .article-card { padding: 18px 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; opacity: 0.5; }
+  .article-card .card-tag { font-size: 11px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; font-family: 'Fraunces', serif; margin-bottom: 6px; }
+  .article-card .card-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+  .article-card .card-title-zh { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-muted); }
+  .article-card .card-soon { font-size: 12px; color: var(--ink-muted); margin-top: 8px; font-style: italic; }
+
+  /* finish celebration overlay */
+  #finish-overlay {
+    position:fixed; inset:0; z-index:1000;
+    background:rgba(11,22,16,0.85); backdrop-filter:blur(8px);
+    display:flex; align-items:center; justify-content:center;
+    animation:fade-in 0.3s ease-out;
+  }
+  @keyframes fade-in { from{opacity:0} to{opacity:1} }
+  .finish-card {
+    background:var(--bg-card); border:1px solid var(--accent); border-radius:16px;
+    padding:32px 36px; text-align:center; max-width:380px; width:90%;
+    max-height:90vh; overflow-y:auto;
+    animation:pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes pop-in { from{opacity:0; transform:scale(0.8)} to{opacity:1; transform:scale(1)} }
+  .finish-emoji { font-size:64px; margin-bottom:8px; }
+  .finish-title { font-family:'Fraunces',serif; font-size:26px; font-weight:700; margin-bottom:6px; color:var(--accent); }
+  .finish-sub { color:var(--ink-muted); font-size:14px; margin-bottom:24px; }
+  .finish-card button {
+    display:block; width:100%; padding:11px; background:var(--accent); color:#fff;
+    border:none; border-radius:8px; cursor:pointer; font-family:inherit; font-size:14px;
+    font-weight:600; margin-bottom:10px;
+  }
+  .finish-back { display:block; color:var(--ink-muted); text-decoration:none; font-size:13px; padding:8px; }
+  .finish-back:hover { color:var(--accent); }
+  .finish-next-card {
+    display:block; text-decoration:none; color:inherit;
+    background:var(--bg-soft); border:1px solid var(--border); border-radius:10px;
+    padding:14px 16px; text-align:left; margin-bottom:12px;
+    transition:border-color 0.15s, transform 0.15s;
+  }
+  .finish-next-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .finish-next-label { font-family:'Fraunces',serif; font-size:11px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; }
+  .finish-next-title { font-family:'Noto Serif TC',serif; font-size:15px; font-weight:600; line-height:1.3; margin-bottom:3px; }
+  .finish-next-en { font-family:'Fraunces',serif; font-size:13px; color:var(--ink-muted); line-height:1.3; margin-bottom:6px; }
+  .finish-next-meta { font-size:11px; color:var(--ink-muted); }
+
+  /* prev/next article nav */
+  .nav-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:48px 0 32px; }
+  @media (max-width:560px){ .nav-row { grid-template-columns:1fr; } }
+  .nav-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
+    padding:18px 20px; text-decoration:none; color:inherit;
+    transition:transform 0.15s, border-color 0.15s; display:block;
+  }
+  .nav-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .nav-card .nav-label { font-size:12px; color:var(--ink-muted); letter-spacing:0.1em; text-transform:uppercase; font-family:'Fraunces',serif; margin-bottom:6px; }
+  .nav-card .nav-title { font-family:'Fraunces',serif; font-size:16px; font-weight:600; line-height:1.3; }
+  .nav-card .nav-zh { font-family:'Noto Serif TC',serif; font-size:13px; color:var(--ink-muted); margin-top:3px; }
+  .nav-card.disabled { opacity:0.4; pointer-events:none; }
+
+  #music-btn {
+    background: none; border: 1px solid var(--border); color: var(--ink);
+    border-radius: 8px; padding: 6px 12px; cursor: pointer;
+    font-size: 16px; transition: all 0.2s; margin-right: 6px;
+  }
+  #music-btn.playing { border-color: var(--accent); color: var(--accent); animation: pulse 2s ease-in-out infinite; }
+  #music-btn.needs-click { border-color: var(--accent); animation: pulse 1s ease-in-out 3; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.55} }
+  @keyframes slide-up { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  footer { margin-top: 96px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--ink-muted); font-size: 13px; text-align: center; font-family: 'Fraunces', serif; font-style: italic; }
+
+  /* ── Speaking Practice ── */
+  .speaking-section { margin: 48px 0 32px; }
+  .speaking-sub { color:var(--ink-muted); font-size:14px; margin-bottom:20px; }
+  .speak-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:24px; }
+  .speak-prompt-label { font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:0.15em; font-family:'Fraunces',serif; font-weight:600; margin-bottom:10px; }
+  .speak-prompt-text { font-size:15px; line-height:1.7; margin-bottom:20px; padding:14px 16px; background:var(--accent-soft); border-left:3px solid var(--accent); border-radius:4px; }
+  .speak-controls { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
+  .speak-record-btn {
+    background:var(--accent); color:#fff; border:none; border-radius:999px;
+    padding:10px 22px; font-family:inherit; font-size:14px; font-weight:600;
+    cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:all 0.15s;
+  }
+  .speak-record-btn:hover:not(:disabled) { transform:translateY(-1px); box-shadow:0 4px 14px rgba(200,146,63,0.35); }
+  .speak-record-btn.recording { background:var(--error); animation:pulse 1s ease-in-out infinite; }
+  .speak-record-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .speak-timer { font-size:13px; color:var(--ink-muted); font-family:'Fraunces',serif; min-width:40px; }
+  .speak-transcript {
+    display:none; background:var(--bg-soft); border:1px solid var(--border);
+    border-radius:8px; padding:14px; min-height:64px; font-size:15px; line-height:1.7;
+    margin-bottom:14px; white-space:pre-wrap; color:var(--ink);
+  }
+  .speak-transcript.show { display:block; }
+  .speak-kw-block { display:none; margin-bottom:14px; }
+  .speak-kw-block.show { display:block; }
+  .speak-kw-label { font-size:12px; color:var(--ink-muted); margin-bottom:8px; }
+  .kw-tag { display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; margin:3px; }
+  .kw-hit  { background:rgba(111,170,127,0.18); border:1px solid var(--success); color:var(--success); }
+  .kw-miss { background:var(--bg-soft); border:1px solid var(--border); color:var(--ink-muted); }
+  .speak-upgrade {
+    background:var(--bg-soft); border:1px dashed var(--border); border-radius:8px;
+    padding:12px 16px; font-size:13px; color:var(--ink-muted);
+    display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  }
+  .speak-upgrade .su-badge {
+    background:var(--bg-card); border:1px solid var(--border); color:var(--ink-muted);
+    border-radius:6px; padding:5px 12px; font-size:12px; font-family:inherit;
+    cursor:default; white-space:nowrap;
+  }
+
+  /* Font-size accessibility controls */
+  #font-ctrl { display:inline-flex; gap:2px; }
+  .font-btn {
+    background:none; border:1px solid var(--border); color:var(--ink-muted);
+    border-radius:6px; padding:4px 8px; cursor:pointer; font-size:13px;
+    font-family:inherit; line-height:1; transition:all 0.15s;
+  }
+  .font-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* Research Design Snapshot block */
+  .research-snapshot {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
+    padding:20px 24px; margin:28px 0; display:grid;
+    grid-template-columns:1fr 1fr; gap:14px;
+  }
+  @media(max-width:560px){ .research-snapshot { grid-template-columns:1fr; } }
+  .rs-label { font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; font-family:'Fraunces',serif; font-weight:600; margin-bottom:4px; }
+  .rs-head { font-family:'Fraunces',serif; font-size:13px; font-weight:600; margin:0 0 16px; color:var(--ink); grid-column:1/-1; }
+  .rs-item {}
+  .rs-value { font-size:14px; color:var(--ink); line-height:1.5; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">跳到內文 / Skip to content</a>
+<div id="reading-progress" aria-hidden="true"><div class="rp-fill" id="rp-fill"></div></div>
+<div class="container" id="main" role="main">
+  <header>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <a href="index.html" id="back-btn" style="color:var(--ink-muted);text-decoration:none;font-size:13px;border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-family:'Source Serif 4',serif;white-space:nowrap;">← 目錄</a>
+      <div>
+        <span class="brand">Duet</span>
+        <span class="brand-sub">雙聲</span>
+      </div>
+    </div>
+    <div class="controls">
+      <span id="mini-hud" class="mini-hud" title="目前 XP / 連續造訪天數"></span>
+      <span id="font-ctrl" aria-label="字體大小">
+        <button class="font-btn" id="font-down" title="縮小字體">A−</button>
+        <button class="font-btn" id="font-up" title="放大字體">A+</button>
+      </span>
+      <button id="music-btn" title="播放背景音樂">🔇</button>
+      <button id="theme-toggle" title="切換主題">🌙</button>
+    </div>
+  </header>
+
+  <div class="meta" id="meta"></div>
+  <h1 class="title-en" id="title-en"></h1>
+  <h2 class="title-zh" id="title-zh"></h2>
+  <p class="citation" id="citation"></p>
+
+  <div class="tldr">
+    <div class="tldr-label">TL;DR</div>
+    <div class="tldr-en" id="tldr-en"></div>
+    <div class="tldr-zh" id="tldr-zh"></div>
+  </div>
+
+  <div id="read-aloud-bar" class="read-aloud-bar">
+    <button id="ra-play" class="ra-btn ra-primary" aria-label="Read article aloud">
+      <span class="ra-icon">🔊</span>
+      <span class="ra-text">朗讀全文 · Read aloud</span>
+    </button>
+    <button id="ra-prev" class="ra-btn" aria-label="Previous paragraph" title="上一段" disabled>⏮</button>
+    <button id="ra-pause" class="ra-btn" aria-label="Pause / Resume" title="暫停／繼續" disabled>⏸</button>
+    <button id="ra-next" class="ra-btn" aria-label="Next paragraph" title="下一段" disabled>⏭</button>
+    <button id="ra-stop" class="ra-btn" aria-label="Stop" title="停止" disabled>⏹</button>
+    <select id="ra-speed" class="ra-speed" title="語速 Speed" aria-label="Reading speed">
+      <option value="0.85">0.85×</option>
+      <option value="1" selected>1×</option>
+      <option value="1.25">1.25×</option>
+      <option value="1.5">1.5×</option>
+    </select>
+    <span id="ra-status" class="ra-status"></span>
+  </div>
+
+  <div class="lang-toggle" id="lang-toggle">
+    <button data-mode="en" class="active">EN only</button>
+    <button data-mode="both">EN + 中</button>
+    <button data-mode="zh">中文 only</button>
+  </div>
+
+  <div id="level-bar" style="display:none"></div>
+
+  <article id="article"></article>
+  <section class="glossary" id="glossary"></section>
+  <section class="quiz" id="quiz"></section>
+  <section id="source"></section>
+  <section class="share-row" id="share-row"></section>
+  <section id="article-nav"></section>
+  <div id="quiz-float">
+    <div class="pf-label">✏️ <span id="qf-done">0</span> / <span id="qf-total">0</span> 題</div>
+    <div class="pf-bar"><div class="pf-fill" id="qf-fill"></div></div>
+  </div>
+
+  <footer>Duet · Read science in two voices · 雙聲・讀懂科學<br><span style="font-size:11px;">© 2026 Duet 雙聲 · 平台版權所有 · 文章內容遵循 CC-BY 開放授權</span></footer>
+</div>
+
+<!-- Floating term definition popup (single shared instance, fixed position) -->
+<div id="term-popup" class="term-popup" style="display:none" role="tooltip" aria-live="polite">
+  <button class="tp-close" aria-label="關閉 Close">×</button>
+  <div class="tp-body"></div>
+</div>
+
+<script>
+// ── Analytics helpers ──
+function _getAnalytics() {
+  try { return JSON.parse(localStorage.getItem('duet-analytics') || '{}'); } catch { return {}; }
+}
+function _saveAnalytics(a) { localStorage.setItem('duet-analytics', JSON.stringify(a)); }
+
+function trackView(articleId, titleZh, titleEn, estimatedMinutes) {
+  const a = _getAnalytics();
+  a.views = a.views || {};
+  a.titles = a.titles || {};
+  a.minutes = a.minutes || {};
+  a.daily = a.daily || {};
+  a.views[articleId] = (a.views[articleId] || 0) + 1;
+  a.titles[articleId] = { zh: titleZh, en: titleEn };
+  a.minutes[articleId] = estimatedMinutes || 8;
+  const today = new Date().toISOString().slice(0, 10);
+  a.daily[today] = (a.daily[today] || 0) + 1;
+  _saveAnalytics(a);
+}
+function trackQuizComplete(articleId) {
+  const a = _getAnalytics();
+  a.quizDone = a.quizDone || {};
+  a.quizDone[articleId] = (a.quizDone[articleId] || 0) + 1;
+  _saveAnalytics(a);
+}
+function trackLevel(level) {
+  const a = _getAnalytics();
+  a.levelPicks = a.levelPicks || {};
+  a.levelPicks[level] = (a.levelPicks[level] || 0) + 1;
+  _saveAnalytics(a);
+}
+function trackScrollDepth(articleId, depth) {
+  const a = _getAnalytics();
+  a.scrollDepth = a.scrollDepth || {};
+  const cur = a.scrollDepth[articleId] || 0;
+  if (depth > cur) {
+    a.scrollDepth[articleId] = depth;
+    _saveAnalytics(a);
+  }
+}
+function trackGlossaryClick(articleId, term) {
+  const a = _getAnalytics();
+  a.glossaryClicks = a.glossaryClicks || {};
+  const key = term.toLowerCase();
+  a.glossaryClicks[key] = (a.glossaryClicks[key] || 0) + 1;
+  _saveAnalytics(a);
+}
+
+async function init() {
+  const id = new URLSearchParams(location.search).get('id') || 'PMC8473838';
+  const data = await fetch(`data/articles/${id}.json`).then(r => r.json());
+  window._readerTitle = data.title_zh || data.title_en || '';
+
+  // ── SEO injection ──
+  document.title = `${data.title_zh} · ${data.title_en} · Duet 雙聲`;
+  const desc = (data.tldr_en || data.levels?.B2?.tldr_en || '').slice(0, 155);
+  document.getElementById('meta-desc')?.setAttribute('content', desc);
+  document.getElementById('og-title')?.setAttribute('content', `${data.title_en} · ${data.title_zh}`);
+  document.getElementById('og-desc')?.setAttribute('content', desc);
+  document.getElementById('canonical-link')?.setAttribute('href', `https://duetlearn.com/reader.html?id=${id}`);
+  document.getElementById('og-url')?.setAttribute('content', `https://duetlearn.com/reader.html?id=${id}`);
+  // Article JSON-LD structured data
+  const jsonld = {
+    '@context':'https://schema.org', '@type':'Article',
+    headline: data.title_en,
+    alternativeHeadline: data.title_zh,
+    description: desc,
+    inLanguage: ['en','zh-TW'],
+    isAccessibleForFree: true,
+    keywords: (data.tags || []).join(','),
+    author: { '@type':'Organization', name:'Duet 雙聲' },
+    publisher: { '@type':'Organization', name:'Duet 雙聲', url:'https://duetlearn.com/' },
+    isBasedOn: data.original_url || `https://pmc.ncbi.nlm.nih.gov/articles/${id}/`,
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+  };
+  document.getElementById('article-jsonld').textContent = JSON.stringify(jsonld);
+
+  // (Read tracking moved to showFinishCelebration — only counts after finishing quiz)
+  // Update streak + render mini-HUD
+  bumpStreak();
+  renderMiniHUD();
+  trackView(id, data.title_zh, data.title_en, data.estimated_minutes);
+
+  // Persisted theme
+  const savedTheme = localStorage.getItem('duet-theme') || 'dark';
+  document.documentElement.dataset.theme = savedTheme;
+
+  const diffLabel = data.multilevel ? 'B1–C2 多級' : `CEFR ${data.difficulty}`;
+  document.getElementById('meta').innerHTML =
+    `<span>☕ ${data.estimated_minutes} min</span>` +
+    `<span>📊 ${diffLabel}</span>` +
+    data.tags.map(t => `<span>${t}</span>`).join('');
+
+  document.getElementById('title-en').textContent = data.title_en;
+  document.getElementById('title-zh').textContent = data.title_zh;
+  document.getElementById('citation').innerHTML =
+    `Based on the open-access paper at <a href="${data.original_url || '#'}" target="_blank">${data.pmc_id || id}</a> · ${escape(data.original_citation || '')} · Licensed ${escape(data.original_license || 'CC-BY')} · Rewritten by Gemini for educational use.`;
+
+  // Multi-level support
+  let currentLevel = null;
+  const isMulti = data.multilevel && data.levels;
+  if (isMulti) {
+    const stored = localStorage.getItem(`duet-level-${id}`) || localStorage.getItem('duet-level-default') || 'C1';
+    currentLevel = data.levels[stored] ? stored : (data.levels['C1'] ? 'C1' : 'B2');
+    renderLevelBar();
+  }
+
+  function getLevelData() {
+    if (isMulti) return data.levels[currentLevel];
+    return { tldr_en: data.tldr_en, tldr_zh: data.tldr_zh,
+             article_en: data.article_en, article_zh: data.article_zh };
+  }
+
+  function renderLevelBar() {
+    const wcMap = { B1:'科普入門 · 建立概念', B2:'大學基礎 · 理解機制', C1:'留學備考 · 學術英語', C2:'研討會級 · 批判表達' };
+    const labels = { B1:'B1 基礎', B2:'B2 進階', C1:'C1 留學', C2:'C2 學術' };
+    const bar = document.getElementById('level-bar');
+    bar.style.display = 'block';
+    const tabs = ['B1','B2','C1','C2'].filter(l => data.levels[l]).map(l =>
+      `<button class="lb-tab ${l===currentLevel?'active':''}" data-level="${l}">
+         <span class="lb-name">${labels[l]}</span>
+         <span class="lb-meta">${wcMap[l]}</span>
+       </button>`).join('');
+    bar.innerHTML = `
+      <div class="lb-head">
+        <span class="lb-title">📊 閱讀難度 · Difficulty Level</span>
+        <span class="lb-hint">同篇論文 · 4 種深度 · C1 為碩博士預設</span>
+      </div>
+      <div class="lb-tabs">${tabs}</div>`;
+    bar.querySelectorAll('.lb-tab').forEach(t => t.addEventListener('click', () => {
+      currentLevel = t.dataset.level;
+      localStorage.setItem(`duet-level-${id}`, currentLevel);
+      localStorage.setItem('duet-level-default', currentLevel);
+      bar.querySelectorAll('.lb-tab').forEach(x => x.classList.toggle('active', x === t));
+      trackLevel(currentLevel);
+      renderArticleBody();
+    }));
+  }
+
+  function renderArticleBody() {
+    const lvl = getLevelData();
+    document.getElementById('tldr-en').textContent = lvl.tldr_en;
+    document.getElementById('tldr-zh').textContent = lvl.tldr_zh;
+
+    const article = document.getElementById('article');
+    const enBlocks = parseBlocks(lvl.article_en);
+    const zhBlocks = parseBlocks(lvl.article_zh);
+    let html = '<div class="article-en">';
+    for (let i = 0; i < enBlocks.length; i++) {
+      const en = enBlocks[i];
+      const zh = zhBlocks[i] || {text: '', tag: 'p'};
+      if (en.tag === 'h3') {
+        html += `<h3>${escape(en.text)}</h3>`;
+        html += `<div class="zh-shadow h3-shadow">${escape(zh.text)}</div>`;
+      } else {
+        html += `<p>${wrapTerms(en.text, data.glossary || [])}</p>`;
+        html += `<div class="zh-shadow">${escape(zh.text)}</div>`;
+      }
+    }
+    html += '</div>';
+    article.innerHTML = html;
+    // wire term speak buttons (re-runs after each level switch)
+    article.querySelectorAll('.term-speak').forEach(b =>
+      b.addEventListener('click', e => { e.stopPropagation(); speak(b.dataset.text, null, b); }));
+    // wire paragraph speak: click anywhere on a paragraph + Alt = read it aloud
+    article.querySelectorAll('p').forEach(p => {
+      const para = document.createElement('button');
+      para.className = 'para-speak';
+      para.title = 'Read this paragraph (Alt+click)';
+      para.innerHTML = '🔊';
+      para.addEventListener('click', e => { e.stopPropagation(); speak(p.innerText, null, para); });
+      p.appendChild(para);
+    });
+  }
+  renderArticleBody();
+  renderVocabPreview(data.glossary || []);
+
+  // Track context: inject pill into meta row
+  detectTrackContext(id).then(ctx => {
+    if (!ctx) return;
+    const metaEl = document.getElementById('meta');
+    if (!metaEl) return;
+    const pill = document.createElement('span');
+    pill.className = 'track-pill';
+    pill.style.cssText = `background:${ctx.color}22;border:1px solid ${ctx.color}66;color:${ctx.color};`;
+    pill.textContent = `🛤️ ${ctx.trackTitle} · ${ctx.step}/${ctx.total}`;
+    metaEl.appendChild(pill);
+  });
+
+  const gloss = document.getElementById('glossary');
+  gloss.innerHTML = '<h4>📚 本篇關鍵字</h4>' +
+    data.glossary.map(g => `
+      <div class="glossary-item">
+        <span class="term-name">${escape(g.term)}</span>
+        <button class="speak-btn" data-text="${escape(g.term)}" title="點擊朗讀 / Pronounce" aria-label="Pronounce ${escape(g.term)}">🔊</button>
+        ${g.pos ? `<span class="pos-tag">${escape(g.pos)}</span>` : ''}
+        ${g.ipa ? `<span class="ipa" title="IPA · 點擊聽單字" style="cursor:pointer" data-text="${escape(g.term)}">${escape(g.ipa)}</span>` : ''}
+        ${g.translation ? `<div class="trans">${escape(g.translation)}</div>` : ''}
+        <div class="def">${escape(g.definition_en)}</div>
+        <div class="def-zh">${escape(g.definition_zh)}</div>
+      </div>
+    `).join('');
+  // Wire IPA click-to-speak
+  gloss.querySelectorAll('.ipa[data-text]').forEach(el =>
+    el.addEventListener('click', () => { speak(el.dataset.text); trackGlossaryClick(id, el.dataset.text); }));
+  // Wire up speak buttons
+  gloss.querySelectorAll('.speak-btn').forEach(b =>
+    b.addEventListener('click', e => { e.stopPropagation(); speak(b.dataset.text, null, b); trackGlossaryClick(id, b.dataset.text); }));
+  // Track glossary card hover/expand as a softer "interest" signal
+  gloss.querySelectorAll('.glossary-item .term-name').forEach(el =>
+    el.addEventListener('click', () => trackGlossaryClick(id, el.textContent)));
+
+  // Research Design Snapshot (shown only when article has research_design field)
+  renderResearchSnapshot(data.research_design);
+
+  renderQuiz(data.quiz);
+  renderSpeakingPractice(data);
+  renderSource(data);
+
+  // Font-size controls (A+ / A−), persisted in localStorage
+  initFontControls();
+
+  const toggle = document.getElementById('lang-toggle');
+  toggle.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    const mode = e.target.dataset.mode;
+    toggle.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === e.target));
+    document.body.classList.remove('show-zh', 'zh-only');
+    if (mode === 'both') document.body.classList.add('show-zh');
+    if (mode === 'zh') document.body.classList.add('zh-only', 'show-zh');
+    trackMode(mode);
+  });
+
+  const themeBtn = document.getElementById('theme-toggle');
+  themeBtn.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+  themeBtn.addEventListener('click', () => {
+    const cur = document.documentElement.dataset.theme;
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    themeBtn.textContent = next === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('duet-theme', next);
+  });
+
+  // Share row
+  renderShareRow(data, id);
+
+  // Reading progress bar + scroll-depth tracking (25/50/75/100 buckets)
+  const rpFill = document.getElementById('rp-fill');
+  const updateRP = () => {
+    const h = document.documentElement;
+    const pct = Math.min(100, (window.scrollY / (h.scrollHeight - h.clientHeight)) * 100);
+    rpFill.style.width = pct + '%';
+    let bucket = 0;
+    if (pct >= 100) bucket = 100;
+    else if (pct >= 75) bucket = 75;
+    else if (pct >= 50) bucket = 50;
+    else if (pct >= 25) bucket = 25;
+    if (bucket) trackScrollDepth(id, bucket);
+  };
+  window.addEventListener('scroll', updateRP, { passive: true });
+  updateRP();
+
+  // Render prev/next nav at bottom
+  renderArticleNav(id);
+
+  // Restore scroll position if we've been here before
+  const savedScroll = parseInt(localStorage.getItem(`duet-scroll-${id}`) || '0');
+  if (savedScroll > 200) {
+    setTimeout(() => {
+      window.scrollTo({ top: savedScroll, behavior: 'auto' });
+      Duet?.showToast?.('續讀上次位置 📖');
+    }, 100);
+  }
+  // Save scroll position throttled
+  let _scrollT;
+  window.addEventListener('scroll', () => {
+    clearTimeout(_scrollT);
+    _scrollT = setTimeout(() => {
+      localStorage.setItem(`duet-scroll-${id}`, String(window.scrollY));
+    }, 250);
+  });
+}
+
+function parseBlocks(md) {
+  const out = [];
+  for (const b of md.split(/\n\n+/)) {
+    const t = b.trim();
+    if (!t) continue;
+    if (t.startsWith('### ')) out.push({tag: 'h3', text: t.slice(4)});
+    else out.push({tag: 'p', text: t.replace(/\n/g, ' ')});
+  }
+  return out;
+}
+
+function wrapTerms(text, glossary) {
+  let html = escape(text);
+  for (const g of glossary) {
+    const re = new RegExp(`(${escapeReg(g.term)})`, 'i');
+    if (re.test(html)) {
+      html = html.replace(re, m =>
+        `<span class="term" data-term="${escape(g.term)}" data-pos="${escape(g.pos||'')}" data-trans="${escape(g.translation||'')}" data-def-en="${escape(g.definition_en)}" data-def-zh="${escape(g.definition_zh)}"` +
+        `><span class="term-text">${m}</span><button class="term-speak" data-text="${escape(g.term)}" title="發音">🔊</button></span>`
+      );
+    }
+  }
+  return html;
+}
+
+function escape(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function escapeReg(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+let quizTotal = 0, quizDone = 0;
+
+function updateProgress() {
+  quizDone++;
+  const pct = (quizDone / quizTotal * 100) + '%';
+  const fill = document.getElementById('qf-fill');
+  const done = document.getElementById('qf-done');
+  if (fill) fill.style.width = pct;
+  if (done) done.textContent = quizDone;
+  if (quizDone === quizTotal) showFinishCelebration();
+}
+
+function showFinishCelebration() {
+  awardXP(25);  // bonus for finishing full quiz
+  const _fid = new URLSearchParams(location.search).get('id') || 'PMC8473838';
+  trackQuizComplete(_fid);
+  // Mark article as read NOW (only when fully completed)
+  try {
+    const id = new URLSearchParams(location.search).get('id') || 'PMC8473838';
+    const read = new Set(JSON.parse(localStorage.getItem('duet-read') || '[]'));
+    if (!read.has(id)) {
+      read.add(id);
+      localStorage.setItem('duet-read', JSON.stringify([...read]));
+      // Sync to stats and check article-count badges
+      const s = getStats();
+      s.read = [...read];
+      saveStats(s);
+      const n = read.size;
+      if (n >= 1) addBadge('first');
+      if (n >= 3) addBadge('bookworm');
+      if (n >= 5) {
+        addBadge('scholar');
+        // Graduation milestone: read all articles
+        setTimeout(() => {
+          const grad = document.createElement('div');
+          grad.id = 'finish-overlay';
+          grad.innerHTML = `
+            <div class="finish-card" style="border-color:var(--success); background:linear-gradient(135deg, var(--bg-card), rgba(111,170,127,0.18));">
+              <div class="finish-emoji">🎓</div>
+              <div class="finish-title" style="color:var(--success);">畢業了！Graduate!</div>
+              <div class="finish-sub">你已讀完目前所有 ${n} 篇文章。<br>更多內容陸續推出，先去 vocab.html 複習單字吧 🃏</div>
+              <button onclick="document.getElementById('finish-overlay').remove()">繼續</button>
+              <a href="vocab.html" class="finish-back">→ 去複習單字</a>
+            </div>`;
+          document.body.appendChild(grad);
+        }, 2000);
+      }
+    }
+  } catch {}
+  const overlay = document.createElement('div');
+  overlay.id = 'finish-overlay';
+  overlay.innerHTML = `
+    <div class="finish-card">
+      <div class="finish-emoji">🎉</div>
+      <div class="finish-title">完成！You finished!</div>
+      <div class="finish-sub">已完成本篇所有測驗 · +25 XP bonus</div>
+      <div id="finish-next-slot"></div>
+      <div id="finish-reflection"></div>
+      <button class="finish-btn-secondary" onclick="document.getElementById('finish-overlay').remove()">關閉</button>
+      <a href="index.html" class="finish-back">← 回目錄</a>
+    </div>`;
+  document.body.appendChild(overlay);
+  // Async-load smart "next article" recommendation
+  renderNextRecommendation(_fid);
+  // Reflection prompt (metacognition)
+  renderReflectionPrompt(_fid);
+  // Burst confetti from center
+  const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+  const colors = ['#C8923F','#6FAA7F','#F5EFE6','#A8D4B0','#E8C07A','#A0C0F0'];
+  for (let i = 0; i < 40; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'confetti-dot';
+    dot.style.background = colors[i % colors.length];
+    dot.style.width = (6 + Math.random()*6) + 'px';
+    dot.style.height = dot.style.width;
+    dot.style.left = cx + 'px';
+    dot.style.top = cy + 'px';
+    document.body.appendChild(dot);
+    const angle = Math.random() * 2 * Math.PI;
+    const dist = 120 + Math.random() * 200;
+    dot.animate([
+      { transform: 'translate(-50%,-50%) scale(1) rotate(0deg)', opacity: 1 },
+      { transform: `translate(calc(-50% + ${Math.cos(angle)*dist}px), calc(-50% + ${Math.sin(angle)*dist}px)) scale(0) rotate(${360+Math.random()*360}deg)`, opacity: 0 }
+    ], { duration: 1400 + Math.random()*400, easing: 'cubic-bezier(0.2,0.7,0.4,1)' }).finished.then(() => dot.remove());
+  }
+}
+
+function normalizeQuiz(q) {
+  if (Array.isArray(q)) {
+    const out = { recall: [], transfer: [], critical: [] };
+    const map = { comprehension: 'recall', application: 'transfer', critique: 'critical' };
+    q.forEach(item => {
+      const bucket = map[item.section] || 'recall';
+      out[bucket].push({
+        question_en: item.q || '',
+        question_zh: '',
+        options_en: item.options || [],
+        options_zh: item.options || [],
+        answer: item.answer,
+        hint_en: item.hint || '',
+        hint_zh: '',
+        explanation_en: '',
+        explanation_zh: item.explain_zh || ''
+      });
+    });
+    return out;
+  }
+  return q;
+}
+
+function renderQuiz(quiz) {
+  quiz = normalizeQuiz(quiz);
+  quizTotal = (quiz.recall?.length||0) + (quiz.transfer?.length||0) + (quiz.critical?.length||0);
+  const cont = document.getElementById('quiz');
+  cont.innerHTML = `
+    <div class="quiz-header">✏️ 測驗時間</div>
+    <div class="quiz-sub">3 道理解 · 2 道應用 · 1 道方法論評估 — 答錯第一次給提示</div>`;
+  const floatEl = document.getElementById('quiz-float');
+  const totalEl = document.getElementById('qf-total');
+  if (floatEl) floatEl.classList.add('visible');
+  if (totalEl) totalEl.textContent = quizTotal;
+  const sections = [
+    ['recall', '📍 概念理解 · Comprehension'],
+    ['transfer', '🔄 跨域應用 · Application'],
+    ['critical', '🔬 方法論評估 · Methodology Critique']
+  ];
+  for (const [key, label] of sections) {
+    const qs = quiz[key];
+    if (!qs || !qs.length) continue;
+    cont.insertAdjacentHTML('beforeend', `<div class="quiz-section-label">${label}</div>`);
+    qs.forEach((q, idx) => cont.appendChild(buildQ(q, `${key}-${idx}`)));
+  }
+}
+
+let _manifestCache = null;
+async function getManifest() {
+  if (!_manifestCache) _manifestCache = fetch('data/manifest.json').then(r => r.json());
+  return _manifestCache;
+}
+
+async function renderNextRecommendation(currentId) {
+  const slot = document.getElementById('finish-next-slot');
+  if (!slot) return;
+  try {
+    const manifest = await getManifest();
+    const current = manifest.find(a => a.id === currentId);
+    if (!current) return;
+    const readIds = new Set(JSON.parse(localStorage.getItem('duet-read') || '[]'));
+    const others = manifest.filter(a => a.id !== currentId);
+    // Score: same category +3, same difficulty +2, unread +5
+    const scored = others.map(a => {
+      let s = 0;
+      if (a.category === current.category) s += 3;
+      if (a.difficulty === current.difficulty || a.multilevel) s += 2;
+      if (!readIds.has(a.id)) s += 5;
+      return { a, s };
+    }).sort((x, y) => y.s - x.s);
+    const next = scored[0]?.a;
+    if (!next) return;
+    const sameCat = next.category === current.category;
+    const reasonText = !readIds.has(next.id)
+      ? (sameCat ? `📚 同領域・新文章` : `🆕 新文章`)
+      : `🔁 同領域複習`;
+    slot.innerHTML = `
+      <a href="reader.html?id=${next.id}" class="finish-next-card">
+        <div class="finish-next-label">${reasonText} · 下一篇推薦</div>
+        <div class="finish-next-title">${esc(next.title_zh)}</div>
+        <div class="finish-next-en">${esc(next.title_en)}</div>
+        <div class="finish-next-meta">☕ ${next.estimated_minutes} min · CEFR ${next.multilevel ? 'B1–C2' : next.difficulty}</div>
+      </a>`;
+  } catch {}
+}
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function renderShareRow(data, id) {
+  const row = document.getElementById('share-row');
+  if (!row) return;
+  const url = location.href;
+  const title = `${data.title_en} · ${data.title_zh}`;
+  const text = `${data.title_zh} — 在 Duet 雙聲讀這篇雙語科學文章`;
+  row.innerHTML = `
+    <button class="share-btn" id="btn-native">📤 分享</button>
+    <button class="share-btn" id="btn-copylink">🔗 複製連結</button>
+    <a class="share-btn" target="_blank" rel="noopener"
+       href="https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}">𝕏 Tweet</a>
+    <button class="share-btn" id="btn-print">🖨️ 列印</button>`;
+  document.getElementById('btn-native').addEventListener('click', () => {
+    if (navigator.share) navigator.share({ title, text, url }).catch(()=>{});
+    else document.getElementById('btn-copylink').click();
+  });
+  document.getElementById('btn-copylink').addEventListener('click', e => {
+    navigator.clipboard.writeText(url).then(() => {
+      e.target.textContent = '✓ Copied';
+      setTimeout(() => e.target.textContent = '🔗 複製連結', 1800);
+    });
+  });
+  document.getElementById('btn-print').addEventListener('click', () => window.print());
+}
+
+async function renderArticleNav(currentId) {
+  try {
+    const manifest = await getManifest();
+    const idx = manifest.findIndex(a => a.id === currentId);
+    if (idx < 0) return;
+    const prev = idx > 0 ? manifest[idx - 1] : null;
+    const next = idx < manifest.length - 1 ? manifest[idx + 1] : null;
+    const card = (a, label) => a
+      ? `<a class="nav-card" href="reader.html?id=${a.id}">
+           <div class="nav-label">${label}</div>
+           <div class="nav-title">${escape(a.title_en)}</div>
+           <div class="nav-zh">${escape(a.title_zh)}</div>
+         </a>`
+      : `<div class="nav-card disabled"><div class="nav-label">${label}</div><div class="nav-title">—</div></div>`;
+    document.getElementById('article-nav').innerHTML =
+      `<div class="nav-row">${card(prev, '← 上一篇')}${card(next, '下一篇 →')}</div>`;
+    // Keyboard shortcuts: J=prev, K=next, M=music
+    document.addEventListener('keydown', e => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'k' && next) location.href = `reader.html?id=${next.id}`;
+      else if (e.key === 'j' && prev) location.href = `reader.html?id=${prev.id}`;
+      else if (e.key === 'm') document.getElementById('music-btn')?.click();
+    });
+  } catch (e) {}
+}
+
+function renderSpeakingPractice(data) {
+  const promptText = data.speaking_prompt ||
+    'Imagine you are presenting this paper at a lab meeting.\nIn 90 seconds, cover three points:\n① What research question did the scientists ask?\n② What method did they use, and why is it suitable?\n③ What is the main finding — and what does it mean for the field?';
+  const keywords = (data.glossary || []).map(g => g.term);
+
+  const section = document.createElement('section');
+  section.className = 'speaking-section';
+  section.innerHTML = `
+    <div class="quiz-header">🎤 口說練習</div>
+    <div class="speaking-sub">Speaking Practice · 用英文說出你理解的東西，訓練學術表達力</div>
+    <div class="speak-card">
+      <div class="speak-prompt-label">Discussion Prompt · 討論題</div>
+      <div class="speak-prompt-text">${escape(promptText).replace(/\n/g,'<br>')}</div>
+      <div class="speak-controls">
+        <button class="speak-record-btn" id="sp-rec">🎤 開始錄音 · Record</button>
+        <span class="speak-timer" id="sp-timer"></span>
+      </div>
+      <div class="speak-transcript" id="sp-transcript" aria-live="polite" aria-label="語音辨識結果"></div>
+      <div class="speak-kw-block" id="sp-kw">
+        <div class="speak-kw-label">📍 關鍵詞命中 · Key terms used:</div>
+        <div id="sp-kw-tags"></div>
+      </div>
+      <div class="speak-upgrade">
+        <span>🔒 AI 詳細評分：文法、連貫性、學術詞彙建議 — <em>即將推出付費版</em></span>
+        <span class="su-badge">Coming Soon</span>
+      </div>
+    </div>`;
+  document.getElementById('quiz').after(section);
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recBtn   = document.getElementById('sp-rec');
+  const timerEl  = document.getElementById('sp-timer');
+  const transEl  = document.getElementById('sp-transcript');
+  const kwBlock  = document.getElementById('sp-kw');
+  const kwTags   = document.getElementById('sp-kw-tags');
+
+  if (!SpeechRecognition) {
+    recBtn.disabled = true;
+    recBtn.textContent = '🎤 需要 Chrome 或 Edge 瀏覽器';
+    return;
+  }
+
+  const recog = new SpeechRecognition();
+  recog.lang = 'en-US';
+  recog.continuous = true;
+  recog.interimResults = true;
+
+  let recording = false, timerRef = null, elapsed = 0, finalText = '';
+
+  function fmt(s) { return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; }
+
+  function startTimer() {
+    elapsed = 0; timerEl.textContent = '00:00';
+    timerRef = setInterval(() => {
+      elapsed++;
+      timerEl.textContent = fmt(elapsed);
+      if (elapsed >= 120) stopRec();  // auto-stop at 2 min
+    }, 1000);
+  }
+
+  function stopRec() {
+    if (!recording) return;
+    recog.stop(); recording = false;
+    clearInterval(timerRef);
+    recBtn.classList.remove('recording');
+    recBtn.textContent = '🔄 再說一次 · Retry';
+    showKeywords(finalText);
+    awardXP(5);
+    Duet.showToast?.('🎤 +5 XP · 口說完成！');
+  }
+
+  recBtn.addEventListener('click', () => {
+    if (recording) { stopRec(); return; }
+    finalText = ''; transEl.textContent = '';
+    transEl.classList.add('show'); kwBlock.classList.remove('show');
+    recording = true;
+    recBtn.classList.add('recording');
+    recBtn.textContent = '⏹ 停止 · Stop';
+    startTimer();
+    recog.start();
+  });
+
+  recog.onresult = e => {
+    finalText = '';
+    let interim = '';
+    for (const r of e.results) {
+      if (r.isFinal) finalText += r[0].transcript + ' ';
+      else interim += r[0].transcript;
+    }
+    transEl.textContent = finalText + interim;
+  };
+
+  recog.onerror = e => {
+    if (e.error === 'not-allowed') {
+      recBtn.disabled = true;
+      recBtn.textContent = '🎤 請允許麥克風存取';
+    }
+    stopRec();
+  };
+
+  recog.onend = () => { if (recording) stopRec(); };
+
+  function showKeywords(text) {
+    if (!text.trim() || !keywords.length) return;
+    const lower = text.toLowerCase();
+    const hits = keywords.filter(k => lower.includes(k.toLowerCase())).length;
+    kwTags.innerHTML = keywords.map(k => {
+      const hit = lower.includes(k.toLowerCase());
+      return `<span class="kw-tag ${hit ? 'kw-hit' : 'kw-miss'}">${hit ? '✓' : '○'} ${escape(k)}</span>`;
+    }).join('');
+    kwBlock.classList.add('show');
+    Duet.showToast?.(`命中 ${hits} / ${keywords.length} 個關鍵詞`);
+  }
+}
+
+function renderVocabPreview(glossary) {
+  if (!glossary || glossary.length < 2) return;
+  // P1-3: sort by term length descending as difficulty proxy (longer = harder)
+  const sorted = [...glossary].sort((a, b) => b.term.length - a.term.length);
+  const preview = sorted.slice(0, Math.min(6, sorted.length));
+  // P0-3: insert before TL;DR (before article begins, not before read-aloud bar)
+  const tldr = document.querySelector('.tldr');
+  if (!tldr) return;
+  const el = document.createElement('div');
+  el.className = 'vocab-preview';
+  el.innerHTML =
+    '<div class="vocab-preview-label">📖 閱讀前先認識這些字 · Key Vocabulary Preview</div>' +
+    '<div class="vocab-chips">' +
+    preview.map(g =>
+      // P1-1: aria-label for screen readers
+      `<button class="vocab-chip"
+        aria-label="查看詞彙：${esc(g.term)}"
+        data-term="${esc(g.term)}"
+        data-pos="${esc(g.pos || '')}"
+        data-trans="${esc(g.translation || '')}"
+        data-def-en="${esc(g.definition_en)}"
+        data-def-zh="${esc(g.definition_zh || '')}">
+        <span class="vc-term">${esc(g.term)}</span>
+        ${g.translation ? `<span class="vc-trans">${esc(g.translation)}</span>` : ''}
+        ${g.pos ? `<span class="vc-pos">${esc(g.pos)}</span>` : ''}
+      </button>`
+    ).join('') + '</div>';
+  tldr.before(el);
+}
+
+let _tracksCache = null;
+async function getTracksMeta() {
+  if (!_tracksCache) _tracksCache = fetch('data/tracks.json').then(r => r.json()).catch(() => []);
+  return _tracksCache;
+}
+
+async function detectTrackContext(articleId) {
+  try {
+    const tracks = await getTracksMeta();
+    for (const t of tracks) {
+      const idx = (t.articles || []).indexOf(articleId);
+      if (idx >= 0) return { trackTitle: t.title_zh, step: idx + 1, total: t.articles.length, color: t.color };
+    }
+  } catch {}
+  return null;
+}
+
+const REFLECT_PROMPTS = [
+  { zh: '這篇文章中，哪個發現讓你最驚訝？', en: 'What surprised you most?' },
+  { zh: '你會怎麼用一句話，把這篇的核心概念解釋給朋友聽？', en: 'Explain the core idea to a friend in one sentence.' },
+  { zh: '這個研究有沒有讓你覺得「不夠嚴謹」的地方？', en: 'Any part of this research that felt incomplete or debatable?' },
+];
+
+function renderReflectionPrompt(articleId) {
+  const card = document.getElementById('finish-reflection');
+  if (!card) return;
+  const prompt = REFLECT_PROMPTS[Math.floor(Math.random() * REFLECT_PROMPTS.length)];
+  card.innerHTML = `
+    <div class="reflection-card">
+      <div class="reflection-label">💭 學後反思 · Reflect</div>
+      <div class="reflection-q">${esc(prompt.zh)}<br><small style="color:var(--ink-muted);font-style:italic">${esc(prompt.en)}</small></div>
+      <textarea class="reflection-input" rows="3" placeholder="寫下你的想法…（不寫也沒關係）"></textarea>
+      <button class="reflection-save">💾 儲存反思</button>
+    </div>`;
+  card.querySelector('.reflection-save').addEventListener('click', () => {
+    const text = card.querySelector('.reflection-input').value.trim();
+    if (!text) { Duet?.showToast?.('請先寫點想法 ✏️'); return; }
+    try {
+      const refs = JSON.parse(localStorage.getItem('duet-reflections') || '[]');
+      refs.push({ articleId, text, date: new Date().toISOString().slice(0, 10) });
+      localStorage.setItem('duet-reflections', JSON.stringify(refs.slice(-50)));
+    } catch {}
+    const btn = card.querySelector('.reflection-save');
+    btn.textContent = '✓ 已儲存';
+    btn.disabled = true;
+    Duet?.showToast?.('反思已儲存 ✨');
+    // Show X/Twitter share button after saving
+    const title = window._readerTitle || 'Duet 雙聲';
+    const shareText = encodeURIComponent(`"${text}"\n\n— 讀完《${title}》後的反思 #DuetLearn #科學閱讀`);
+    const shareBtn = document.createElement('a');
+    shareBtn.href = `https://twitter.com/intent/tweet?text=${shareText}`;
+    shareBtn.target = '_blank';
+    shareBtn.rel = 'noopener noreferrer';
+    shareBtn.className = 'reflection-save';
+    shareBtn.style.cssText = 'text-decoration:none; margin-left:8px;';
+    shareBtn.textContent = '📤 分享到 X';
+    btn.after(shareBtn);
+  });
+}
+
+function renderResearchSnapshot(rd) {
+  if (!rd) return;
+  // Insert after the TL;DR block, before read-aloud bar
+  const bar = document.getElementById('read-aloud-bar');
+  if (!bar) return;
+  const snap = document.createElement('div');
+  snap.className = 'research-snapshot';
+  snap.innerHTML = `
+    <div class="rs-head">🔬 Research Design Snapshot</div>
+    ${rd.sample   ? `<div class="rs-item"><div class="rs-label">樣本 Sample</div><div class="rs-value">${escape(rd.sample)}</div></div>` : ''}
+    ${rd.method   ? `<div class="rs-item"><div class="rs-label">方法 Method</div><div class="rs-value">${escape(rd.method)}</div></div>` : ''}
+    ${rd.key_finding ? `<div class="rs-item"><div class="rs-label">關鍵發現 Key Finding</div><div class="rs-value">${escape(rd.key_finding)}</div></div>` : ''}
+    ${rd.limitation  ? `<div class="rs-item"><div class="rs-label">主要限制 Limitation</div><div class="rs-value">${escape(rd.limitation)}</div></div>` : ''}`;
+  bar.before(snap);
+}
+
+function initFontControls() {
+  const SIZES = [14, 16, 18, 20, 23];
+  const STORE_KEY = 'duet-font-size';
+  const body = document.body;
+  let idx = SIZES.indexOf(parseInt(localStorage.getItem(STORE_KEY) || '18'));
+  if (idx < 0) idx = 2; // default 18px matches CSS baseline
+
+  function applySize() {
+    body.style.fontSize = SIZES[idx] + 'px';
+    localStorage.setItem(STORE_KEY, SIZES[idx]);
+    document.getElementById('font-down').disabled = idx === 0;
+    document.getElementById('font-up').disabled   = idx === SIZES.length - 1;
+  }
+  applySize();
+
+  document.getElementById('font-up').addEventListener('click', () => {
+    if (idx < SIZES.length - 1) { idx++; applySize(); }
+  });
+  document.getElementById('font-down').addEventListener('click', () => {
+    if (idx > 0) { idx--; applySize(); }
+  });
+}
+
+function renderSource(data) {
+  if (!data.original_abstract) return;
+  document.getElementById('source').innerHTML = `
+    <div class="source-section">
+      <details>
+        <summary>📄 延伸閱讀 · Original Paper</summary>
+        <div class="source-body">
+          <div class="source-label">Abstract · 原文摘要</div>
+          <div class="source-citation">
+            ${escape(data.original_citation)}
+            &nbsp;·&nbsp; <a href="${data.original_url}" target="_blank" rel="noopener">Full paper on PubMed Central ↗</a>
+            &nbsp;·&nbsp; <span>${escape(data.original_license)}</span>
+            &nbsp;·&nbsp; <button id="copy-cite" class="cite-btn">📋 Copy citation</button>
+          </div>
+          <div class="source-abstract">${escape(data.original_abstract)}</div>
+        </div>
+      </details>
+    </div>`;
+  document.getElementById('copy-cite')?.addEventListener('click', e => {
+    const text = `${data.original_citation} ${data.original_url} (${data.original_license})`;
+    navigator.clipboard.writeText(text).then(() => {
+      e.target.textContent = '✓ Copied';
+      setTimeout(() => e.target.textContent = '📋 Copy citation', 1800);
+    });
+  });
+}
+
+function buildQ(q, id) {
+  const div = document.createElement('div');
+  div.className = 'quiz-q';
+  div.dataset.attempts = '0';
+  div.innerHTML = `
+    <div class="q-text">${escape(q.question_en)}</div>
+    <div class="q-text-zh">${escape(q.question_zh)}</div>
+    ${q.options_en.map((opt, i) => {
+      const letter = String.fromCharCode(65 + i);
+      return `<label data-letter="${letter}"><input type="radio" name="${id}" value="${letter}"> ${escape(opt)}</label>`;
+    }).join('')}
+    <button class="submit">提交</button>
+    <div class="feedback hint"><strong>💡 提示：</strong>${escape(q.hint_en)}<br><span style="color:var(--ink-muted)">${escape(q.hint_zh)}</span></div>
+    <div class="feedback answer"><strong>✓ 正確答案：${escape(q.answer)}</strong><br>${escape(q.explanation_en)}<br><span style="color:var(--ink-muted)">${escape(q.explanation_zh)}</span></div>
+  `;
+  div.querySelectorAll('label').forEach(lbl => {
+    lbl.addEventListener('click', () => {
+      div.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
+      lbl.classList.add('selected');
+    });
+  });
+
+  div.querySelector('.submit').addEventListener('click', () => {
+    const sel = div.querySelector('input:checked');
+    if (!sel) return;
+    const attempts = parseInt(div.dataset.attempts);
+    div.querySelectorAll('label').forEach(l => l.classList.remove('correct', 'wrong'));
+    if (sel.value === q.answer) {
+      const correctLabel = div.querySelector(`label[data-letter="${q.answer}"]`);
+      correctLabel.classList.add('correct');
+      div.querySelector('.feedback.answer').classList.add('show');
+      div.querySelector('.submit').disabled = true;
+      celebrate(correctLabel);
+      const xp = attempts === 0 ? 10 : 5;  // first try gets more XP
+      awardXP(xp);
+      updateProgress();
+    } else {
+      div.querySelector(`label[data-letter="${sel.value}"]`).classList.add('wrong');
+      if (attempts === 0) {
+        div.querySelector('.feedback.hint').classList.add('show');
+        div.dataset.attempts = '1';
+      } else {
+        const correctLabel = div.querySelector(`label[data-letter="${q.answer}"]`);
+        correctLabel.classList.add('correct');
+        div.querySelector('.feedback.answer').classList.add('show');
+        div.querySelector('.submit').disabled = true;
+        showXPToast(`下次加油 💪`);
+        updateProgress();
+      }
+    }
+  });
+  return div;
+}
+
+function initMusic() {
+  const tracks = [
+    { title:'Lago di Como · Novarina',           src:'audio/piano_lago.mp3' },
+    { title:'Brand New Days · Novarina',         src:'audio/piano_newdays.mp3' },
+    { title:'Natural · MaaBo',                   src:'audio/piano_natural.mp3' },
+    { title:'Snow Slow · Vallarino',             src:'audio/piano_butterfly.mp3' },
+    { title:'Old Russian Waltz · Lena Orsa',     src:'audio/piano_waltz.mp3' },
+    { title:'Meditative Magic · Alexis',         src:'audio/ambient_magic.mp3' },
+    { title:'Clair de Lune · Debussy',           src:'audio/debussy.mp3' },
+    { title:'Nocturne Op.9 No.2 · Chopin',       src:'audio/chopin.mp3' },
+  ];
+  const track = tracks[Math.floor(Math.random() * tracks.length)];
+  const audio = new Audio(track.src);
+  audio.volume = 0.28;
+  audio.loop = true;
+  window._bgMusic = audio;  // expose for TTS ducking
+
+  const btn = document.getElementById('music-btn');
+  btn.title = track.title;
+
+  let playing = false;
+  function setPlaying(v) {
+    playing = v;
+    btn.classList.toggle('playing', v);
+    btn.classList.remove('needs-click');
+    btn.textContent = v ? '🎵' : '🔇';
+  }
+
+  btn.addEventListener('click', () => {
+    if (playing) { audio.pause(); setPlaying(false); }
+    else { audio.play().then(() => setPlaying(true)).catch(() => {}); }
+  });
+
+  // Default OFF — user clicks to start
+  btn.textContent = '🔇';
+}
+
+// ── Web Speech API: pronounce text (with voices preload) ──
+let _voicesCache = null;
+function _loadVoices() {
+  return new Promise(resolve => {
+    let v = window.speechSynthesis.getVoices();
+    if (v.length) { _voicesCache = v; return resolve(v); }
+    window.speechSynthesis.addEventListener('voiceschanged', () => {
+      _voicesCache = window.speechSynthesis.getVoices();
+      resolve(_voicesCache);
+    }, { once: true });
+    // Fallback timeout
+    setTimeout(() => resolve(window.speechSynthesis.getVoices() || []), 500);
+  });
+}
+if (window.speechSynthesis) _loadVoices();
+
+async function speak(text, lang, btn) {
+  if (!text || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const voices = _voicesCache || await _loadVoices();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || (/[\u4e00-\u9fff]/.test(text) ? 'zh-TW' : 'en-US');
+  u.rate = 0.88; u.pitch = 1.02; u.volume = 1.0;
+  const wantEn = ['Samantha','Karen','Google UK English Female','Daniel','Microsoft Aria','Microsoft Zira'];
+  const wantZh = ['Mei-Jia','Sin-ji','Tian-Tian','Google 普通話','Microsoft Xiaoxiao'];
+  const wantList = u.lang.startsWith('zh') ? wantZh : wantEn;
+  const match = voices.find(v => wantList.some(n => v.name.includes(n))) ||
+                voices.find(v => v.lang.startsWith(u.lang.split('-')[0]));
+  if (match) u.voice = match;
+  // Audio ducking: lower bg music while TTS plays
+  const bgMusic = window._bgMusic;
+  const origVol = bgMusic ? bgMusic.volume : null;
+  if (bgMusic && !bgMusic.paused) bgMusic.volume = origVol * 0.25;
+  u.onend = u.onerror = () => { if (bgMusic && origVol != null) bgMusic.volume = origVol; };
+  window.speechSynthesis.speak(u);
+  // Visual pulse on the button
+  if (btn) {
+    btn.classList.add('speaking');
+    u.onend = u.onerror = () => {
+      btn.classList.remove('speaking');
+      if (bgMusic && origVol != null) bgMusic.volume = origVol;
+    };
+  }
+  // Atomic stats update
+  const s = getStats();
+  s.speakCount = (s.speakCount||0) + 1;
+  saveStats(s);
+  if (s.speakCount >= 5) addBadge('pronouncer');
+  renderMiniHUD();
+}
+
+// ── Gamification glue (reader-side) ──
+function getStats() {
+  const def = { xp:0, level:1, streak:0, lastVisit:null, read:[], badges:[], modesTried:[], speakCount:0 };
+  try { return { ...def, ...JSON.parse(localStorage.getItem('duet-stats')||'{}') }; }
+  catch { return def; }
+}
+function saveStats(s) { localStorage.setItem('duet-stats', JSON.stringify(s)); }
+function bumpStat(key, n) { const s = getStats(); s[key] = (s[key]||0) + n; saveStats(s); }
+
+function bumpStreak() {
+  const s = getStats();
+  const today = new Date().toISOString().slice(0,10);
+  if (s.lastVisit === today) return;
+  if (!s.lastVisit) s.streak = 1;
+  else {
+    const diff = Math.round((new Date(today) - new Date(s.lastVisit)) / 86400000);
+    s.streak = (diff === 1) ? s.streak + 1 : 1;
+  }
+  s.lastVisit = today;
+  saveStats(s);
+  if (s.streak >= 3) addBadge('streaker');
+}
+const BADGE_INFO = {
+  first:'🌱 First Step', bookworm:'📚 Bookworm', scholar:'🎓 Scholar',
+  streaker:'🔥 On Fire', polyglot:'🌐 Polyglot', pronouncer:'🔊 Pronouncer'
+};
+function addBadge(id) {
+  const s = getStats();
+  if (!s.badges.includes(id)) {
+    s.badges.push(id); saveStats(s);
+    showBadgeUnlock(id);
+  }
+}
+function showBadgeUnlock(id) {
+  const overlay = document.createElement('div');
+  overlay.className = 'badge-unlock';
+  overlay.innerHTML = `
+    <div class="bu-card">
+      <div class="bu-emoji">${BADGE_INFO[id]?.split(' ')[0] || '🏅'}</div>
+      <div class="bu-label">徽章解鎖！</div>
+      <div class="bu-name">${BADGE_INFO[id] || id}</div>
+    </div>`;
+  document.body.appendChild(overlay);
+  setTimeout(() => overlay.remove(), 2400);
+}
+function awardXP(n) { bumpStat('xp', n); showXPToast(`+${n} XP`); renderMiniHUD(); }
+
+function renderMiniHUD() {
+  const el = document.getElementById('mini-hud');
+  if (!el) return;
+  const s = getStats();
+  const fire = s.streak >= 2 ? '🔥' : '·';
+  el.innerHTML = `<span class="mh-streak">${fire} ${s.streak}d</span><span class="mh-sep">|</span><span class="mh-xp">${s.xp} XP</span>`;
+}
+function trackMode(mode) {
+  const s = getStats();
+  if (!s.modesTried.includes(mode)) {
+    s.modesTried.push(mode); saveStats(s);
+    if (s.modesTried.length >= 3) addBadge('polyglot');
+  }
+}
+function showXPToast(text) {
+  const t = document.createElement('div');
+  t.className = 'xp-toast';
+  t.textContent = text;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 1800);
+}
+
+function celebrate(el) {
+  const colors = ['#C8923F','#6FAA7F','#F5EFE6','#A8D4B0','#E8C07A'];
+  const rect = el.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+  for (let i = 0; i < 14; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'confetti-dot';
+    dot.style.background = colors[i % colors.length];
+    dot.style.left = cx + 'px';
+    dot.style.top = cy + 'px';
+    document.body.appendChild(dot);
+    const angle = (i / 14) * 2 * Math.PI;
+    const dist = 50 + Math.random() * 60;
+    dot.animate([
+      { transform: 'translate(-50%,-50%) scale(1)', opacity: 1 },
+      { transform: `translate(calc(-50% + ${Math.cos(angle)*dist}px), calc(-50% + ${Math.sin(angle)*dist}px)) scale(0)`, opacity: 0 }
+    ], { duration: 650, easing: 'ease-out' }).finished.then(() => dot.remove());
+  }
+}
+
+// ── Dictionary Lookup (Free Dictionary API for any English word) ──
+function initDictionaryLookup() {
+  const article = document.getElementById('article');
+  if (!article) return;
+  // Show one-time hint about double-click feature
+  if (!localStorage.getItem('duet-dict-hint-shown')) {
+    const hint = document.createElement('div');
+    hint.className = 'dict-hint';
+    hint.innerHTML = '💡 <strong>新功能</strong>：雙擊任何英文單字可查字典 · Double-click any word to look it up <button aria-label="Dismiss">×</button>';
+    article.before(hint);
+    hint.querySelector('button').addEventListener('click', () => {
+      hint.remove();
+      localStorage.setItem('duet-dict-hint-shown', '1');
+    });
+    setTimeout(() => { hint.remove(); localStorage.setItem('duet-dict-hint-shown', '1'); }, 12000);
+  }
+  async function lookup() {
+    const sel = window.getSelection().toString().trim();
+    if (!sel || sel.length > 40) return;
+    // Allow hyphenated and apostrophes; first word only if multi-word selection
+    const firstWord = sel.split(/\s+/)[0];
+    const clean = firstWord.toLowerCase().replace(/[^a-z'\-]/g, '');
+    if (!/^[a-z][a-z'\-]*$/.test(clean)) return;
+    showDictPopup(clean, '<em>loading…</em>');
+    try {
+      const r = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(clean)}`);
+      if (!r.ok) { showDictPopup(clean, '查無此字 / Not found in dictionary'); return; }
+      const data = await r.json();
+      renderDictData(clean, data[0]);
+    } catch {
+      showDictPopup(clean, '查詢失敗 / Lookup failed (network)');
+    }
+  }
+  article.addEventListener('dblclick', lookup);
+  // Keyboard shortcut: D when text is selected
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    if (e.key === 'd' || e.key === 'D') {
+      const sel = window.getSelection().toString().trim();
+      if (sel && sel.length > 0) lookup();
+    }
+  });
+}
+
+let _dictPopup = null;
+function showDictPopup(word, msg) {
+  closeDictPopup();
+  const el = document.createElement('div');
+  el.className = 'dict-popup';
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-label', `Dictionary lookup: ${word}`);
+  el.innerHTML = `<div class="dp-head"><strong>${word}</strong><button class="dp-close" aria-label="Close dictionary">×</button></div><div class="dp-body">${msg}</div>`;
+  document.body.appendChild(el);
+  const closeBtn = el.querySelector('.dp-close');
+  closeBtn.addEventListener('click', closeDictPopup);
+  closeBtn.focus();  // focus trap entry
+  _dictPopup = el;
+  setTimeout(() => document.addEventListener('click', _dictDismiss), 50);
+  document.addEventListener('keydown', _dictKey);
+}
+function _dictKey(e) { if (e.key === 'Escape') closeDictPopup(); }
+function _dictDismiss(e) {
+  if (_dictPopup && !_dictPopup.contains(e.target)) closeDictPopup();
+}
+function closeDictPopup() {
+  if (_dictPopup) {
+    _dictPopup.remove(); _dictPopup = null;
+    document.removeEventListener('click', _dictDismiss);
+    document.removeEventListener('keydown', _dictKey);
+  }
+}
+function renderDictData(word, data) {
+  const meanings = data.meanings || [];
+  const phon = (data.phonetics || []).find(p => p.text)?.text || '';
+  const audio = (data.phonetics || []).find(p => p.audio)?.audio;
+  const meaningHtml = meanings.slice(0, 3).map(m => `
+    <div class="dp-meaning">
+      <span class="dp-pos">${m.partOfSpeech}</span>
+      ${(m.definitions || []).slice(0, 2).map(d =>
+        `<div class="dp-def">${escape(d.definition)}</div>` +
+        (d.example ? `<div class="dp-ex">"${escape(d.example)}"</div>` : '')
+      ).join('')}
+    </div>`).join('');
+  // Build a brief def for vocab review storage
+  const briefDef = meanings[0]?.definitions?.[0]?.definition || '';
+  const briefPos = meanings[0]?.partOfSpeech || '';
+  if (_dictPopup) {
+    _dictPopup.querySelector('.dp-body').innerHTML = `
+      ${phon ? `<div class="dp-phon">${escape(phon)}</div>` : ''}
+      <div class="dp-actions">
+        ${audio ? `<button class="dp-speak" data-audio="${audio}">🔊 Pronounce</button>` : `<button class="dp-speak" data-text="${escape(word)}">🔊 Pronounce</button>`}
+        <button class="dp-save" data-word="${escape(word)}">+ 加入單字本</button>
+      </div>
+      ${meaningHtml}`;
+    const spkBtn = _dictPopup.querySelector('.dp-speak');
+    if (audio) spkBtn.addEventListener('click', () => new Audio(audio).play());
+    else spkBtn.addEventListener('click', () => Duet.speak(word));
+    _dictPopup.querySelector('.dp-save').addEventListener('click', e => {
+      saveToVocab({ term: word, ipa: phon, pos: briefPos, definition_en: briefDef, articleId: '__user__' , articleTitle: '我的單字本' });
+      e.target.textContent = '✓ 已加入';
+      e.target.disabled = true;
+    });
+  }
+}
+
+function saveToVocab(item) {
+  // Persist into a personal vocab pool, picked up by vocab.html
+  try {
+    const key = 'duet-personal-vocab';
+    const arr = JSON.parse(localStorage.getItem(key) || '[]');
+    if (!arr.find(x => x.term.toLowerCase() === item.term.toLowerCase())) {
+      arr.push({ ...item, addedAt: Date.now() });
+      localStorage.setItem(key, JSON.stringify(arr));
+    }
+    Duet.showToast?.('📔 已加入單字本');
+  } catch {}
+}
+
+// ── Read Aloud Player (paragraph-by-paragraph queue with controls) ──
+function initReadAloudPlayer() {
+  const playBtn = document.getElementById('ra-play');
+  const prevBtn = document.getElementById('ra-prev');
+  const pauseBtn = document.getElementById('ra-pause');
+  const nextBtn = document.getElementById('ra-next');
+  const stopBtn = document.getElementById('ra-stop');
+  const status = document.getElementById('ra-status');
+  if (!playBtn) return;
+
+  let paragraphs = [], idx = 0, isPlaying = false, isPaused = false;
+  const synth = window.speechSynthesis;
+  if (!synth) { playBtn.disabled = true; status.textContent = 'Speech not supported'; return; }
+
+  function refreshControls() {
+    prevBtn.disabled = !isPlaying || idx <= 0;
+    nextBtn.disabled = !isPlaying || idx >= paragraphs.length - 1;
+    pauseBtn.disabled = !isPlaying;
+    stopBtn.disabled = !isPlaying;
+    pauseBtn.textContent = isPaused ? '▶︎' : '⏸';
+    playBtn.classList.toggle('playing', isPlaying);
+    playBtn.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+    pauseBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+    playBtn.querySelector('.ra-text').textContent = isPlaying ? '播放中…' : '朗讀全文 · Read aloud';
+    playBtn.querySelector('.ra-icon').textContent = isPlaying ? '🔉' : '🔊';
+  }
+
+  function cleanText(t) {
+    return t.replace(/[🔊🔉🔇🎵🎶▶︎⏸⏭⏮⏹]/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  let _raToken = 0; // cancel stale sentence queues on skip/prev/stop
+
+  function speakCurrent() {
+    const tok = ++_raToken;
+    if (idx >= paragraphs.length) { stop(); return; }
+    synth.cancel();
+    const fullText = cleanText(paragraphs[idx].innerText);
+    const lang = /[\u4e00-\u9fff]/.test(fullText) ? 'zh-TW' : 'en-US';
+    const speedFactor = parseFloat(document.getElementById('ra-speed')?.value || '1');
+
+    // Warm voice selection
+    const voices = synth.getVoices();
+    const wantEn = ['Samantha','Karen','Google UK English Female','Daniel','Microsoft Aria','Microsoft Zira'];
+    const wantZh = ['Mei-Jia','Sin-ji','Tian-Tian','Google 普通話','Microsoft Xiaoxiao'];
+    const wantList = lang.startsWith('zh') ? wantZh : wantEn;
+    const match = voices.find(v => wantList.some(n => v.name.includes(n))) ||
+                  voices.find(v => v.lang.startsWith(lang.split('-')[0]));
+
+    // Audio ducking
+    const bg = window._bgMusic, origVol = bg ? bg.volume : null;
+    if (bg && !bg.paused) bg.volume = (origVol || 0.28) * 0.15;
+    const restore = () => { if (bg && origVol != null) bg.volume = origVol; };
+
+    // Highlight paragraph and scroll
+    document.querySelectorAll('.article-en p.ra-current').forEach(p => p.classList.remove('ra-current'));
+    paragraphs[idx].classList.add('ra-current');
+    paragraphs[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    status.textContent = `第 ${idx+1} / ${paragraphs.length} 段`;
+    refreshControls();
+
+    // Sentence-by-sentence for natural rhythm and inter-sentence pauses
+    const sentences = fullText.match(/[^.!?…]+[.!?…]["'»]?(?:\s|$)|[^.!?…]+$/g) || [fullText];
+    let si = 0;
+
+    function nextSentence() {
+      if (tok !== _raToken || !isPlaying) return;
+      if (isPaused) return; // will resume from pause handler
+      if (si >= sentences.length) {
+        restore(); idx++;
+        setTimeout(() => { if (tok === _raToken && isPlaying) speakCurrent(); }, 320);
+        return;
+      }
+      const sent = sentences[si].trim();
+      if (!sent) { si++; nextSentence(); return; }
+      const u = new SpeechSynthesisUtterance(sent);
+      u.lang = lang;
+      u.rate = speedFactor * 0.88; // slightly slower = warmer, more human
+      u.pitch = 1.02;
+      if (match) u.voice = match;
+      u.onend = () => {
+        if (tok !== _raToken) return;
+        si++;
+        // Short breath pause between sentences (~130 ms)
+        setTimeout(nextSentence, 130);
+      };
+      u.onerror = e => { if (e.error !== 'interrupted') restore(); };
+      synth.speak(u);
+    }
+    nextSentence();
+  }
+
+  function start() {
+    paragraphs = [...document.querySelectorAll('.article-en p')];
+    if (!paragraphs.length) return;
+    idx = 0; isPlaying = true; isPaused = false;
+    speakCurrent();
+  }
+  function stop() {
+    synth.cancel();
+    isPlaying = false; isPaused = false;
+    document.querySelectorAll('.article-en p.ra-current').forEach(p => p.classList.remove('ra-current'));
+    status.textContent = '';
+    refreshControls();
+  }
+
+  playBtn.addEventListener('click', () => isPlaying ? stop() : start());
+  pauseBtn.addEventListener('click', () => {
+    if (!isPlaying) return;
+    const bg = window._bgMusic;
+    if (isPaused) {
+      isPaused = false;
+      synth.resume();
+      // If synth had nothing queued (iOS/Safari clears on pause), restart sentence
+      if (!synth.speaking) speakCurrent();
+      if (bg && !bg.paused) bg.volume = 0.04;
+    } else {
+      synth.pause(); isPaused = true;
+      if (bg) bg.volume = 0.28;
+    }
+    refreshControls();
+  });
+  // Speed change: restart current paragraph at new speed
+  document.getElementById('ra-speed').addEventListener('change', () => {
+    if (isPlaying) speakCurrent();
+  });
+  prevBtn.addEventListener('click', () => { if (idx > 0) { idx--; speakCurrent(); } });
+  nextBtn.addEventListener('click', () => { if (idx < paragraphs.length - 1) { idx++; speakCurrent(); } });
+  stopBtn.addEventListener('click', stop);
+
+  refreshControls();
+}
+
+function initTooltipTap() {
+  const popup = document.getElementById('term-popup');
+  if (!popup) return;
+  let dismissTimer = null;
+
+  function showPopup(termEl) {
+    clearTimeout(dismissTimer);
+    const d = termEl.dataset;
+    popup.querySelector('.tp-body').innerHTML =
+      `<div class="tp-head"><span class="tp-term">${escape(d.term)}</span>${d.pos ? `<span class="tp-pos">${escape(d.pos)}</span>` : ''}</div>` +
+      (d.trans ? `<div class="tp-trans">${escape(d.trans)}</div>` : '') +
+      `<div class="tp-def">${escape(d.defEn)}</div>` +
+      (d.defZh ? `<div class="tp-def-zh">${escape(d.defZh)}</div>` : '');
+
+    // Measure before final positioning (visibility:hidden keeps layout intact)
+    popup.style.visibility = 'hidden';
+    popup.style.display = 'block';
+    const rect = termEl.getBoundingClientRect();
+    const pw = popup.offsetWidth, ph = popup.offsetHeight;
+    // Prefer above; flip below if not enough room
+    let top = rect.top - ph - 10;
+    if (top < 8) top = rect.bottom + 10;   // flip below if not enough room above
+    let left = rect.left + rect.width / 2 - pw / 2;
+    // Clamp within viewport
+    left = Math.max(8, Math.min(window.innerWidth - pw - 8, left));
+    top  = Math.max(8, Math.min(window.innerHeight - ph - 8, top));
+    popup.style.top = top + 'px';
+    popup.style.left = left + 'px';
+    popup.style.visibility = 'visible';
+    dismissTimer = setTimeout(hidePopup, 7000);
+  }
+
+  function hidePopup() {
+    popup.style.display = 'none';
+    clearTimeout(dismissTimer);
+  }
+
+  popup.querySelector('.tp-close').addEventListener('click', hidePopup);
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('.term-speak')) return;
+    if (e.target.closest('#term-popup')) return;
+    const term = e.target.closest('.term, .vocab-chip');
+    if (term) {
+      e.stopPropagation();
+      showPopup(term);
+    } else {
+      hidePopup();
+    }
+  });
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hidePopup(); });
+  // Hide on scroll so popup doesn't float away from its word
+  window.addEventListener('scroll', hidePopup, { passive: true });
+}
+
+init().then(() => {
+  initReadAloudPlayer();
+  initDictionaryLookup();
+  initReaderOnboarding();
+});
+initMusic();
+initTooltipTap();
+
+// ── First-reader-visit onboarding hint (3-step, non-modal) ──
+function initReaderOnboarding() {
+  if (localStorage.getItem('duet-reader-visited')) return;
+  localStorage.setItem('duet-reader-visited', '1');
+  const hint = document.createElement('div');
+  hint.id = 'reader-onboarding';
+  hint.setAttribute('role', 'status');
+  hint.setAttribute('aria-live', 'polite');
+  hint.innerHTML = `
+    <div style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+      <span style="font-size:13px;font-weight:600;color:var(--accent);white-space:nowrap;">✦ 使用提示</span>
+      <span style="font-size:13px;color:var(--ink-muted);">① 點<strong style="color:var(--accent)">藍色詞彙</strong>查看解釋 &nbsp;② 完成測驗解鎖單字卡 &nbsp;③ 去 <a href="vocab.html" style="color:var(--accent)">單字複習</a> 鞏固記憶</span>
+      <button onclick="document.getElementById('reader-onboarding').remove()" aria-label="關閉提示" style="background:none;border:none;color:var(--ink-muted);cursor:pointer;font-size:16px;padding:0;line-height:1;flex-shrink:0;">✕</button>
+    </div>`;
+  hint.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg-card);border-top:1px solid var(--border);padding:12px 20px;animation:slide-up 0.3s ease;';
+  document.body.appendChild(hint);
+  setTimeout(() => hint?.remove(), 14000);
+}
+</script>
+</body>
+</html>

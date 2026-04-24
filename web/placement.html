@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>程度測驗 · Placement Test · Duet 雙聲</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314201A'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23C8923F'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#14201A; --bg-card:#1F2D26; --bg-soft:#1A2620; --ink:#F5EFE6; --ink-muted:#95938A;
+    --accent:#C8923F; --accent-soft:rgba(200,146,63,0.12); --border:rgba(245,239,230,0.08);
+    --success:#6FAA7F; --error:#C5503D; }
+  [data-theme="light"] { --bg:#F5EFE6; --bg-card:#FFFFFF; --bg-soft:#EFE8DD; --ink:#1F4438;
+    --ink-muted:#6B6354; --accent:#B8763A; --accent-soft:rgba(184,118,58,0.1); --border:rgba(31,68,56,0.12); }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; }
+  body { background:var(--bg); color:var(--ink); font-family:'Source Serif 4','Noto Serif TC',Georgia,serif;
+    font-size:17px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  .container { max-width:680px; margin:0 auto; padding:28px 24px 96px; }
+  header { display:flex; justify-content:space-between; align-items:center; padding-bottom:40px; }
+  .nav-left { display:flex; align-items:center; gap:14px; }
+  .back-btn { color:var(--ink-muted); text-decoration:none; font-size:13px; border:1px solid var(--border); border-radius:6px; padding:4px 10px; }
+  .back-btn:hover { color:var(--ink); border-color:var(--accent); }
+  .brand { font-family:'Fraunces',serif; font-size:24px; font-weight:700; }
+  .brand-sub { color:var(--ink-muted); font-size:14px; margin-left:8px; font-family:'Noto Serif TC',serif; }
+
+  h1 { font-family:'Fraunces',serif; font-size:42px; line-height:1.1; font-weight:700; margin:0 0 10px; letter-spacing:-0.02em; }
+  .subtitle { font-family:'Noto Serif TC',serif; color:var(--ink-muted); font-size:17px; margin-bottom:32px; }
+
+  .progress-line { height:4px; background:var(--border); border-radius:2px; margin-bottom:32px; overflow:hidden; }
+  .progress-line .fill { height:100%; background:var(--accent); transition:width 0.4s ease; width:0%; }
+
+  .question-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:28px; margin-bottom:18px; }
+  .q-num { font-family:'Fraunces',serif; font-size:13px; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px; }
+  .q-text { font-size:18px; line-height:1.55; margin-bottom:8px; font-family:'Source Serif 4',serif; }
+  .q-text-zh { font-size:14px; color:var(--ink-muted); margin-bottom:18px; font-family:'Noto Serif TC',serif; }
+  .opt { display:block; padding:12px 16px; margin-bottom:8px; border:1px solid var(--border); border-radius:8px;
+    cursor:pointer; transition:all 0.15s; font-size:15px; line-height:1.45; }
+  .opt:hover { border-color:var(--accent); background:var(--accent-soft); }
+  .opt.selected { border-color:var(--accent); background:var(--accent-soft); box-shadow:inset 3px 0 0 var(--accent); }
+  .opt input { display:none; }
+
+  .actions { display:flex; gap:10px; margin-top:24px; }
+  .btn { padding:11px 22px; border-radius:8px; font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; border:none; }
+  .btn-primary { background:var(--accent); color:#fff; }
+  .btn-primary:disabled { opacity:0.4; cursor:not-allowed; }
+  .btn-ghost { background:transparent; color:var(--ink-muted); border:1px solid var(--border); }
+
+  /* Result page */
+  .result-card { background:var(--bg-card); border:1px solid var(--accent); border-radius:14px; padding:36px 32px; text-align:center;
+    animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+  @keyframes pop-in { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:none; } }
+  .result-emoji { font-size:56px; margin-bottom:8px; }
+  .result-level { font-family:'Fraunces',serif; font-size:42px; font-weight:700; color:var(--accent); margin:8px 0; letter-spacing:-0.02em; }
+  .result-label { font-family:'Noto Serif TC',serif; font-size:18px; color:var(--ink); margin-bottom:8px; }
+  .result-score { color:var(--ink-muted); font-size:14px; margin-bottom:24px; }
+  .result-desc { background:var(--bg-soft); border-radius:8px; padding:16px 18px; text-align:left; margin-bottom:24px; font-size:14px; line-height:1.7; }
+  .result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .result-actions a { padding:11px 22px; background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; font-size:14px; font-weight:600; transition:transform 0.15s; }
+  .result-actions a:hover { transform:translateY(-2px); }
+  .result-actions a.secondary { background:transparent; border:1px solid var(--border); color:var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="nav-left">
+      <a href="index.html" class="back-btn">← 目錄</a>
+      <div><span class="brand">Duet</span><span class="brand-sub">雙聲</span></div>
+    </div>
+  </header>
+
+  <div id="intro">
+    <h1>📝 Placement Test</h1>
+    <p class="subtitle">5 題快速測試你的英文程度，自動推薦適合的文章難度。</p>
+    <p style="color:var(--ink-muted); font-size:15px;">每題從 CEFR A2 漸進到 C1。沒有時間限制，憑直覺答即可。</p>
+    <div style="margin-top:28px;">
+      <button class="btn btn-primary" onclick="startTest()">開始測驗 →</button>
+    </div>
+  </div>
+
+  <div id="test" style="display:none;">
+    <div class="progress-line"><div class="fill" id="prog-fill"></div></div>
+    <div id="question"></div>
+    <div class="actions">
+      <button class="btn btn-ghost" id="prev-btn" onclick="prev()" style="display:none;">← 上一題</button>
+      <button class="btn btn-primary" id="next-btn" onclick="next()" disabled>下一題 →</button>
+    </div>
+  </div>
+
+  <div id="result" style="display:none;"></div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    level: 'A2',
+    q: 'Which sentence is grammatically correct?',
+    q_zh: '哪一句文法正確？',
+    options: [
+      'She go to school every day.',
+      'She goes to school every day.',
+      'She going to school every day.',
+      'She gone to school every day.',
+    ],
+    answer: 1
+  },
+  {
+    level: 'B1',
+    q: 'What does "consequently" mean in this sentence?\n"It rained heavily; consequently, the match was cancelled."',
+    q_zh: '在這句裡，"consequently" 是什麼意思？',
+    options: [
+      'Before this happened',
+      'As a result of this',
+      'On the other hand',
+      'For example',
+    ],
+    answer: 1
+  },
+  {
+    level: 'B1',
+    q: 'After three years of research, scientists were unable to confirm their original hypothesis.\n\nWhat does "unable to confirm" mean here?',
+    q_zh: '"unable to confirm" 在這裡是什麼意思？',
+    options: [
+      'Could not prove',
+      'Successfully proved',
+      'Refused to share',
+      'Started to believe',
+    ],
+    answer: 0
+  },
+  {
+    level: 'B2',
+    q: 'Choose the best word: "Despite the heavy rain, the match _____ as planned."',
+    q_zh: '選最適合的字：',
+    options: [
+      'proceeded',
+      'abandoned',
+      'hesitated',
+      'postponed',
+    ],
+    answer: 0
+  },
+  {
+    level: 'C1',
+    q: '"While the correlation was statistically significant, the authors caution against inferring causation from these results."\n\nWhat is the authors\' main message?',
+    q_zh: '作者主要想表達什麼？',
+    options: [
+      'The relationship is definitely causal.',
+      'The data proves nothing.',
+      'A strong link exists, but cause-and-effect is not yet proven.',
+      'The study should be repeated immediately.',
+    ],
+    answer: 2
+  }
+];
+
+let answers = new Array(QUESTIONS.length).fill(null);
+let cur = 0;
+
+function startTest() {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('test').style.display = 'block';
+  render();
+}
+
+function render() {
+  const q = QUESTIONS[cur];
+  const fill = ((cur + 1) / QUESTIONS.length * 100) + '%';
+  document.getElementById('prog-fill').style.width = fill;
+  document.getElementById('question').innerHTML = `
+    <div class="question-card">
+      <div class="q-num">Question ${cur+1} / ${QUESTIONS.length} · CEFR ${q.level}</div>
+      <div class="q-text">${escape(q.q).replace(/\n/g, '<br>')}</div>
+      <div class="q-text-zh">${escape(q.q_zh)}</div>
+      ${q.options.map((opt, i) =>
+        `<label class="opt ${answers[cur] === i ? 'selected' : ''}" data-idx="${i}">
+           <input type="radio" name="q${cur}" value="${i}" ${answers[cur] === i ? 'checked' : ''}> ${escape(opt)}
+         </label>`
+      ).join('')}
+    </div>`;
+  document.querySelectorAll('.opt').forEach(o => o.addEventListener('click', () => {
+    answers[cur] = +o.dataset.idx;
+    document.querySelectorAll('.opt').forEach(x => x.classList.toggle('selected', x === o));
+    document.getElementById('next-btn').disabled = false;
+  }));
+  document.getElementById('prev-btn').style.display = cur > 0 ? 'inline-block' : 'none';
+  document.getElementById('next-btn').textContent = cur === QUESTIONS.length - 1 ? '看結果 ✓' : '下一題 →';
+  document.getElementById('next-btn').disabled = answers[cur] === null;
+}
+
+function next() {
+  if (cur < QUESTIONS.length - 1) { cur++; render(); }
+  else showResult();
+}
+function prev() { if (cur > 0) { cur--; render(); } }
+
+function showResult() {
+  const correct = answers.filter((a, i) => a === QUESTIONS[i].answer).length;
+  let level, label, emoji, desc, recommend;
+  if (correct <= 1) {
+    level = 'B1'; emoji = '🌱'; label = 'B1 · 入門';
+    desc = '建議從 B1 級的文章開始，句子較短、詞彙較常見。讀完幾篇後可以挑戰 B2。';
+    recommend = '#diff=B1';
+  } else if (correct <= 3) {
+    level = 'B2'; emoji = '🌳'; label = 'B2 · 中級';
+    desc = '你能應付一般學術英文。推薦 B2 級的文章——大部分 Duet 內容都是這個級距。遇到生詞用 hover 看定義即可。';
+    recommend = '#diff=B2';
+  } else {
+    level = 'C1+'; emoji = '🦅'; label = 'C1 · 進階以上';
+    desc = '英文功力扎實。推薦你閱讀「🌀 多級」標籤的文章，可切換到 C1 或 C2 模式體驗更接近原文的版本。';
+    recommend = '';
+  }
+  document.getElementById('test').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').innerHTML = `
+    <div class="result-card">
+      <div class="result-emoji">${emoji}</div>
+      <div class="result-label">推薦難度</div>
+      <div class="result-level">${level}</div>
+      <div class="result-label">${label}</div>
+      <div class="result-score">答對 ${correct} / ${QUESTIONS.length} 題</div>
+      <div class="result-desc">${desc}</div>
+      <div class="result-actions">
+        <a href="index.html${recommend}" onclick="sessionStorage.setItem('from-placement', '1')">看推薦文章 →</a>
+        <a href="javascript:location.reload()" class="secondary">重測一次</a>
+      </div>
+    </div>`;
+}
+
+function escape(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+// Persist theme
+const savedTheme = localStorage.getItem('duet-theme') || 'dark';
+document.documentElement.dataset.theme = savedTheme;
+</script>
+</body>
+</html>

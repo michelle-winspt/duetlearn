@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://duetlearn.com/sitemap.xml

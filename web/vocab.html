@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>單字複習 · Vocab Review · Duet 雙聲</title>
+<meta name="description" content="Anki 風格單字卡複習。從你讀過的 Duet 科學文章中抽取重要詞彙，間隔重複幫你記得更牢。">
+<link rel="canonical" href="https://duetlearn.com/vocab.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314201A'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23C8923F'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/components.css">
+<style>
+  h1 { font-family:'Fraunces',serif; font-size:42px; line-height:1.1; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em; }
+  .sub { color:var(--ink-muted); font-size:15px; margin-bottom:36px; }
+
+  .stats-row { display:flex; gap:14px; margin-bottom:28px; flex-wrap:wrap; }
+  .sr-pill { background:var(--bg-card); border:1px solid var(--border); border-radius:999px; padding:8px 16px; font-size:13px; color:var(--ink-muted); }
+  .sr-pill strong { color:var(--accent); font-family:'Fraunces',serif; }
+
+  /* Card stack */
+  .deck { perspective:1200px; margin: 12px auto 24px; max-width:520px; }
+  .card3d {
+    position:relative; width:100%; aspect-ratio: 5/3;
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    transform-style: preserve-3d; cursor:pointer;
+  }
+  .card3d.flipped { transform: rotateY(180deg); }
+  /* Marcus: prefers-reduced-motion — disable 3D flip for vestibular users */
+  @media (prefers-reduced-motion: reduce) {
+    .card3d { transition: none; }
+    .card3d.flipped { transform: none; }
+    .card3d.flipped .front { display: none; }
+    .card3d:not(.flipped) .back { display: none; }
+  }
+  .face {
+    position:absolute; inset:0;
+    background:var(--bg-card); border:1px solid var(--border); border-radius:18px;
+    padding:32px; display:flex; flex-direction:column; justify-content:center; text-align:center;
+    backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    box-shadow:0 12px 40px rgba(0,0,0,0.25);
+  }
+  .face.back { transform: rotateY(180deg); }
+  .term-big { font-family:'Fraunces',serif; font-size:36px; font-weight:700; color:var(--ink); margin-bottom:8px; line-height:1.15; letter-spacing:-0.01em; }
+  .term-pos { font-size:13px; color:var(--accent); font-style:italic; margin-bottom:6px; font-family:'Source Serif 4',serif; }
+  .term-ipa { font-size:14px; color:var(--ink-muted); margin-bottom:10px; }
+  .face .speak-card { background:none; border:1px solid var(--border); color:var(--ink-muted); border-radius:999px; padding:6px 14px; cursor:pointer; font-size:13px; margin: 12px auto 0; transition:all 0.15s; }
+  .face .speak-card:hover { border-color:var(--accent); color:var(--accent); }
+  .face .speak-card.speaking { border-color:var(--accent); color:var(--accent); animation: pulse 1s ease-in-out infinite; }
+  .term-trans { font-family:'Noto Serif TC',serif; font-size:24px; color:var(--accent); font-weight:600; margin-bottom:14px; }
+  .term-def-en { font-size:15px; color:var(--ink); margin-bottom:8px; line-height:1.55; }
+  .term-def-zh { font-size:13px; color:var(--ink-muted); font-family:'Noto Serif TC',serif; }
+  .face .from-article { position:absolute; bottom:14px; left:0; right:0; font-size:11px; color:var(--ink-muted); letter-spacing:0.05em; }
+  .face .from-article a { color:var(--accent); text-decoration:none; }
+
+  .flip-hint { text-align:center; color:var(--ink-muted); font-size:12px; letter-spacing:0.1em; margin-bottom:18px; }
+
+  .actions {
+    display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:520px; margin:0 auto 24px;
+  }
+  .actions button {
+    padding:14px; border-radius:10px; font-family:inherit; font-size:14px; font-weight:600;
+    cursor:pointer; border:1px solid var(--border); transition:all 0.15s;
+  }
+  .actions .review-btn { background:var(--bg-card); color:var(--ink); }
+  .actions .review-btn:hover { border-color:var(--error); color:var(--error); }
+  .actions .know-btn { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .actions .know-btn:hover { transform:translateY(-2px); box-shadow:0 6px 16px rgba(200,146,63,0.3); }
+  .actions button:disabled { opacity:0.4; cursor:not-allowed; }
+
+  .keyboard-hint { text-align:center; color:var(--ink-muted); font-size:12px; margin-bottom:32px; }
+  .kbd { display:inline-block; background:var(--bg-soft); border:1px solid var(--border); border-radius:4px; padding:1px 7px; font-family:'Source Serif 4',monospace; font-size:11px; margin:0 3px; }
+
+  .empty {
+    text-align:center; padding:48px 24px; background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
+  }
+  .empty .e-emoji { font-size:48px; margin-bottom:14px; }
+  .empty h3 { font-family:'Fraunces',serif; margin:0 0 8px; }
+  .empty p { color:var(--ink-muted); font-size:14px; margin-bottom:18px; }
+  .empty a { display:inline-block; background:var(--accent); color:#fff; padding:10px 22px; border-radius:8px; text-decoration:none; font-size:14px; font-weight:600; }
+
+  .complete-card {
+    background:linear-gradient(135deg, var(--bg-card), var(--accent-soft));
+    border:1px solid var(--accent); border-radius:14px; padding:36px;
+    text-align:center; max-width:520px; margin:32px auto;
+  }
+  .complete-card .ce { font-size:56px; margin-bottom:8px; }
+  .complete-card h3 { font-family:'Fraunces',serif; font-size:22px; margin:8px 0 6px; }
+  .complete-card p { color:var(--ink-muted); margin-bottom:20px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="site-header">
+    <div class="nav-left">
+      <a href="index.html" class="back-btn">← 目錄</a>
+      <div><span class="brand">Duet</span><span class="brand-sub">雙聲</span></div>
+    </div>
+  </header>
+
+  <h1>🃏 單字複習</h1>
+  <p class="sub">Vocab Review · 從你讀過的文章抽詞彙，Anki 式間隔重複幫你記牢</p>
+
+  <div id="content"></div>
+
+</div>
+
+<script src="js/common.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', async () => {
+  const STAT_KEY = 'duet-vocab';
+
+  function getVocabState() {
+    try { return JSON.parse(localStorage.getItem(STAT_KEY) || '{}'); }
+    catch { return {}; }
+  }
+  function saveVocabState(s) { localStorage.setItem(STAT_KEY, JSON.stringify(s)); }
+
+  async function loadDeck() {
+    const manifest = await fetch('data/manifest.json').then(r => r.json());
+    const read = new Set(JSON.parse(localStorage.getItem('duet-read') || '[]'));
+    // Pull glossary from articles user has finished
+    const articles = await Promise.all(
+      manifest.filter(a => read.has(a.id))
+        .map(a => fetch(`data/articles/${a.id}.json`).then(r => r.json()).then(d => ({ ...d, _meta: a })))
+    );
+    const allTerms = [];
+    articles.forEach(a => (a.glossary || []).forEach(g => {
+      allTerms.push({ ...g, articleId: a._meta.id, articleTitle: a._meta.title_zh });
+    }));
+    // Add personal vocab from dictionary lookups
+    try {
+      const personal = JSON.parse(localStorage.getItem('duet-personal-vocab') || '[]');
+      personal.forEach(p => allTerms.push(p));
+    } catch {}
+    return allTerms;
+  }
+
+  function pickDueCards(allTerms) {
+    const state = getVocabState();
+    const now = Date.now();
+    return allTerms.map(t => {
+      const key = `${t.articleId}__${t.term}`;
+      const s = state[key] || { easy: 0, lastSeen: 0, nextDue: 0 };
+      const due = s.nextDue <= now;
+      return { ...t, _state: s, _key: key, _due: due };
+    }).filter(t => t._due)
+      .sort((a, b) => a._state.lastSeen - b._state.lastSeen);
+  }
+
+  function render() {
+    Promise.all([loadDeck()]).then(([allTerms]) => {
+      const root = document.getElementById('content');
+      if (!allTerms.length) {
+        root.innerHTML = `
+          <div class="empty">
+            <div class="e-emoji">📖</div>
+            <h3>還沒有可以複習的單字</h3>
+            <p>完成至少一篇文章的測驗後，該文章的詞彙就會出現在這裡。</p>
+            <a href="index.html">去看文章 →</a>
+          </div>`;
+        return;
+      }
+      const due = pickDueCards(allTerms);
+      if (!due.length) {
+        const next = Math.min(...allTerms.map(t => (getVocabState()[`${t.articleId}__${t.term}`]?.nextDue || 0)));
+        const hours = Math.ceil(Math.max(0, next - Date.now()) / 3600000);
+        root.innerHTML = `
+          <div class="complete-card">
+            <div class="ce">🎉</div>
+            <h3>今天的複習都做完了！</h3>
+            <p>下次複習：${hours <= 1 ? '稍候' : `約 ${hours} 小時後`}</p>
+            <p style="font-size:13px;">總詞彙：<strong>${allTerms.length}</strong> · 已掌握：<strong>${allTerms.filter(t => (getVocabState()[`${t.articleId}__${t.term}`]?.easy||0) >= 2).length}</strong></p>
+            <a href="index.html" style="display:inline-block; margin-top:10px; background:var(--accent); color:#fff; padding:10px 22px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px;">回目錄</a>
+          </div>`;
+        return;
+      }
+      window._allTerms = allTerms;
+      root.innerHTML = `
+        <div class="stats-row">
+          <div class="sr-pill">本回 <strong>${due.length}</strong> 張待複習</div>
+          <div class="sr-pill">總詞彙 <strong>${allTerms.length}</strong></div>
+          <div class="sr-pill">已熟練 <strong>${allTerms.filter(t => (getVocabState()[`${t.articleId}__${t.term}`]?.easy||0) >= 2).length}</strong></div>
+          <button class="sr-pill" onclick="exportAnki()" style="background:none;cursor:pointer;border-color:var(--accent);color:var(--accent);">⬇ 匯出 Anki</button>
+        </div>
+        <div class="deck">
+          <div class="card3d" id="card3d">
+            <div class="face front" id="face-front"></div>
+            <div class="face back" id="face-back"></div>
+          </div>
+        </div>
+        <div class="flip-hint">點卡片翻面 · 看完答案再選下方</div>
+        <div class="actions">
+          <button class="review-btn" onclick="rate(0)">🔁 再看（明天再出）</button>
+          <button class="know-btn"   onclick="rate(1)">✓ 懂了（7 天後再出）</button>
+        </div>
+        <div class="keyboard-hint">快捷鍵：<span class="kbd">Space</span> 翻面 · <span class="kbd">1</span> 再看 · <span class="kbd">2</span> 懂了 · <span class="kbd">→</span> 下一張</div>`;
+      window._dueQueue = due;
+      window._curIdx = 0;
+      showCard();
+    });
+  }
+
+  window.showCard = function() {
+    const t = window._dueQueue[window._curIdx];
+    if (!t) return render();
+    document.getElementById('card3d').classList.remove('flipped');
+    document.getElementById('face-front').innerHTML = `
+      <div class="term-big">${Duet.escape(t.term)}</div>
+      ${t.pos ? `<div class="term-pos">${Duet.escape(t.pos)}</div>` : ''}
+      ${t.ipa ? `<div class="term-ipa">${Duet.escape(t.ipa)}</div>` : ''}
+      <button class="speak-card" onclick="event.stopPropagation(); Duet.speak('${t.term.replace(/'/g, "\\'")}', null, this)">🔊 發音</button>
+      <div class="from-article">From: <a href="reader.html?id=${t.articleId}" onclick="event.stopPropagation()">${Duet.escape(t.articleTitle)}</a></div>`;
+    document.getElementById('face-back').innerHTML = `
+      ${t.translation ? `<div class="term-trans">${Duet.escape(t.translation)}</div>` : ''}
+      <div class="term-def-en">${Duet.escape(t.definition_en)}</div>
+      <div class="term-def-zh">${Duet.escape(t.definition_zh)}</div>`;
+  };
+
+  window.rate = function(easy) {
+    const t = window._dueQueue[window._curIdx];
+    const state = getVocabState();
+    const s = state[t._key] || { easy: 0, lastSeen: 0, nextDue: 0 };
+    s.lastSeen = Date.now();
+    if (easy) {
+      s.easy = (s.easy || 0) + 1;
+      const intervalDays = s.easy === 1 ? 7 : s.easy === 2 ? 21 : 60;
+      s.nextDue = Date.now() + intervalDays * 86400000;
+    } else {
+      s.easy = Math.max(0, (s.easy || 0) - 1);
+      s.nextDue = Date.now() + 86400000; // 1 day
+    }
+    state[t._key] = s;
+    saveVocabState(state);
+    // Stat tracking
+    const ds = Duet.getStats();
+    ds.vocabReviews = (ds.vocabReviews || 0) + 1;
+    Duet.saveStats(ds);
+    if (ds.vocabReviews >= 10) Duet.addBadge('reviewer');
+    Duet.awardXP(easy ? 3 : 1);
+    window._curIdx++;
+    if (window._curIdx >= window._dueQueue.length) render();
+    else showCard();
+  };
+
+  // Click card to flip
+  document.addEventListener('click', e => {
+    if (e.target.closest('.card3d') && !e.target.closest('button') && !e.target.closest('a')) {
+      document.getElementById('card3d').classList.toggle('flipped');
+    }
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT') return;
+    if (!window._dueQueue) return;
+    if (e.code === 'Space') { e.preventDefault(); document.getElementById('card3d')?.classList.toggle('flipped'); }
+    else if (e.key === '1') rate(0);
+    else if (e.key === '2') rate(1);
+    else if (e.key === 'ArrowRight') { e.preventDefault(); rate(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); rate(0); }
+  });
+
+  window.exportAnki = function() {
+    const terms = window._allTerms || [];
+    if (!terms.length) return;
+    const lines = terms.map(t => `${t.term}\t${t.definition_en || ''}`).join('\n');
+    const blob = new Blob([lines], { type: 'text/plain;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'duet-vocab.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+
+  Duet.bumpStreak();
+  render();
+});
+</script>
+<footer style="margin-top:48px;padding:16px 24px;border-top:1px solid rgba(245,239,230,0.08);color:#95938A;font-size:12px;text-align:center;font-style:italic;font-family:'Fraunces',Georgia,serif;">
+  Duet · Read science in two voices · 雙聲・讀懂科學 · All papers CC-BY<br>
+  <span style="font-size:11px;">© 2026 Duet 雙聲 · 平台版權所有 · 文章內容遵循 CC-BY 開放授權</span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+/* Duet — shared theme variables + base */
+:root {
+  --bg:#14201A; --bg-card:#1F2D26; --bg-soft:#1A2620;
+  --ink:#F5EFE6; --ink-muted:#95938A;
+  --accent:#C8923F; --accent-soft:rgba(200,146,63,0.12);
+  --border:rgba(245,239,230,0.08);
+  --success:#6FAA7F; --error:#C5503D;
+}
+[data-theme="light"] {
+  --bg:#F5EFE6; --bg-card:#FFFFFF; --bg-soft:#EFE8DD;
+  --ink:#1F4438; --ink-muted:#5C5447;
+  --accent:#A65F1E; --accent-soft:rgba(166,95,30,0.12);
+  --border:rgba(31,68,56,0.16);
+}
+* { box-sizing:border-box; }
+html, body { margin:0; padding:0; }
+body {
+  background:var(--bg); color:var(--ink);
+  font-family:'Source Serif 4','Noto Serif TC',Georgia,serif;
+  font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+::selection { background: var(--accent); color: #fff; }
+.container { max-width:760px; margin:0 auto; padding:28px 24px 96px; }
+
+/* Skip link for a11y */
+.skip-link {
+  position:absolute; top:-40px; left:8px; padding:8px 14px;
+  background:var(--accent); color:#fff; border-radius:6px;
+  text-decoration:none; z-index:10000; font-size:13px;
+}
+.skip-link:focus { top:8px; }
+
+/* Shared header */
+.brand { font-family:'Fraunces',serif; font-size:24px; font-weight:700; letter-spacing:-0.01em; }
+.brand-sub { color:var(--ink-muted); font-size:14px; margin-left:8px; font-family:'Noto Serif TC',serif; }
+.back-btn {
+  color:var(--ink-muted); text-decoration:none; font-size:13px;
+  border:1px solid var(--border); border-radius:6px; padding:4px 10px;
+  font-family:'Source Serif 4',serif; white-space:nowrap; transition:all 0.15s;
+}
+.back-btn:hover { color:var(--ink); border-color:var(--accent); }
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Focus ring for keyboard navigation (WCAG AA) */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+button:focus, a:focus, input:focus { outline: none; }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

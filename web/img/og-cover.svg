@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#14201A"/>
+  <!-- Subtle grid texture -->
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.06"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C8923F" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <!-- Accent bar -->
+  <rect x="80" y="220" width="6" height="140" rx="3" fill="#C8923F"/>
+  <!-- Main title -->
+  <text x="112" y="298" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#F5EFE6" letter-spacing="-1">Duet</text>
+  <text x="112" y="360" font-family="Georgia, serif" font-size="48" font-weight="400" fill="#C8923F">雙聲</text>
+  <!-- Tagline -->
+  <text x="112" y="410" font-family="Georgia, serif" font-size="24" fill="#A09080" font-style="italic">Read Science in Two Voices · 雙語科學學習平台</text>
+  <!-- Tags -->
+  <rect x="112" y="446" width="100" height="28" rx="14" fill="#C8923F22" stroke="#C8923F" stroke-width="1"/>
+  <text x="162" y="465" font-family="Georgia, serif" font-size="13" fill="#C8923F" text-anchor="middle">CEFR B1–C1</text>
+  <rect x="224" y="446" width="80" height="28" rx="14" fill="#6FAA7F22" stroke="#6FAA7F" stroke-width="1"/>
+  <text x="264" y="465" font-family="Georgia, serif" font-size="13" fill="#6FAA7F" text-anchor="middle">CC-BY</text>
+  <rect x="316" y="446" width="80" height="28" rx="14" fill="#A09080" stroke="#A09080" stroke-width="1" opacity="0.3"/>
+  <text x="356" y="465" font-family="Georgia, serif" font-size="13" fill="#F5EFE6" text-anchor="middle">中英雙語</text>
+  <!-- Right illustration: stacked cards -->
+  <rect x="850" y="160" width="260" height="160" rx="16" fill="#1E2E27" stroke="#C8923F" stroke-width="1.5" opacity="0.9"/>
+  <text x="980" y="255" font-family="Georgia, serif" font-size="32" fill="#C8923F" text-anchor="middle">Neuroplasticity</text>
+  <text x="980" y="288" font-family="Georgia, serif" font-size="16" fill="#6FAA7F" text-anchor="middle">神經可塑性</text>
+  <rect x="870" y="350" width="260" height="120" rx="16" fill="#1E2E27" stroke="#3D5E4A" stroke-width="1"/>
+  <text x="1000" y="420" font-family="Georgia, serif" font-size="14" fill="#A09080" text-anchor="middle">Open-access science,</text>
+  <text x="1000" y="444" font-family="Georgia, serif" font-size="14" fill="#A09080" text-anchor="middle">made readable for all.</text>
+  <!-- URL -->
+  <text x="600" y="590" font-family="Georgia, serif" font-size="18" fill="#4A6A55" text-anchor="middle" letter-spacing="2">duetlearn.com</text>
+</svg>

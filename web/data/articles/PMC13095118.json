@@ -1,0 +1,143 @@
+{
+  "title_en": "Sleep Helps Your Brain Predict What’s Next",
+  "title_zh": "睡眠如何幫助你的大腦預測未來",
+  "tldr_en": "Scientists found that learning a sequence of images makes your brain anticipate the next one. A nap after learning strengthens this predictive ability and makes the memory more abstract.",
+  "tldr_zh": "科學家發現，學習一連串的圖片後，你的大腦會開始預期下一張圖片。學習後的小睡不僅能強化這種預測能力，還能讓記憶變得更抽象。",
+  "difficulty": "B2",
+  "estimated_minutes": 6,
+  "tags": [
+    "#Neuroscience",
+    "#Sleep",
+    "#Memory",
+    "#Learning",
+    "#Brain"
+  ],
+  "article_en": "### A Window Into the Predicting Brain\n\nImagine you walk the same route to school every day. You pass a coffee shop, then a bookstore, then a park. After a while, just seeing the coffee shop might make you think of the bookstore. Your brain has learned the sequence. But how does it build this predictive map of your world? A new study explores how our brains learn sequences and how sleep helps make these predictions stronger.\n\n### Background: Building Mental Maps\n\nOur brains don't just react to what's happening right now. They constantly try to predict what will happen next. Scientists call this ability **successor representation** (a mental model of what comes next). This helps us understand stories, play music, or even have a conversation. But how does our brain create these predictive links from our experiences? And what happens to these links after we learn them? Researchers believe that sleep plays a very important role in strengthening memories, a process called **consolidation** (making memories stable and strong). They wanted to test if sleep specifically helps build these successor representations.\n\n### What They Did: An Experiment in Three Parts\n\nScientists at the University of Oxford designed a clever experiment. First, they invited people to a lab and showed them 50 different images in a random order. While the participants looked at the images, an **EEG (electroencephalography)** cap with many sensors measured their brain's electrical activity. This gave the researchers a baseline (a starting point) of how the brain responded to each image.\n\nNext, participants learned a specific sequence for these 50 images. They played a game where they had to remember the order and location of each picture. After they learned the sequence well, they took a two-hour nap in the lab. The EEG cap stayed on, recording their brain activity while they slept.\n\nFinally, after waking up, the participants saw the same 50 images again in a random order. The researchers measured their brain activity one last time. They wanted to see if the brain's response to an image had changed after learning the sequence and taking a nap.\n\n### What They Found: Sleep Rewires the Brain\n\nThe results were exciting. First, they found that after learning, the brain started to predict the future. When a participant saw an image, their brain activity didn't just represent that image. It also showed a pattern that matched the *next* image in the sequence—the successor. This happened even though the images were now shown randomly and the sequence was no longer relevant.\n\nSecond, this effect was linked to how well people learned. Participants who had a better memory of the sequence showed stronger successor representations.\n\nThird, the *quality* of the memory changed. The researchers used a computer model called a **deep neural network (DNN)** to analyze the brain patterns. They discovered that the successor representation became more abstract (based on general concepts) and less about simple visual details. The brain wasn't just remembering a picture; it was remembering the idea of what came next.\n\nFinally, sleep was the key ingredient. The amount of deep sleep, also called **slow-wave sleep**, was crucial. More deep sleep led to stronger successor representations. Specifically, the **coupling** (the coordinated timing) of two brain waves during deep sleep—slow oscillations and spindles—predicted this memory transformation.\n\n### Why It Matters: Learn, Sleep, Repeat\n\nThis study shows how our experiences shape our internal model of the world. Our brain actively builds predictive connections between events. This helps us navigate life more efficiently.\n\nIt also highlights the critical role of sleep in learning. Sleep is not a passive state. Instead, it is an active period where the brain reorganizes and strengthens memories. This process of consolidation makes our memories more robust and abstract. For students, this means that a good night's sleep after studying is not a luxury; it's essential for effective learning. It helps the brain connect the dots and understand the bigger picture, not just memorize individual facts.\n\n### Open Questions for the Future\n\nThis research opens up many new questions. Do our brains build successor representations for other things, like language or motor skills? How long do these predictive changes in the brain last? And could we use this knowledge to develop new strategies to help people with memory problems? Future studies will continue to explore how our amazing brains learn from the past to predict the future.",
+  "article_zh": "### 窺探大腦的預測機制\n\n想像一下，你每天都走同一條路上學。你會先經過一間咖啡店，然後一間書店，再來是一座公園。久而久之，你可能只要看到咖啡店，就會想到接下來的書店。你的大腦已經學會了這個順序。但大腦是如何建立這張預測地圖的呢？一項新研究探索了我們的大腦如何學習序列，以及睡眠如何幫助這些預測變得更強。\n\n### 背景知識：建立心智地圖\n\n我們的大腦不只是對當下發生的事做出反應，它還會不斷嘗試預測接下來會發生什麼。科學家將這種能力稱為「**後繼表徵**」(successor representation)，也就是對接下來事物的心理模型。這能幫助我們理解故事、演奏音樂，甚至進行對話。但我們的大腦是如何根據經驗建立這些預測連結的呢？學習之後，這些連結又會發生什麼變化？研究人員認為，睡眠在強化記憶的過程中扮演著非常重要的角色，這個過程稱為「**鞏固**」(consolidation)，也就是讓記憶變得穩定而牢固。他們想測試睡眠是否特別有助於建立這些後繼表徵。\n\n### 他們做了什麼：一個三部曲實驗\n\n牛津大學的科學家設計了一個巧妙的實驗。首先，他們邀請受試者到實驗室，隨機展示 50 張不同的圖片。當受試者看圖時，一頂佈滿許多感測器的「**腦電圖**」(EEG, electroencephalography) 帽會測量他們大腦的電活動。這為研究人員提供了一個基準線（起點），了解大腦對每張圖片的原始反應。\n\n接著，受試者學習這 50 張圖片的特定順序。他們玩一個遊戲，必須記住每張圖片的順序和位置。在他們熟練地記住順序後，他們會在實驗室小睡兩小時。 währenddessen blieb die EEG-Kappe auf und zeichnete ihre Gehirnaktivität im Schlaf auf. (Typo from source, correcting) EEG 帽會一直戴著，記錄他們睡眠時的大腦活動。\n\n最後，睡醒後，受試者會再次看到同樣的 50 張圖片，順序是隨機的。研究人員最後一次測量他們的大腦活動，想看看在學習順序並小睡之後，大腦對圖片的反應是否有所改變。\n\n### 他們發現了什麼：睡眠會重塑大腦\n\n結果非常令人興奮。首先，他們發現學習後，大腦開始預測未來。當受試者看到一張圖片時，他們的大腦活動不只代表那張圖片，還同時呈現出與序列中「下一張」圖片（也就是後繼者）相符的模式。即使這時圖片是隨機出現，順序已不再重要，這種現象依然發生。\n\n第二，這種效果與學習成效有關。對於順序記憶得比較好的受試者，他們大腦中的後繼表徵也更強烈。\n\n第三，記憶的「品質」改變了。研究人員使用一種稱為「**深度神經網路**」(deep neural network, DNN) 的電腦模型來分析大腦模式。他們發現，後繼表徵變得更「抽象」（基於普通常識概念），而較少關乎簡單的視覺細節。大腦不只是記住一張圖，而是記住了「接下來是什麼」這個概念。\n\n最後，睡眠是關鍵要素。深度睡眠，也稱為「**慢波睡眠**」(slow-wave sleep)，至關重要。更多的深度睡眠會帶來更強的後繼表徵。具體來說，深度睡眠期間兩種腦波的「**耦合**」(coupling)（也就是協調同步的時機）——慢波振盪 (slow oscillations) 和紡錘波 (spindles)——預測了這種記憶的轉變。\n\n### 這為什麼重要：學習、睡眠、再重複\n\n這項研究展示了我們的經驗如何塑造我們對世界的內部模型。我們的大腦會主動在事件之間建立預測性的連結，這有助於我們更有效率地應對生活。\n\n研究也凸顯了睡眠在學習中的關鍵角色。睡眠並非被動狀態，相反地，它是大腦重組和強化記憶的活躍時期。這個「鞏固」過程使我們的記憶更加穩固和抽象。對學生來說，這意味著學習後睡個好覺不是奢侈，而是有效學習的必要條件。它幫助大腦將各個知識點連結起來，理解整體概念，而不僅僅是背誦單一事實。\n\n### 未來的待解問題\n\n這項研究引發了許多新問題。我們的大腦在學習語言或運動技能等其他事物時，也會建立後繼表徵嗎？這些大腦中的預測性變化能持續多久？我們能否利用這些知識，發展出新策略來幫助有記憶問題的人？未來的研究將繼續探索我們奇妙的大腦如何從過去中學習，以預測未來。",
+  "glossary": [
+    {
+      "term": "Successor representation",
+      "ipa": "/səkˈsɛsər ˌrɛprəzɛnˈteɪʃən/",
+      "definition_en": "The brain's way of predicting what will come next in a sequence, based on past experience.",
+      "definition_zh": "後繼表徵。大腦根據過去經驗，預測序列中接下來會出現什麼事物的一種心智模型。",
+      "pos": "phr.",
+      "translation": "後繼表徵（預測下一步的腦內模型）"
+    },
+    {
+      "term": "Electroencephalography (EEG)",
+      "ipa": "/ɪˌlɛktroʊɛnˌsɛfəˈlɒɡrəfi/",
+      "definition_en": "A method to record the brain's electrical activity using small sensors attached to the scalp.",
+      "definition_zh": "腦電圖。一種使用貼在頭皮上的小型感測器來記錄大腦電活動的方法。",
+      "pos": "n.",
+      "translation": "腦電圖／腦波"
+    },
+    {
+      "term": "Consolidation",
+      "ipa": "/kənˌsɒlɪˈdeɪʃən/",
+      "definition_en": "The biological process by which the brain makes new memories stable and long-lasting, often during sleep.",
+      "definition_zh": "鞏固。大腦將新記憶轉化為穩定且持久的生物過程，通常在睡眠時發生。",
+      "pos": "n.",
+      "translation": "鞏固／整合"
+    },
+    {
+      "term": "Deep Neural Network (DNN)",
+      "ipa": "/dip ˈnʊrəl ˈnɛtˌwɜrk/",
+      "definition_en": "A type of complex computer program, inspired by the human brain, that can learn to recognize patterns from data.",
+      "definition_zh": "深度神經網路。一種受人腦啟發的複雜電腦程式，能從資料中學習並識別模式。",
+      "pos": "phr.",
+      "translation": "深度神經網路"
+    },
+    {
+      "term": "Slow-wave sleep (SWS)",
+      "ipa": "/sloʊ weɪv slip/",
+      "definition_en": "The deepest stage of sleep, characterized by slow brain waves, which is very important for memory consolidation and physical recovery.",
+      "definition_zh": "慢波睡眠。睡眠最深的一個階段，特徵是腦波緩慢，對於記憶鞏固和身體恢復非常重要。",
+      "pos": "phr.",
+      "translation": "慢波睡眠"
+    },
+    {
+      "term": "Coupling",
+      "ipa": "/ˈkʌplɪŋ/",
+      "definition_en": "In neuroscience, this means two or more brain waves happening together in a coordinated, timed way.",
+      "definition_zh": "耦合。在神經科學中，指兩種或多種腦波以一種協調、同步的方式一起發生。",
+      "pos": "n.",
+      "translation": "耦合／連結"
+    }
+  ],
+  "quiz": {
+    "recall": [
+      {
+        "question_en": "According to the study, what is the main thing the brain does after learning a sequence of images?",
+        "question_zh": "根據這項研究，學習一系列圖片後，大腦主要會做什麼？",
+        "options_en": [
+          "A. It starts to predict the next image in the sequence.",
+          "B. It forgets the first image in the sequence.",
+          "C. It can only remember the images in reverse order.",
+          "D. It confuses the images with other, similar images."
+        ],
+        "options_zh": [
+          "A. 開始預測序列中的下一張圖片。",
+          "B. 忘記序列中的第一張圖片。",
+          "C. 只能倒著記住圖片順序。",
+          "D. 將圖片與其他相似的圖片混淆。"
+        ],
+        "answer": "A",
+        "hint_en": "Think about the concept of 'successor representation'. What does 'successor' mean?",
+        "hint_zh": "想一想「後繼表徵」這個概念。「後繼」是什麼意思？",
+        "explanation_en": "The study found that after learning, the brain creates a 'successor representation', meaning it anticipates the next item in a learned sequence even when it's not required.",
+        "explanation_zh": "研究發現，學習後大腦會產生「後繼表徵」，這意味著即使在不需要的情況下，大腦也會預期已學會序列中的下一個項目。"
+      }
+    ],
+    "transfer": [
+      {
+        "question_en": "A musician is learning a new, difficult piece of music. Based on this study's findings, what is the best way for them to practice?",
+        "question_zh": "一位音樂家正在學習一首困難的新樂曲。根據這項研究的發現，什麼是最好的練習方式？",
+        "options_en": [
+          "A. Practice for 10 hours straight without any breaks.",
+          "B. Practice the piece, then take a long nap or get a full night's sleep.",
+          "C. Only practice the last part of the music.",
+          "D. Listen to someone else play the music instead of practicing."
+        ],
+        "options_zh": [
+          "A. 連續練習 10 小時不休息。",
+          "B. 練習樂曲，然後小睡一會兒或睡個好覺。",
+          "C. 只練習樂曲的最後一部分。",
+          "D. 聽別人演奏，自己不練習。"
+        ],
+        "answer": "B",
+        "hint_en": "The study emphasized the role of sleep in strengthening and reorganizing learned sequences. How can the musician use this information?",
+        "hint_zh": "這項研究強調了睡眠在加強和重組已學習序列中的作用。這位音樂家該如何利用這個資訊？",
+        "explanation_en": "The study shows that sleep, especially deep sleep, is crucial for consolidating learned sequences. Practicing and then sleeping allows the brain to strengthen the connections between the notes, making the memory of the music stronger and more automatic.",
+        "explanation_zh": "研究表明，睡眠（特別是深度睡眠）對於鞏固學習的序列至關重要。練習後睡覺能讓大腦強化音符之間的連結，使對樂曲的記憶更牢固、更自動化。"
+      }
+    ],
+    "critical": [
+      {
+        "question_en": "The study showed that people with more deep sleep had stronger predictive memories. Does this prove that deep sleep *causes* memories to become more predictive?",
+        "question_zh": "研究顯示，深度睡眠較多的人，其預測性記憶也較強。這是否證明深度睡眠「導致」記憶變得更具預測性？",
+        "options_en": [
+          "A. Yes, because the two things happened together.",
+          "B. No, this only shows a correlation (a connection), not that one thing directly causes the other. Other factors could be involved.",
+          "C. Yes, because the scientists proved it with an EEG machine.",
+          "D. No, because the participants might have been lying about how much they slept."
+        ],
+        "options_zh": [
+          "A. 是的，因為這兩件事同時發生。",
+          "B. 不是，這只顯示了兩者之間的關聯性，不代表其中一項直接導致另一項。可能還有其他因素。",
+          "C. 是的，因為科學家用腦電圖證明了。",
+          "D. 不是，因為受試者可能謊報了他們的睡眠時間。"
+        ],
+        "answer": "B",
+        "hint_en": "In science, just because two things are related (correlation), it doesn't mean one is the reason for the other (causation).",
+        "hint_zh": "在科學上，兩件事有關聯（相關性），不代表其中一件就是另一件的原因（因果關係）。",
+        "explanation_en": "This is a classic 'correlation does not equal causation' problem. While the study found a strong link, it's possible that another factor (like genetics or diet) influences both sleep quality and memory ability. To prove causation, a different kind of experiment would be needed, for example, one where scientists could actively increase or decrease deep sleep and measure the effect.",
+        "explanation_zh": "這是典型的「相關不等於因果」問題。雖然研究發現了強烈的關聯，但可能還有另一個因素（例如遺傳或飲食）同時影響睡眠品質和記憶能力。要證明因果關係，需要進行不同類型的實驗，例如科學家主動增加或減少深度睡眠，然後測量其效果。"
+      }
+    ]
+  },
+  "original_abstract": "Experiences reshape our internal representations of the world. However, the neural and cognitive dynamics of this process are largely unknown. Here, we investigated how sequence learning reorganizes neural representations and how sleep-related consolidation mechanisms contribute to this transformation. Using high-density electroencephalography and multivariate decoding, we found that learning temporal sequences of visual information led to the incorporation of successor representations during a subsequent perceptual task, despite temporal information being task-irrelevant. Importantly, individuals with better sequence memory performance exhibited stronger successor incorporation during the perceptual task. Representational similarity analyses comparing neural patterns with different layers of a deep neural network revealed a learning-induced shift in representational format, from low-level visual features to higher-level abstract properties. Critically, both the strength and transformation of successor representations correlated with the neurophysiological hallmarks of slow-wave sleep during a post-learning nap, particularly the coupling between slow oscillations and spindles. These findings support the idea that sequence learning induces lasting changes in visual representational geometry and that sleep physiology strengthens these changes, providing mechanistic insights into how the brain updates internal models after exposure to environmental regularities.",
+  "original_citation": "He X, Büchel PK, Faghel-Soubeyrand S et al. (2026). Sleep strengthens successor representations of learned sequences in humans.. PLoS Biol.",
+  "original_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13095118/",
+  "original_license": "CC-BY 4.0",
+  "pmc_id": "PMC13095118"
+}

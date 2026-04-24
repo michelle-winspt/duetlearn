@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://duetlearn.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://duetlearn.com/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://duetlearn.com/placement.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://duetlearn.com/progress.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://duetlearn.com/reader.html?id=PMC8473838</loc><priority>0.9</priority></url>
+  <url><loc>https://duetlearn.com/reader.html?id=PMC13085316</loc><priority>0.9</priority></url>
+  <url><loc>https://duetlearn.com/reader.html?id=PMC13095118</loc><priority>0.9</priority></url>
+  <url><loc>https://duetlearn.com/reader.html?id=PMC13096162</loc><priority>0.9</priority></url>
+  <url><loc>https://duetlearn.com/reader.html?id=PMC13062002</loc><priority>0.9</priority></url>
+</urlset>

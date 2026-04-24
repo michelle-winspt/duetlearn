@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>教師資源 · For Teachers · Duet 雙聲</title>
+<meta name="description" content="免費雙語科學閱讀材料，CC-BY 授權，可直接放入課綱。適合學術英語、研究方法、通識科學課程。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314201A'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23C8923F'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/common.js" defer></script>
+<style>
+  :root {
+    --bg:#14201A; --bg-card:#1F2D26; --bg-soft:#1A2620;
+    --ink:#F5EFE6; --ink-muted:#95938A;
+    --accent:#C8923F; --accent-soft:rgba(200,146,63,0.12);
+    --border:rgba(245,239,230,0.08); --success:#6FAA7F;
+  }
+  [data-theme="light"] {
+    --bg:#F5EFE6; --bg-card:#FFFFFF; --bg-soft:#EFE8DD;
+    --ink:#1F4438; --ink-muted:#6B6354;
+    --accent:#B8763A; --accent-soft:rgba(184,118,58,0.1);
+    --border:rgba(31,68,56,0.12);
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; overflow-x:hidden; }
+  body {
+    background:var(--bg); color:var(--ink);
+    font-family:'Source Serif 4','Noto Serif TC',Georgia,serif;
+    font-size:17px; line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    transition:background 0.2s,color 0.2s;
+  }
+  .container { max-width:760px; margin:0 auto; padding:32px 24px 96px; }
+
+  header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding-bottom:48px;
+  }
+  .brand { font-family:'Fraunces',serif; font-size:24px; font-weight:700; letter-spacing:-0.01em; }
+  .brand-sub { color:var(--ink-muted); font-size:14px; margin-left:8px; font-family:'Noto Serif TC',serif; }
+  .hdr-controls { display:flex; gap:8px; align-items:center; }
+  .hdr-controls a, .hdr-controls button {
+    background:none; border:1px solid var(--border); color:var(--ink);
+    border-radius:8px; padding:6px 13px; cursor:pointer; font-size:14px;
+    font-family:inherit; text-decoration:none; transition:all 0.15s;
+  }
+  .hdr-controls a:hover, .hdr-controls button:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* Hero */
+  .hero { padding:16px 0 56px; }
+  .hero-label {
+    font-family:'Fraunces',serif; font-size:12px; color:var(--accent);
+    letter-spacing:0.2em; text-transform:uppercase; font-weight:600; margin-bottom:16px;
+  }
+  .hero h1 {
+    font-family:'Fraunces',serif; font-size:clamp(34px,6vw,52px); font-weight:700;
+    line-height:1.1; letter-spacing:-0.02em; margin:0 0 20px;
+  }
+  .hero-sub {
+    font-size:18px; color:var(--ink-muted); max-width:560px; line-height:1.7; margin-bottom:36px;
+  }
+  .cta-row { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn-primary {
+    background:var(--accent); color:#fff; border:none; border-radius:10px;
+    padding:14px 28px; font-family:'Fraunces',serif; font-size:16px; font-weight:700;
+    cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.15s;
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(200,146,63,0.4); }
+  .btn-secondary {
+    background:none; color:var(--ink); border:1px solid var(--border);
+    border-radius:10px; padding:14px 28px; font-family:'Fraunces',serif; font-size:15px;
+    cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.15s;
+  }
+  .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* Value props */
+  .props { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin:56px 0; }
+  .prop-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
+    padding:24px 22px;
+  }
+  .prop-icon { font-size:28px; margin-bottom:12px; }
+  .prop-title { font-family:'Fraunces',serif; font-size:16px; font-weight:600; margin:0 0 8px; }
+  .prop-desc { font-size:14px; color:var(--ink-muted); line-height:1.6; margin:0; }
+
+  /* How to use */
+  .how { margin:56px 0; }
+  .how h2 { font-family:'Fraunces',serif; font-size:28px; font-weight:700; margin:0 0 32px; }
+  .steps { display:flex; flex-direction:column; gap:20px; }
+  .step { display:flex; gap:20px; align-items:flex-start; }
+  .step-num {
+    flex-shrink:0; width:36px; height:36px; border-radius:50%;
+    background:var(--accent); color:#fff;
+    font-family:'Fraunces',serif; font-size:16px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .step-body { padding-top:4px; }
+  .step-title { font-family:'Fraunces',serif; font-size:16px; font-weight:600; margin:0 0 6px; }
+  .step-desc { font-size:14px; color:var(--ink-muted); margin:0; line-height:1.6; }
+
+  /* Copy block */
+  .copy-block {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
+    padding:24px; margin:56px 0;
+  }
+  .copy-block h2 { font-family:'Fraunces',serif; font-size:20px; font-weight:600; margin:0 0 6px; }
+  .copy-block .copy-sub { font-size:13px; color:var(--ink-muted); margin:0 0 16px; }
+  .copy-text {
+    background:var(--bg-soft); border:1px solid var(--border); border-radius:8px;
+    padding:16px; font-size:14px; line-height:1.7; color:var(--ink);
+    font-family:'Source Serif 4',serif; white-space:pre-wrap; margin:0 0 14px;
+  }
+  .copy-btn {
+    background:var(--accent); color:#fff; border:none; border-radius:8px;
+    padding:9px 20px; font-family:inherit; font-size:14px; font-weight:600;
+    cursor:pointer; transition:all 0.15s;
+  }
+  .copy-btn:hover { opacity:0.88; }
+
+  /* Article list */
+  .articles-section { margin:56px 0; }
+  .articles-section h2 { font-family:'Fraunces',serif; font-size:28px; font-weight:700; margin:0 0 8px; }
+  .articles-sub { color:var(--ink-muted); font-size:14px; margin:0 0 28px; }
+  #article-list { display:flex; flex-direction:column; gap:12px; }
+  .al-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
+    padding:18px 20px; display:flex; gap:16px; align-items:flex-start;
+    text-decoration:none; color:inherit; transition:all 0.15s;
+  }
+  .al-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .al-emoji { font-size:24px; flex-shrink:0; margin-top:2px; }
+  .al-body { min-width:0; }
+  .al-title { font-family:'Fraunces',serif; font-size:15px; font-weight:600; margin:0 0 3px; }
+  .al-zh { font-family:'Noto Serif TC',serif; font-size:13px; color:var(--ink-muted); margin:0 0 8px; }
+  .al-meta { display:flex; gap:8px; flex-wrap:wrap; }
+  .al-tag {
+    font-size:11px; color:var(--ink-muted); background:var(--bg-soft);
+    border:1px solid var(--border); border-radius:999px; padding:2px 8px;
+  }
+  .diff-B1 { background:rgba(111,170,127,0.15); border-color:rgba(111,170,127,0.4); color:#6FAA7F; }
+  .diff-B2 { background:rgba(234,179,8,0.12); border-color:rgba(234,179,8,0.4); color:#C8A000; }
+  .diff-C1 { background:rgba(91,141,239,0.15); border-color:rgba(91,141,239,0.4); color:#5B8DEF; }
+  .diff-C2 { background:rgba(200,146,63,0.15); border-color:rgba(200,146,63,0.4); color:#C8923F; }
+
+  footer { margin-top:80px; padding-top:24px; border-top:1px solid var(--border); color:var(--ink-muted); font-size:13px; text-align:center; font-family:'Fraunces',serif; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div>
+      <a href="index.html" style="text-decoration:none;color:inherit;">
+        <span class="brand">Duet</span>
+        <span class="brand-sub">雙聲</span>
+      </a>
+    </div>
+    <div class="hdr-controls">
+      <a href="index.html">← 回首頁</a>
+      <button id="theme-toggle" title="切換主題">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="hero-label">For Teachers · 教師資源</div>
+      <h1>把科學閱讀<br>帶進你的課堂</h1>
+      <p class="hero-sub">
+        Duet 雙聲 提供 CC-BY 授權的雙語科學文章，可免費放入課綱。
+        學生用英文讀、用中文思考，附自動評分互動測驗。
+      </p>
+      <div class="cta-row">
+        <a href="#copy-syllabus" class="btn-primary">📋 複製課綱文字</a>
+        <a href="index.html" class="btn-secondary">瀏覽全部文章 →</a>
+      </div>
+    </div>
+
+    <!-- Value props -->
+    <section aria-label="平台特色" class="props">
+      <div class="prop-card">
+        <div class="prop-icon">📖</div>
+        <p class="prop-title">雙語並讀</p>
+        <p class="prop-desc">英文原文 + 中文逐段對照，學生可自由切換三種語言模式，降低閱讀焦慮。</p>
+      </div>
+      <div class="prop-card">
+        <div class="prop-icon">✏️</div>
+        <p class="prop-title">互動測驗</p>
+        <p class="prop-desc">每篇三段式測驗（理解→應用→方法論批判），答錯第一次給提示，強化主動回憶。</p>
+      </div>
+      <div class="prop-card">
+        <div class="prop-icon">🔊</div>
+        <p class="prop-title">詞彙 + 發音</p>
+        <p class="prop-desc">關鍵詞彙卡、IPA 音標、一鍵朗讀，學生可自行預習生詞，減少課堂摩擦。</p>
+      </div>
+      <div class="prop-card">
+        <div class="prop-icon">⚖️</div>
+        <p class="prop-title">CC-BY 授權</p>
+        <p class="prop-desc">所有文章基於 PubMed Central 開放論文改寫，可自由複製、修改、放入課程材料。</p>
+      </div>
+    </section>
+
+    <!-- How to use -->
+    <section class="how" aria-labelledby="how-heading">
+      <h2 id="how-heading">三步放入課綱</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" aria-hidden="true">1</div>
+          <div class="step-body">
+            <p class="step-title">選一篇文章</p>
+            <p class="step-desc">瀏覽下方文章清單，按主題或 CEFR 難度篩選。點進去可預覽全文與測驗題型。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-hidden="true">2</div>
+          <div class="step-body">
+            <p class="step-title">複製課綱文字</p>
+            <p class="step-desc">下方有現成的課綱說明段落（中英文版），包含授權聲明，複製後直接貼入 Moodle、Google Classroom 或課程大綱 PDF。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-hidden="true">3</div>
+          <div class="step-body">
+            <p class="step-title">分享連結給學生</p>
+            <p class="step-desc">每篇文章有獨立 URL（<code style="font-size:12px;background:var(--bg-soft);padding:1px 6px;border-radius:4px;">reader.html?id=PMC…</code>），學生無需註冊即可使用，進度自動存在個人瀏覽器。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Copy syllabus block -->
+    <section class="copy-block" id="copy-syllabus" aria-labelledby="copy-heading">
+      <h2 id="copy-heading">📋 課綱用文字（直接複製）</h2>
+      <p class="copy-sub">中文版 — 貼入課程大綱「課外閱讀」欄位</p>
+      <pre class="copy-text" id="syllabus-zh">本課程部分閱讀材料來自 Duet 雙聲（https://duetlearn.com），
+一個基於 PubMed Central CC-BY 開放論文的雙語科學閱讀平台。
+學生可透過連結自行閱讀英文文章及中文對照，並完成互動測驗。
+所有材料免費使用，無需帳號。</pre>
+      <button class="copy-btn" id="copy-zh-btn">📋 複製中文版</button>
+
+      <p class="copy-sub" style="margin-top:24px;">English version — for international/bilingual syllabi</p>
+      <pre class="copy-text" id="syllabus-en">Some reading materials in this course are sourced from Duet 雙聲
+(https://duetlearn.com), a bilingual science reading platform based
+on CC-BY open-access papers from PubMed Central. Students may access
+articles and interactive quizzes via the provided links at no cost,
+with no account required.</pre>
+      <button class="copy-btn" id="copy-en-btn">📋 Copy English version</button>
+    </section>
+
+    <!-- Article list -->
+    <section class="articles-section" aria-labelledby="articles-heading">
+      <h2 id="articles-heading">可用文章（持續更新）</h2>
+      <p class="articles-sub">點擊預覽全文 · 右鍵複製連結可直接放入課綱</p>
+      <div id="article-list" aria-live="polite">
+        <p style="color:var(--ink-muted);font-size:14px;">載入中…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Duet 雙聲 · 雙語科學閱讀 · 所有文章 CC-BY 授權 · 免費使用<br><span style="font-size:11px;">© 2026 Duet 雙聲 · 平台版權所有 · 文章內容遵循 CC-BY 開放授權</span></footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  Duet.bindThemeToggle('theme-toggle');
+
+  // Copy syllabus buttons
+  function makeCopyBtn(btnId, textId) {
+    document.getElementById(btnId).addEventListener('click', e => {
+      const text = document.getElementById(textId).textContent;
+      navigator.clipboard.writeText(text.trim()).then(() => {
+        e.target.textContent = '✓ 已複製！';
+        setTimeout(() => {
+          e.target.textContent = btnId === 'copy-zh-btn' ? '📋 複製中文版' : '📋 Copy English version';
+        }, 2000);
+      });
+    });
+  }
+  makeCopyBtn('copy-zh-btn', 'syllabus-zh');
+  makeCopyBtn('copy-en-btn', 'syllabus-en');
+
+  // Load articles
+  const DIFF_COLORS = { B1:'diff-B1', B2:'diff-B2', C1:'diff-C1', C2:'diff-C2' };
+  fetch('data/manifest.json')
+    .then(r => r.json())
+    .then(articles => {
+      const list = document.getElementById('article-list');
+      if (!articles.length) { list.textContent = '尚無文章'; return; }
+      list.innerHTML = articles.map(a => {
+        const diff = a.multilevel ? 'B1–C2' : `CEFR ${a.difficulty}`;
+        const diffClass = a.multilevel ? '' : DIFF_COLORS[a.difficulty] || '';
+        return `<a class="al-card" href="reader.html?id=${a.id}">
+          <span class="al-emoji" aria-hidden="true">${a.emoji || '📄'}</span>
+          <div class="al-body">
+            <p class="al-title">${a.title_en}</p>
+            <p class="al-zh">${a.title_zh}</p>
+            <div class="al-meta">
+              <span class="al-tag ${diffClass}">${diff}</span>
+              <span class="al-tag">☕ ${a.estimated_minutes} min</span>
+              ${(a.tags || []).slice(0,2).map(t => `<span class="al-tag">#${t}</span>`).join('')}
+            </div>
+          </div>
+        </a>`;
+      }).join('');
+    })
+    .catch(() => {
+      document.getElementById('article-list').textContent = '載入失敗，請稍後再試。';
+    });
+});
+</script>
+</body>
+</html>

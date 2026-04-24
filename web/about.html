@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>使用說明 · Duet 雙聲</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#14201A; --bg-card:#1F2D26; --bg-soft:#1A2620;
+    --ink:#F5EFE6; --ink-muted:#95938A;
+    --accent:#C8923F; --accent-soft:rgba(200,146,63,0.12);
+    --border:rgba(245,239,230,0.08); --success:#6FAA7F;
+  }
+  [data-theme="light"] {
+    --bg:#F5EFE6; --bg-card:#FFFFFF; --bg-soft:#EFE8DD;
+    --ink:#1F4438; --ink-muted:#6B6354;
+    --accent:#B8763A; --accent-soft:rgba(184,118,58,0.1);
+    --border:rgba(31,68,56,0.12);
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background:var(--bg); color:var(--ink);
+    font-family:'Source Serif 4','Noto Serif TC',Georgia,serif;
+    font-size:17px; line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container { max-width:760px; margin:0 auto; padding:28px 24px 96px; }
+
+  header { display:flex; justify-content:space-between; align-items:center; padding-bottom:48px; }
+  .nav-left { display:flex; align-items:center; gap:14px; }
+  .back-btn {
+    color:var(--ink-muted); text-decoration:none; font-size:13px;
+    border:1px solid var(--border); border-radius:6px; padding:4px 10px;
+  }
+  .back-btn:hover { color:var(--ink); border-color:var(--accent); }
+  .brand { font-family:'Fraunces',serif; font-size:24px; font-weight:700; letter-spacing:-0.01em; }
+  .brand-sub { color:var(--ink-muted); font-size:14px; margin-left:8px; font-family:'Noto Serif TC',serif; }
+
+  h1.page-title {
+    font-family:'Fraunces',serif; font-size:48px; line-height:1.1;
+    font-weight:700; letter-spacing:-0.02em; margin:0 0 12px;
+  }
+  h1.page-title-zh {
+    font-family:'Noto Serif TC',serif; font-size:22px; color:var(--ink-muted);
+    margin:0 0 40px; font-weight:400;
+  }
+
+  h2 { font-family:'Fraunces',serif; font-size:28px; margin:56px 0 8px; font-weight:600; letter-spacing:-0.01em; }
+  h2 .h2-zh { font-family:'Noto Serif TC',serif; font-size:18px; color:var(--ink-muted); margin-left:10px; font-weight:400; }
+  h3 { font-family:'Noto Serif TC',serif; font-size:18px; margin:28px 0 6px; font-weight:600; }
+
+  p { margin:0 0 18px; }
+
+  /* Steps */
+  .steps { margin:32px 0; }
+  .step {
+    display:grid; grid-template-columns:auto 1fr; gap:18px;
+    background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
+    padding:22px 24px; margin-bottom:14px;
+    opacity:0; transform:translateY(12px); animation:step-in 0.5s ease-out forwards;
+  }
+  @keyframes step-in { to { opacity:1; transform:none; } }
+  .step:nth-child(1) { animation-delay:0.1s; }
+  .step:nth-child(2) { animation-delay:0.25s; }
+  .step:nth-child(3) { animation-delay:0.4s; }
+  .step:nth-child(4) { animation-delay:0.55s; }
+  .step .num {
+    font-family:'Fraunces',serif; font-size:36px; font-weight:700; color:var(--accent);
+    line-height:1; min-width:48px;
+  }
+  .step .step-title { font-family:'Fraunces',serif; font-size:19px; font-weight:600; margin-bottom:4px; }
+  .step .step-zh { font-family:'Noto Serif TC',serif; color:var(--ink-muted); font-size:14px; margin-bottom:8px; }
+  .step .step-body { font-size:15px; color:var(--ink); }
+  .step .step-body code { font-family:'Source Serif 4',serif; background:var(--bg-soft); padding:1px 6px; border-radius:4px; font-size:14px; }
+
+  /* Demo callouts */
+  .demo {
+    margin:14px 0 0; padding:14px 16px;
+    background:var(--bg-soft); border-left:3px solid var(--accent); border-radius:4px;
+    font-size:14px; color:var(--ink-muted); line-height:1.6;
+  }
+  .demo strong { color:var(--ink); }
+  .demo .key { font-family:'Fraunces',serif; color:var(--accent); }
+
+  /* Why design */
+  .why-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:22px 24px; margin-bottom:14px; }
+  .why-card h3 { margin-top:0; color:var(--accent); }
+
+  /* FAQ */
+  .faq details {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
+    margin-bottom:10px;
+  }
+  .faq summary {
+    cursor:pointer; padding:16px 20px; font-family:'Fraunces',serif; font-weight:600;
+    list-style:none; display:flex; justify-content:space-between; align-items:center;
+  }
+  .faq summary::-webkit-details-marker { display:none; }
+  .faq summary::after { content:'＋'; color:var(--accent); font-size:18px; }
+  .faq details[open] summary::after { content:'－'; }
+  .faq .faq-body { padding:0 20px 18px; color:var(--ink); font-size:15px; line-height:1.7; }
+  .faq .faq-body p { margin:0 0 10px; }
+  .faq .faq-body p:last-child { margin-bottom:0; }
+
+  /* CTA */
+  .final-cta {
+    margin:64px 0 32px; padding:36px 32px;
+    background:linear-gradient(135deg, var(--bg-card) 0%, var(--accent-soft) 100%);
+    border:1px solid var(--accent); border-radius:14px;
+    text-align:center;
+  }
+  .final-cta h3 { font-family:'Fraunces',serif; font-size:24px; margin:0 0 10px; }
+  .final-cta p { color:var(--ink-muted); margin:0 0 24px; }
+  .final-cta a {
+    display:inline-block; padding:12px 28px; background:var(--accent); color:#fff;
+    border-radius:8px; text-decoration:none; font-family:inherit; font-size:15px; font-weight:600;
+    transition:transform 0.15s;
+  }
+  .final-cta a:hover { transform:translateY(-2px); }
+
+  footer { padding-top:24px; border-top:1px solid var(--border); color:var(--ink-muted); font-size:12px; text-align:center; font-family:'Fraunces',serif; font-style:italic; margin-top:48px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="nav-left">
+      <a href="index.html" class="back-btn">← 目錄</a>
+      <div>
+        <span class="brand">Duet</span>
+        <span class="brand-sub">雙聲</span>
+      </div>
+    </div>
+  </header>
+
+  <h1 class="page-title">How to Use Duet</h1>
+  <h1 class="page-title-zh">使用說明 — 三分鐘上手</h1>
+
+  <p style="font-size:18px; color:var(--ink-muted); margin-bottom:8px;">
+    Duet 把世界頂尖期刊的開放科學論文，重寫成 CEFR B1–B2 的英文文章 + Traditional Chinese 對照 + 三層測驗。
+  </p>
+  <p style="color:var(--ink-muted);">
+    適合 ESL 高中 / 大學生想用英文讀懂真正的科學，又不被生詞勸退的時候。
+  </p>
+
+  <h2>四步驟使用 <span class="h2-zh">Four Steps</span></h2>
+  <div class="steps">
+
+    <div class="step">
+      <div class="num">1</div>
+      <div>
+        <div class="step-title">Pick an article</div>
+        <div class="step-zh">挑一篇感興趣的</div>
+        <div class="step-body">
+          回到目錄頁，依標籤篩選你想讀的主題（音樂腦科學、語言學、眼科…）。每篇有預估閱讀時間和 CEFR 難度。
+        </div>
+        <div class="demo"><strong>💡 提示：</strong>第一次來建議從 <span class="key">CEFR B1</span> 標示的開始，例如「Feeling Safe: How to Give Feedback in Class」。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">2</div>
+      <div>
+        <div class="step-title">Choose a language mode</div>
+        <div class="step-zh">選擇閱讀模式</div>
+        <div class="step-body">
+          每篇文章上方有三個按鈕：
+          <ul style="padding-left:22px; margin:8px 0;">
+            <li><code>EN only</code> — 純英文閱讀，挑戰自己</li>
+            <li><code>EN + 中</code> — 每段英文後面跟著中文對照</li>
+            <li><code>中文 only</code> — 純中文，先理解科學內容再回頭讀英文</li>
+          </ul>
+        </div>
+        <div class="demo">畫橙色底線的字是<strong>關鍵生詞</strong>。滑鼠移上去（手機點一下）會看到英文+中文定義。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">3</div>
+      <div>
+        <div class="step-title">Take the quiz</div>
+        <div class="step-zh">作測驗檢驗自己</div>
+        <div class="step-body">
+          每篇文末都有 6 題：3 題回憶事實 · 2 題概念遷移 · 1 題批判思考。<br>
+          答錯不會直接告訴你答案——會先給你<strong>提示</strong>讓你再試一次。這是基於「適度挫折促進學習」的研究設計。
+        </div>
+        <div class="demo">右下角浮動的進度條會跟著你的進度，可隨時看還剩幾題。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">4</div>
+      <div>
+        <div class="step-title">Read the original paper</div>
+        <div class="step-zh">延伸閱讀原文（選做）</div>
+        <div class="step-body">
+          頁底「📄 延伸閱讀」可展開原文摘要，附上 PubMed Central 全文連結。想深入研究的同學歡迎跳坑。
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>為什麼這樣設計 <span class="h2-zh">Design Rationale</span></h2>
+
+  <div class="why-card">
+    <h3>🎯 雙語並非翻譯</h3>
+    <p>中文版不是逐字翻譯，而是用台灣讀者熟悉的詞彙重新講述同一個科學故事。讀英文卡住時可以立刻切換，不會中斷思考流。</p>
+  </div>
+
+  <div class="why-card">
+    <h3>🪜 提示階梯（Hint Ladder）</h3>
+    <p>答錯第一次 → 顯示提示「答案在文章哪一段附近」→ 答錯第二次才公布正解。這比直接給答案更能促進長期記憶。靈感來自心理學的「desirable difficulty」原則。</p>
+  </div>
+
+  <div class="why-card">
+    <h3>🎵 背景古典樂</h3>
+    <p>研究指出 60-70 BPM 的輕柔音樂可降低閱讀焦慮、改善資訊編碼。我們從公版錄音中隨機挑一首（Satie / Chopin / Debussy / Bach），不喜歡可以隨時關。</p>
+  </div>
+
+  <div class="why-card">
+    <h3>📰 只用 CC-BY 開放科學</h3>
+    <p>所有原始論文都是 Creative Commons 授權的開放科學論文，來自 PubMed Central。我們不重製版權內容，只重述+教學。每篇都明示原始引用。</p>
+  </div>
+
+  <h2>常見問題 <span class="h2-zh">FAQ</span></h2>
+  <div class="faq">
+
+    <details>
+      <summary>是免費的嗎？</summary>
+      <div class="faq-body">
+        <p>是。Duet 目前完全免費，沒有廣告。我們的目標是把好的科學內容用學生負擔得起的方式送出去。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>CEFR B1 / B2 是什麼？</summary>
+      <div class="faq-body">
+        <p>歐洲共同語言參考標準。B1 ≈ 高中英文程度（能讀懂主題清楚的文章）；B2 ≈ 大學入學程度（能讀理解抽象主題）。</p>
+        <p>每篇文章都會在卡片上標示，幫你預判難度。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>為什麼有些文章看起來很簡化？我想看更深入的版本</summary>
+      <div class="faq-body">
+        <p>Duet 是「入口」，不是「終點」。我們刻意把高引用論文壓縮成 600-900 字的精華，讓你在 7 分鐘內掌握重點，再用「📄 延伸閱讀」帶你回到原文做深度研究。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>可以建議想看的主題嗎？</summary>
+      <div class="faq-body">
+        <p>當然！訂閱功能準備中。目前可以先 Bookmark 網站，新主題上架時直接更新。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>有鍵盤快捷鍵嗎？</summary>
+      <div class="faq-body">
+        <p>有！在文章閱讀頁：</p>
+        <p>· <strong>J</strong> = 上一篇 ｜ <strong>K</strong> = 下一篇 ｜ <strong>M</strong> = 切換背景音樂</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>老師可以用 Duet 當教材嗎？</summary>
+      <div class="faq-body">
+        <p>非常歡迎。所有內容都基於 CC-BY 論文，可自由分享。如果想做課程整合（測驗紀錄、班級進度），可寫信給我們。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="final-cta">
+    <h3>準備好了嗎？</h3>
+    <p>挑一篇感興趣的文章，開始你的雙語閱讀之旅。</p>
+    <a href="index.html">瀏覽所有文章 →</a>
+  </div>
+
+  <footer>Duet · Read science in two voices · 雙聲・讀懂科學 · All papers CC-BY<br><span style="font-size:11px;">© 2026 Duet 雙聲 · 平台版權所有 · 文章內容遵循 CC-BY 開放授權</span></footer>
+</div>
+</body>
+</html>

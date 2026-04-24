@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>我的學習紀錄 · My Progress · Duet 雙聲</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314201A'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23C8923F'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css">
+<style>
+  :root {
+    --bg:#14201A; --bg-card:#1F2D26; --bg-soft:#1A2620;
+    --ink:#F5EFE6; --ink-muted:#95938A;
+    --accent:#C8923F; --accent-soft:rgba(200,146,63,0.12);
+    --border:rgba(245,239,230,0.08); --success:#6FAA7F; --error:#C5503D;
+  }
+  [data-theme="light"] {
+    --bg:#F5EFE6; --bg-card:#FFFFFF; --bg-soft:#EFE8DD;
+    --ink:#1F4438; --ink-muted:#6B6354;
+    --accent:#B8763A; --accent-soft:rgba(184,118,58,0.1);
+    --border:rgba(31,68,56,0.12);
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background:var(--bg); color:var(--ink);
+    font-family:'Source Serif 4','Noto Serif TC',Georgia,serif;
+    font-size:16px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container { max-width:780px; margin:0 auto; padding:32px 24px 96px; }
+
+  header { display:flex; justify-content:space-between; align-items:center; padding-bottom:36px; }
+  .brand { font-family:'Fraunces',serif; font-size:22px; font-weight:700; }
+  .brand-sub { color:var(--ink-muted); font-size:14px; margin-left:8px; font-family:'Noto Serif TC',serif; }
+  .back-btn { color:var(--ink-muted); text-decoration:none; font-size:13px; border:1px solid var(--border); border-radius:8px; padding:6px 12px; }
+  .back-btn:hover { color:var(--ink); border-color:var(--accent); }
+
+  h1 { font-family:'Fraunces',serif; font-size:38px; font-weight:700; margin:0 0 6px; letter-spacing:-0.02em; }
+  .sub { color:var(--ink-muted); font-size:14px; margin-bottom:36px; }
+
+  /* ── KPI row ── */
+  .kpi-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; margin-bottom:36px; }
+  .kpi {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
+    padding:20px 18px; text-align:center;
+  }
+  .kpi-num { font-family:'Fraunces',serif; font-size:36px; font-weight:700; color:var(--accent); line-height:1; }
+  .kpi-label { font-size:12px; color:var(--ink-muted); letter-spacing:0.08em; text-transform:uppercase; margin-top:6px; }
+
+  /* ── Section cards ── */
+  .section { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:24px; margin-bottom:20px; }
+  .section h2 { font-family:'Fraunces',serif; font-size:18px; font-weight:600; margin:0 0 18px; }
+
+  /* ── Bar chart ── */
+  .bar-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .bar-label { font-size:13px; color:var(--ink); min-width:0; flex:0 0 200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bar-track { flex:1; background:var(--bg-soft); border-radius:999px; height:12px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:999px; background:var(--accent); transition:width 0.6s cubic-bezier(0.4,0,0.2,1); }
+  .bar-fill.quiz { background:var(--success); }
+  .bar-fill.level { background:#5B8DEF; }
+  .bar-count { font-size:13px; color:var(--ink-muted); flex:0 0 36px; text-align:right; }
+
+  /* ── Level pie (pure CSS donut) ── */
+  .level-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  .level-pill {
+    background:var(--bg-soft); border:1px solid var(--border); border-radius:10px;
+    padding:14px; display:flex; align-items:center; gap:12px;
+  }
+  .level-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+  .level-info { min-width:0; }
+  .level-name { font-size:13px; font-weight:600; }
+  .level-cnt { font-family:'Fraunces',serif; font-size:22px; font-weight:700; color:var(--accent); line-height:1; }
+
+  /* ── Daily sparkline ── */
+  .sparkline { display:flex; align-items:flex-end; gap:4px; height:64px; }
+  .spark-bar { flex:1; border-radius:4px 4px 0 0; background:var(--accent); opacity:0.8; min-height:4px; transition:height 0.4s; cursor:default; position:relative; }
+  .spark-bar:hover { opacity:1; }
+  .spark-bar::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:4px 8px; font-size:11px; white-space:nowrap; pointer-events:none; opacity:0; transition:opacity 0.15s; }
+  .spark-bar:hover::after { opacity:1; }
+  .spark-labels { display:flex; gap:4px; margin-top:4px; }
+  .spark-label { flex:1; font-size:10px; color:var(--ink-muted); text-align:center; overflow:hidden; }
+
+  /* ── Empty state ── */
+  .empty { text-align:center; padding:40px 20px; color:var(--ink-muted); }
+  .empty .e-emoji { font-size:40px; margin-bottom:12px; }
+  .empty p { margin:4px 0; font-size:14px; }
+
+  /* ── Badge grid ── */
+  .badge-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; }
+  .badge-card { background:var(--bg-soft); border:1px solid var(--border); border-radius:10px; padding:16px; text-align:center; transition:all 0.2s; }
+  .badge-card.unlocked { border-color:var(--accent); }
+  .badge-card.locked { opacity:0.35; }
+  .b-emoji { font-size:32px; margin-bottom:6px; }
+  .b-name { font-family:'Fraunces',serif; font-size:13px; font-weight:600; margin-bottom:4px; }
+  .b-hint { font-size:11px; color:var(--ink-muted); line-height:1.4; }
+  .b-status { font-size:10px; color:var(--success); margin-top:6px; font-weight:600; }
+
+  /* ── Read list ── */
+  .read-list { display:grid; gap:8px; }
+  .read-item { background:var(--bg-soft); border:1px solid var(--border); border-radius:8px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .read-item a { color:var(--ink); text-decoration:none; flex:1; font-size:14px; }
+  .read-item a:hover { color:var(--accent); }
+  .ri-en { display:block; font-size:11px; color:var(--ink-muted); margin-top:2px; }
+  .check { color:var(--success); font-size:16px; flex-shrink:0; }
+
+  /* ── GitHub-style learning calendar ── */
+  .gh-cal { display:flex; gap:14px; align-items:flex-start; overflow-x:auto; padding-bottom:6px; }
+  .gh-months { display:flex; flex-direction:column; gap:3px; padding-top:18px; flex-shrink:0; }
+  .gh-day-label { font-size:10px; color:var(--ink-muted); height:13px; line-height:13px; }
+  .gh-grid-wrap { flex:1; min-width:0; }
+  .gh-month-row { display:flex; gap:3px; height:14px; margin-bottom:4px; font-size:10px; color:var(--ink-muted); }
+  .gh-month-cell { flex:0 0 auto; }
+  .gh-grid { display:grid; grid-auto-flow:column; grid-template-rows:repeat(7,13px); gap:3px; }
+  .gh-cell { width:13px; height:13px; border-radius:3px; background:var(--bg-soft); position:relative; cursor:default; }
+  .gh-cell[data-lvl="1"] { background:rgba(111,170,127,0.35); }
+  .gh-cell[data-lvl="2"] { background:rgba(111,170,127,0.6); }
+  .gh-cell[data-lvl="3"] { background:rgba(111,170,127,0.85); }
+  .gh-cell[data-lvl="4"] { background:var(--success); }
+  .gh-cell[title]:hover { outline:1px solid var(--accent); }
+  .gh-legend { display:flex; align-items:center; gap:6px; margin-top:10px; font-size:11px; color:var(--ink-muted); }
+  .gh-legend .gh-cell { width:10px; height:10px; }
+
+  /* ── Next-goal card ── */
+  .goal-card {
+    background:linear-gradient(135deg, var(--bg-soft), var(--accent-soft));
+    border:1px solid var(--accent); border-radius:12px; padding:18px 20px;
+  }
+  .goal-row { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+  .goal-emoji { font-size:34px; }
+  .goal-info { flex:1; min-width:0; }
+  .goal-name { font-family:'Fraunces',serif; font-size:16px; font-weight:600; margin-bottom:2px; }
+  .goal-action { font-size:13px; color:var(--ink-muted); }
+  .goal-bar { height:8px; background:var(--bg); border-radius:999px; overflow:hidden; }
+  .goal-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--success)); border-radius:999px; transition:width 0.6s; }
+  .goal-meta { font-size:11px; color:var(--ink-muted); margin-top:6px; text-align:right; }
+
+  /* ── Glossary heat-map ── */
+  .gloss-tag {
+    display:inline-block; margin:4px; padding:5px 11px;
+    background:var(--bg-soft); border:1px solid var(--border); border-radius:999px;
+    font-size:13px; font-family:'Fraunces',serif;
+  }
+  .gloss-tag .gt-count { color:var(--accent); font-weight:600; margin-left:4px; }
+
+  /* ── Reset btn ── */
+  .reset-btn { background:none; border:1px solid var(--error); color:var(--error); border-radius:8px; padding:8px 18px; cursor:pointer; font-family:inherit; font-size:13px; margin-top:18px; }
+  .reset-btn:hover { background:var(--error); color:#fff; }
+
+  @media(max-width:540px) { .bar-label { flex:0 0 130px; } .level-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div>
+      <a href="index.html" class="back-btn">← 目錄</a>
+    </div>
+    <div>
+      <span class="brand">Duet</span><span class="brand-sub">雙聲</span>
+    </div>
+    <div>
+      <button id="theme-toggle" style="background:none;border:1px solid var(--border);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer;font-family:inherit;font-size:14px;">🌙</button>
+    </div>
+  </header>
+
+  <h1>📊 我的學習紀錄</h1>
+  <p class="sub">My Learning Stats · 你的個人閱讀進度，存在你自己的瀏覽器，不上傳任何伺服器</p>
+
+  <div id="dashboard"></div>
+
+</div>
+
+<script src="js/common.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', async () => {
+  Duet.bindThemeToggle('theme-toggle');
+
+  function getA() {
+    try { return JSON.parse(localStorage.getItem('duet-analytics') || '{}'); } catch { return {}; }
+  }
+  function getStats() { return Duet.getStats(); }
+
+  // Preload manifest + tracks for recommendation engine
+  let manifest = [];
+  let tracks = [];
+  try { manifest = await fetch('data/manifest.json').then(r => r.json()); } catch {}
+  try { tracks = await fetch('data/tracks.json').then(r => r.json()); } catch {}
+
+  // Curated topic ideas the admin can ask Gemini to write next (when none exist in manifest)
+  const TOPIC_IDEAS = {
+    Medicine: ['Glaucoma surgery outcomes', 'AI-assisted retinal disease detection', 'Dry eye treatment trials'],
+    Neuroscience: ['Memory consolidation mechanisms', 'Neuroplasticity in adults', 'Brain default mode network'],
+    Psychology: ['Growth mindset interventions', 'Cognitive behavioral therapy effectiveness', 'Decision fatigue'],
+    Linguistics: ['L2 phonology acquisition', 'Code-switching cognition', 'Reading comprehension strategies'],
+    Music: ['Tempo entrainment in groups', 'Music therapy for depression', 'Absolute pitch development'],
+    'Computer Science': ['Federated learning privacy', 'Transformer architectures', 'Vision-language models'],
+    Education: ['Spaced repetition in classrooms', 'Peer assessment validity', 'Project-based learning outcomes'],
+    PublicHealth: ['Air pollution and cognition', 'Social isolation health impact', 'Vaccine hesitancy drivers']
+  };
+
+  // ── Next-goal computation ──
+  function computeNextGoal(s, readIds) {
+    const candidates = [];
+    const earned = new Set(s.badges || []);
+    const readN = readIds.length;
+    // Badge progress for unearned ones
+    if (!earned.has('first'))      candidates.push({ emoji:'🌱', name:'First Step',  action:'再讀完 1 篇文章測驗', progress:Math.min(readN,1), target:1 });
+    if (!earned.has('bookworm'))   candidates.push({ emoji:'📚', name:'Bookworm',    action:`再完成 ${Math.max(0,3-readN)} 篇文章`, progress:Math.min(readN,3), target:3 });
+    if (!earned.has('scholar'))    candidates.push({ emoji:'🎓', name:'Scholar',     action:`再完成 ${Math.max(0,5-readN)} 篇文章`, progress:Math.min(readN,5), target:5 });
+    if (!earned.has('streaker'))   candidates.push({ emoji:'🔥', name:'On Fire',     action:`連續造訪 ${Math.max(0,3-(s.streak||0))} 天`, progress:Math.min(s.streak||0,3), target:3 });
+    if (!earned.has('pronouncer')) candidates.push({ emoji:'🔊', name:'Pronouncer',  action:`再使用發音功能 ${Math.max(0,5-(s.speakCount||0))} 次`, progress:Math.min(s.speakCount||0,5), target:5 });
+    if (!earned.has('reviewer'))   candidates.push({ emoji:'🃏', name:'Reviewer',    action:`再複習 ${Math.max(0,10-(s.vocabReviews||0))} 個單字`, progress:Math.min(s.vocabReviews||0,10), target:10 });
+    if (!earned.has('polyglot'))   candidates.push({ emoji:'🌐', name:'Polyglot',    action:'試過 EN-only / ZH-only / 雙語 三種模式', progress:(s.modesTried||[]).length, target:3 });
+    // Pick the badge with highest completion ratio (closest to unlock)
+    candidates.forEach(c => c.pct = Math.round(c.progress / c.target * 100));
+    candidates.sort((a, b) => b.pct - a.pct);
+    if (candidates.length && candidates[0].pct < 100) return candidates[0];
+    // Fall back to next XP level
+    const lv = Duet.xpToLevel(s.xp || 0);
+    const thisLv = Duet.nextLevelXP(lv - 1);
+    const nextLv = Duet.nextLevelXP(lv);
+    return {
+      emoji:'⭐', name:`升上 Lv ${lv + 1}`,
+      action:`再賺 ${nextLv - (s.xp || 0)} XP（讀文章 +5、答題對 +10、完成測驗 +25）`,
+      progress:(s.xp || 0) - thisLv, target:nextLv - thisLv,
+      pct:Math.round(((s.xp || 0) - thisLv) / (nextLv - thisLv) * 100)
+    };
+  }
+
+  // ── GitHub-style 26-week calendar ──
+  function renderGhCalendar(daily) {
+    const weeks = 26;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    // Align to Sunday: find offset to most recent Sunday
+    const dayOfWeek = today.getDay(); // 0 = Sun
+    const end = new Date(today);
+    end.setDate(end.getDate() - dayOfWeek + 6); // last Saturday this week
+    const start = new Date(end);
+    start.setDate(start.getDate() - (weeks * 7 - 1));
+    // Pre-compute level thresholds
+    const counts = Object.values(daily);
+    const max = counts.length ? Math.max(...counts) : 0;
+    const lvlOf = c => {
+      if (!c) return 0;
+      if (c >= max * 0.75) return 4;
+      if (c >= max * 0.5) return 3;
+      if (c >= max * 0.25) return 2;
+      return 1;
+    };
+    // Build column-by-column (each column = 1 week, 7 rows = Sun..Sat)
+    let cells = '';
+    let monthRow = '';
+    let lastMonth = -1;
+    for (let w = 0; w < weeks; w++) {
+      const colStart = new Date(start);
+      colStart.setDate(start.getDate() + w * 7);
+      const m = colStart.getMonth();
+      monthRow += `<div class="gh-month-cell" style="width:13px;">${m !== lastMonth ? (m + 1) + '月' : ''}</div>`;
+      lastMonth = m;
+    }
+    for (let w = 0; w < weeks; w++) {
+      for (let d = 0; d < 7; d++) {
+        const cur = new Date(start);
+        cur.setDate(start.getDate() + w * 7 + d);
+        if (cur > today) {
+          cells += `<div class="gh-cell" style="opacity:0.2;"></div>`;
+        } else {
+          const k = cur.toISOString().slice(0, 10);
+          const c = daily[k] || 0;
+          const lvl = lvlOf(c);
+          cells += `<div class="gh-cell" data-lvl="${lvl}" title="${k} · ${c} 次活動"></div>`;
+        }
+      }
+    }
+    return `
+      <div class="section">
+        <h2>🌱 學習日曆（最近 26 週）</h2>
+        <div class="gh-cal">
+          <div class="gh-months">
+            <div class="gh-day-label"></div>
+            <div class="gh-day-label">Mon</div>
+            <div class="gh-day-label"></div>
+            <div class="gh-day-label">Wed</div>
+            <div class="gh-day-label"></div>
+            <div class="gh-day-label">Fri</div>
+            <div class="gh-day-label"></div>
+          </div>
+          <div class="gh-grid-wrap">
+            <div class="gh-month-row" style="padding-left:0;">${monthRow}</div>
+            <div class="gh-grid">${cells}</div>
+            <div class="gh-legend">
+              <span>少</span>
+              <span class="gh-cell"></span>
+              <span class="gh-cell" data-lvl="1"></span>
+              <span class="gh-cell" data-lvl="2"></span>
+              <span class="gh-cell" data-lvl="3"></span>
+              <span class="gh-cell" data-lvl="4"></span>
+              <span>多</span>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function render() {
+    const a = getA();
+    const s = getStats();
+    const root = document.getElementById('dashboard');
+
+    const views = a.views || {};
+    const titles = a.titles || {};
+    const quizDone = a.quizDone || {};
+    const levelPicks = a.levelPicks || {};
+    const daily = a.daily || {};
+    const minutes = a.minutes || {};
+    const scrollDepth = a.scrollDepth || {};
+    const glossaryClicks = a.glossaryClicks || {};
+
+    const totalViews = Object.values(views).reduce((s, n) => s + n, 0);
+    const totalQuiz = Object.values(quizDone).reduce((s, n) => s + n, 0);
+    const totalLevelSwitches = Object.values(levelPicks).reduce((s, n) => s + n, 0);
+    const uniqueArticles = Object.keys(views).length;
+    const totalXP = s.xp || 0;
+    const streak = s.streak || 0;
+    const readIds = (() => { try { return JSON.parse(localStorage.getItem('duet-read') || '[]'); } catch { return []; } })();
+
+    // KPI row
+    let html = `
+      <div class="kpi-row">
+        <div class="kpi"><div class="kpi-num">${totalViews}</div><div class="kpi-label">總瀏覽次數</div></div>
+        <div class="kpi"><div class="kpi-num">${uniqueArticles}</div><div class="kpi-label">文章篇數</div></div>
+        <div class="kpi"><div class="kpi-num">${totalQuiz}</div><div class="kpi-label">完成測驗</div></div>
+        <div class="kpi"><div class="kpi-num">${streak}</div><div class="kpi-label">連續天數 🔥</div></div>
+        <div class="kpi"><div class="kpi-num">${totalXP}</div><div class="kpi-label">累積 XP ⭐</div></div>
+      </div>`;
+
+    // ── Next goal card (closest unearned badge or next level) ──
+    const nextGoal = computeNextGoal(s, readIds);
+    if (nextGoal) {
+      html += `
+        <div class="section">
+          <h2>🎯 下一個目標</h2>
+          <div class="goal-card">
+            <div class="goal-row">
+              <div class="goal-emoji">${nextGoal.emoji}</div>
+              <div class="goal-info">
+                <div class="goal-name">${nextGoal.name}</div>
+                <div class="goal-action">${nextGoal.action}</div>
+              </div>
+            </div>
+            <div class="goal-bar"><div class="goal-fill" style="width:${nextGoal.pct}%;"></div></div>
+            <div class="goal-meta">${nextGoal.progress} / ${nextGoal.target}</div>
+          </div>
+        </div>`;
+    }
+
+    // Article view bar chart
+    const articleIds = Object.keys(views).sort((a, b) => views[b] - views[a]);
+    const maxViews = articleIds.length ? Math.max(...articleIds.map(id => views[id])) : 1;
+
+    if (articleIds.length) {
+      html += `<div class="section"><h2>📖 文章點閱次數</h2>`;
+      articleIds.forEach(id => {
+        const title = (titles[id]?.zh || titles[id]?.en || id).slice(0, 30);
+        const pct = Math.round(views[id] / maxViews * 100);
+        const quiz = quizDone[id] ? ` · ✓ 測驗 ${quizDone[id]} 次` : '';
+        html += `
+          <div class="bar-row">
+            <div class="bar-label" title="${titles[id]?.zh || id}">${title}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+            <div class="bar-count">${views[id]}</div>
+          </div>
+          <div style="font-size:11px;color:var(--ink-muted);margin:-4px 0 10px 210px;">${(titles[id]?.en || '').slice(0,40)}${quiz}</div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="section"><h2>📖 文章點閱次數</h2><div class="empty"><div class="e-emoji">📭</div><p>尚未有瀏覽記錄</p><p>去讀一篇文章吧！</p></div></div>`;
+    }
+
+    // Quiz completion section
+    const quizIds = Object.keys(quizDone).sort((a, b) => quizDone[b] - quizDone[a]);
+    if (quizIds.length) {
+      const maxQ = Math.max(...quizIds.map(id => quizDone[id]));
+      html += `<div class="section"><h2>✅ 完成測驗次數</h2>`;
+      quizIds.forEach(id => {
+        const title = (titles[id]?.zh || id).slice(0, 30);
+        const pct = Math.round(quizDone[id] / maxQ * 100);
+        html += `
+          <div class="bar-row">
+            <div class="bar-label" title="${titles[id]?.zh || id}">${title}</div>
+            <div class="bar-track"><div class="bar-fill quiz" style="width:${pct}%"></div></div>
+            <div class="bar-count">${quizDone[id]}</div>
+          </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // Level preference
+    const LEVEL_COLORS = { B1:'#6FAA7F', B2:'#5B8DEF', C1:'#C8923F', C2:'#C5503D' };
+    const LEVEL_LABELS = { B1:'B1 基礎', B2:'B2 進階', C1:'C1 留學', C2:'C2 學術' };
+    if (totalLevelSwitches > 0) {
+      html += `<div class="section"><h2>🎓 閱讀難度偏好</h2><div class="level-grid">`;
+      ['B1','B2','C1','C2'].forEach(lv => {
+        const cnt = levelPicks[lv] || 0;
+        html += `
+          <div class="level-pill">
+            <div class="level-dot" style="background:${LEVEL_COLORS[lv]}"></div>
+            <div class="level-info">
+              <div class="level-name">${LEVEL_LABELS[lv]}</div>
+              <div class="level-cnt">${cnt} <span style="font-size:14px;color:var(--ink-muted);font-family:'Source Serif 4',serif;">次切換</span></div>
+            </div>
+          </div>`;
+      });
+      html += `</div></div>`;
+    }
+
+    // ── Scroll-depth completion (per article) ──
+    const scrolledIds = Object.keys(scrollDepth);
+    if (scrolledIds.length) {
+      html += `<div class="section"><h2>📏 完讀率（最大 scroll 深度）</h2>`;
+      scrolledIds.sort((a, b) => scrollDepth[b] - scrollDepth[a]).forEach(id => {
+        const pct = scrollDepth[id];
+        const title = (titles[id]?.zh || id).slice(0, 30);
+        const color = pct >= 100 ? 'var(--success)' : pct >= 75 ? 'var(--accent)' : '#5B8DEF';
+        html += `
+          <div class="bar-row">
+            <div class="bar-label" title="${titles[id]?.zh || id}">${title}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color};"></div></div>
+            <div class="bar-count">${pct}%</div>
+          </div>`;
+      });
+      html += `<div style="font-size:11px;color:var(--ink-muted);margin-top:8px;">100% = 完整滑到底；75%+ 通常代表真正讀完正文</div></div>`;
+    }
+
+    // ── Glossary heat-map ──
+    const gKeys = Object.keys(glossaryClicks);
+    if (gKeys.length) {
+      const max = Math.max(...gKeys.map(k => glossaryClicks[k]));
+      gKeys.sort((a, b) => glossaryClicks[b] - glossaryClicks[a]);
+      html += `<div class="section"><h2>🔤 最常查的單字</h2>`;
+      gKeys.slice(0, 24).forEach(k => {
+        const ratio = glossaryClicks[k] / max;
+        const fontSize = Math.round(12 + ratio * 8);
+        html += `<span class="gloss-tag" style="font-size:${fontSize}px;">${k}<span class="gt-count">${glossaryClicks[k]}</span></span>`;
+      });
+      html += `<div style="font-size:11px;color:var(--ink-muted);margin-top:10px;">點擊次數越多代表這個詞對你來說越值得複習 → 去 vocab.html 加進個人單字本</div></div>`;
+    }
+
+    // ── GitHub-style learning calendar (last 26 weeks) ──
+    html += renderGhCalendar(daily);
+
+    // Daily activity sparkline (last 14 days)
+    const todayStr = new Date().toISOString().slice(0,10);
+    const days14 = Array.from({length:14}, (_, i) => {
+      const d = new Date(); d.setDate(d.getDate() - (13 - i));
+      return d.toISOString().slice(0,10);
+    });
+    const hasActivity = days14.some(d => daily[d]);
+    if (hasActivity) {
+      const maxDay = Math.max(...days14.map(d => daily[d] || 0), 1);
+      html += `<div class="section"><h2>📅 最近 14 天活躍度</h2>`;
+      html += `<div class="sparkline">`;
+      days14.forEach(d => {
+        const cnt = daily[d] || 0;
+        const h = Math.round(cnt / maxDay * 100);
+        const label = d.slice(5); // MM-DD
+        const isToday = d === todayStr;
+        const color = isToday ? 'var(--success)' : 'var(--accent)';
+        html += `<div class="spark-bar" style="height:${Math.max(h,4)}%;background:${color};" data-tip="${label} · ${cnt} 次"></div>`;
+      });
+      html += `</div><div class="spark-labels">`;
+      days14.forEach((d, i) => {
+        const show = i === 0 || i === 6 || i === 13;
+        html += `<div class="spark-label">${show ? d.slice(5) : ''}</div>`;
+      });
+      html += `</div></div>`;
+    }
+
+    // ── D7 Retention ──
+    const d7days = Array.from({length:7}, (_, i) => {
+      const d = new Date(); d.setDate(d.getDate() - (6 - i));
+      return d.toISOString().slice(0,10);
+    });
+    const d7active = d7days.filter(d => daily[d] > 0);
+    const d7score = d7active.length;
+    const d7pct = Math.round(d7score / 7 * 100);
+    html += `
+      <div class="section">
+        <h2>📈 7日留存</h2>
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
+          <span style="font-family:'Fraunces',serif;font-size:36px;font-weight:700;color:var(--accent);">${d7score}<span style="font-size:18px;color:var(--ink-muted);font-weight:400;">/7</span></span>
+          <div>
+            <div style="font-size:14px;color:var(--ink);">本週造訪 ${d7score} 天（${d7pct}%）</div>
+            <div style="font-size:12px;color:var(--ink-muted);margin-top:2px;">${d7score >= 5 ? '🔥 很穩！保持節奏' : d7score >= 3 ? '📖 不錯，再加把勁' : '💡 試試每天讀一段，效果更好'}</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;">
+          ${d7days.map(d => {
+            const active = daily[d] > 0;
+            const isToday = d === todayStr;
+            return `<div title="${d}" style="flex:1;height:32px;border-radius:6px;background:${active ? (isToday ? 'var(--success)' : 'var(--accent)') : 'var(--bg-soft)'};border:1px solid ${active ? 'transparent' : 'var(--border)'};transition:all 0.2s;" aria-label="${d} ${active ? '有造訪' : '未造訪'}"></div>`;
+          }).join('')}
+        </div>
+        <div style="display:flex;gap:6px;margin-top:4px;">
+          ${d7days.map(d => `<div style="flex:1;text-align:center;font-size:10px;color:var(--ink-muted);">${d.slice(8)}</div>`).join('')}
+        </div>
+      </div>`;
+
+    // XP level bar
+    const lv = Duet.xpToLevel(totalXP);
+    const thisLvXP = Duet.nextLevelXP(lv - 1);
+    const nextLvXP = Duet.nextLevelXP(lv);
+    const lvPct = Math.round((totalXP - thisLvXP) / (nextLvXP - thisLvXP) * 100);
+    html += `
+      <div class="section">
+        <h2>⭐ 經驗值進度</h2>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
+          <span style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;">Lv ${lv}</span>
+          <span style="font-size:13px;color:var(--ink-muted);">${totalXP} XP · 距 Lv ${lv+1} 還差 ${Math.max(0, nextLvXP - totalXP)} XP</span>
+        </div>
+        <div style="height:10px;background:var(--bg-soft);border-radius:999px;overflow:hidden;">
+          <div style="height:100%;width:${Math.min(lvPct,100)}%;background:linear-gradient(90deg,var(--accent),var(--success));border-radius:999px;transition:width 0.6s;"></div>
+        </div>
+        <div style="margin-top:12px;font-size:13px;color:var(--ink-muted);">
+          口語練習 ${s.speakCount || 0} 次 · 單字複習 ${s.vocabReviews || 0} 次
+        </div>
+      </div>`;
+
+    // Full badge grid (all badges, locked/unlocked)
+    html += `<div class="section"><h2>🏅 徽章收集</h2><div class="badge-grid">`;
+    Duet.BADGES.forEach(b => {
+      const unlocked = (s.badges || []).includes(b.id);
+      html += `
+        <div class="badge-card ${unlocked ? 'unlocked' : 'locked'}">
+          <div class="b-emoji">${b.emoji}</div>
+          <div class="b-name">${b.name}</div>
+          <div class="b-hint">${b.hint}</div>
+          ${unlocked ? '<div class="b-status">✓ 已解鎖</div>' : ''}
+        </div>`;
+    });
+    html += `</div></div>`;
+
+    // ── Track progress ──
+    if (tracks.length) {
+      const readSet = new Set(readIds);
+      html += `<div class="section"><h2>🛤️ 學習路徑進度</h2>`;
+      tracks.forEach(t => {
+        const done = t.articles.filter(id => readSet.has(id)).length;
+        const total = t.articles.length;
+        const pct = total ? Math.round(done / total * 100) : 0;
+        html += `
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+              <span style="font-family:'Fraunces',serif;font-size:14px;font-weight:600;">${t.emoji} ${t.title_zh}</span>
+              <span style="font-size:12px;color:var(--ink-muted);">${done} / ${total}</span>
+            </div>
+            <div style="height:8px;background:var(--bg-soft);border-radius:999px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:${t.color};border-radius:999px;transition:width 0.6s;"></div>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // Read article list
+    html += `<div class="section"><h2>📖 已完讀文章</h2>`;
+    if (readIds.length) {
+      html += `<div class="read-list">`;
+      readIds.forEach(rid => {
+        const t = titles[rid];
+        const zh = t?.zh || rid;
+        const en = (t?.en || '').slice(0, 40);
+        html += `
+          <div class="read-item">
+            <a href="reader.html?id=${rid}">
+              ${zh}<span class="ri-en">${en}</span>
+            </a>
+            <span class="check">✓</span>
+          </div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="empty">完成一篇文章的測驗後就會出現在這裡 📚</div>`;
+    }
+    html += `</div>`;
+
+    // ── Next topic recommendations ──
+    if (manifest.length) {
+      const readSet = new Set(readIds);
+      // Count category preference from view counts (weighted) + read articles
+      const catScore = {};
+      manifest.forEach(m => {
+        const v = views[m.id] || 0;
+        const r = readSet.has(m.id) ? 2 : 0;
+        if (v + r > 0) catScore[m.category] = (catScore[m.category] || 0) + v + r;
+      });
+      const sortedCats = Object.entries(catScore).sort((a,b) => b[1] - a[1]);
+      const topCat = sortedCats[0]?.[0];
+      const allCats = [...new Set(manifest.map(m => m.category))];
+      const untriedCats = allCats.filter(c => !catScore[c]);
+
+      html += `<div class="section"><h2>🧭 下期推薦：你接下來該讀什麼？</h2>`;
+
+      // 1. Unread articles in your favorite category
+      if (topCat) {
+        const unreadInTopCat = manifest.filter(m => m.category === topCat && !readSet.has(m.id));
+        if (unreadInTopCat.length) {
+          html += `<div style="margin-bottom:18px;">
+            <div style="font-family:'Fraunces',serif;font-size:13px;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">
+              📚 同領域・繼續深入「${topCat}」
+            </div>`;
+          unreadInTopCat.slice(0, 3).forEach(a => {
+            const diff = a.multilevel ? 'B1–C2' : a.difficulty;
+            html += `<a href="reader.html?id=${a.id}" style="display:block;background:var(--bg-soft);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;text-decoration:none;color:inherit;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+              <div style="font-family:'Noto Serif TC',serif;font-size:14px;font-weight:600;">${a.title_zh}</div>
+              <div style="font-size:12px;color:var(--ink-muted);margin-top:3px;">CEFR ${diff} · ☕ ${a.estimated_minutes} min</div>
+            </a>`;
+          });
+          html += `</div>`;
+        }
+      }
+
+      // 2. Try a new category
+      if (untriedCats.length) {
+        html += `<div style="margin-bottom:18px;">
+          <div style="font-family:'Fraunces',serif;font-size:13px;color:#A0C0F0;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">
+            🌐 拓展視野・你還沒讀過的領域
+          </div>`;
+        untriedCats.slice(0, 3).forEach(cat => {
+          const sample = manifest.find(m => m.category === cat);
+          if (!sample) return;
+          html += `<a href="reader.html?id=${sample.id}" style="display:block;background:var(--bg-soft);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;text-decoration:none;color:inherit;transition:all 0.15s;" onmouseover="this.style.borderColor='#A0C0F0'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="font-family:'Noto Serif TC',serif;font-size:14px;font-weight:600;">${cat} · ${sample.title_zh}</div>
+            <div style="font-size:12px;color:var(--ink-muted);margin-top:3px;">CEFR ${sample.multilevel ? 'B1–C2' : sample.difficulty} · ☕ ${sample.estimated_minutes} min</div>
+          </a>`;
+        });
+        html += `</div>`;
+      }
+
+      // 3. Topic ideas for admin (next batch to fetch from Gemini)
+      const ideaCat = topCat || allCats[0];
+      const ideas = TOPIC_IDEAS[ideaCat] || [];
+      if (ideas.length) {
+        html += `<div style="background:var(--accent-soft);border:1px dashed var(--accent);border-radius:10px;padding:14px 16px;margin-top:14px;">
+          <div style="font-family:'Fraunces',serif;font-size:12px;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">
+            💡 下批 Gemini 抓論文題目建議（${ideaCat}）
+          </div>
+          <div style="font-size:13px;color:var(--ink);line-height:1.8;">`;
+        ideas.forEach(idea => {
+          html += `<div>· ${idea}</div>`;
+        });
+        html += `</div>
+          <div style="font-size:11px;color:var(--ink-muted);margin-top:8px;">複製主題關鍵字到 Gemini prompt 的 [TOPIC KEYWORD HERE] 即可</div>
+        </div>`;
+      }
+
+      html += `</div>`;
+    }
+
+    // ── Reflections (P1-4) ──
+    let refs = [];
+    try { refs = JSON.parse(localStorage.getItem('duet-reflections') || '[]'); } catch {}
+    if (refs.length) {
+      // Group by articleId and count, find most-reflected article
+      const refCount = {};
+      refs.forEach(r => { refCount[r.articleId] = (refCount[r.articleId] || 0) + 1; });
+      const topRefId = Object.entries(refCount).sort((a,b) => b[1]-a[1])[0]?.[0];
+      const topRefTitle = a.titles?.[topRefId]?.zh || topRefId;
+      html += `
+        <div class="section">
+          <h2>💭 學後反思紀錄（${refs.length}）</h2>
+          <p style="font-size:12px;color:var(--ink-muted);margin:0 0 14px;">
+            最常觸發反思的文章：<strong style="color:var(--accent)">${Duet.escape(topRefTitle)}</strong>（${refCount[topRefId]} 次）
+          </p>
+          <div style="display:flex;flex-direction:column;gap:10px;max-height:300px;overflow-y:auto;">
+            ${[...refs].reverse().map(r => {
+              const title = a.titles?.[r.articleId]?.zh || r.articleId;
+              return `<div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;">
+                <div style="font-size:11px;color:var(--ink-muted);margin-bottom:6px;">${Duet.escape(title)} · ${Duet.escape(r.date)}</div>
+                <div style="font-size:14px;line-height:1.6;">${Duet.escape(r.text)}</div>
+              </div>`;
+            }).join('')}
+          </div>
+          <div style="margin-top:12px;text-align:right;">
+            <button id="clear-refs" style="background:none;color:var(--error);border:1px solid var(--error);border-radius:6px;padding:5px 12px;cursor:pointer;font-family:inherit;font-size:12px;">清空反思紀錄</button>
+          </div>
+        </div>`;
+    }
+
+    // ── Admin: subscriber list (only shows if there are any) ──
+    let subs = [];
+    try { subs = JSON.parse(localStorage.getItem('duet-subscribers') || '[]'); } catch {}
+    if (subs.length) {
+      html += `
+        <div class="section" style="border:1px dashed var(--accent);">
+          <h2>🔒 管理員：訂閱者名單（${subs.length}）</h2>
+          <p style="font-size:12px;color:var(--ink-muted);margin:0 0 12px;">本機暫存名單。設定 Formspree 後，新訂閱會自動寄到你信箱；這份本機名單就是備份 + 上線前的暫存。</p>
+          <div style="background:var(--bg-soft);padding:10px 14px;border-radius:8px;font-family:'Source Serif 4',monospace;font-size:13px;max-height:160px;overflow:auto;">
+            ${subs.map(s => `<div>${s.email} <span style="color:var(--ink-muted);font-size:11px;">${s.ts.slice(0,10)}</span></div>`).join('')}
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <button id="export-csv" style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;font-family:inherit;font-size:13px;">📥 匯出 CSV</button>
+            <button id="copy-emails" style="background:none;color:var(--ink);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-family:inherit;font-size:13px;">📋 複製 Email 清單</button>
+            <button id="clear-subs" style="background:none;color:var(--error);border:1px solid var(--error);border-radius:6px;padding:7px 14px;cursor:pointer;font-family:inherit;font-size:13px;margin-left:auto;">清空</button>
+          </div>
+        </div>`;
+    }
+
+    // Reset
+    html += `
+      <div style="text-align:center;">
+        <button class="reset-btn" id="reset-btn">🗑 清除本機所有學習數據</button>
+      </div>`;
+
+    root.innerHTML = html;
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      if (!confirm('確定要清除所有本機學習記錄嗎？（文章瀏覽、XP、測驗進度都會消失）')) return;
+      ['duet-analytics','duet-stats','duet-read','duet-vocab','duet-personal-vocab','duet-theme'].forEach(k => localStorage.removeItem(k));
+      render();
+    });
+
+    // Reflections clear
+    document.getElementById('clear-refs')?.addEventListener('click', () => {
+      if (!confirm('確定要清空所有反思紀錄？')) return;
+      localStorage.removeItem('duet-reflections');
+      render();
+    });
+
+    // Subscriber list admin actions
+    if (subs.length) {
+      document.getElementById('export-csv')?.addEventListener('click', () => {
+        const csv = 'email,subscribed_at\n' + subs.map(s => `${s.email},${s.ts}`).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = `duet-subscribers-${new Date().toISOString().slice(0,10)}.csv`;
+        a.click(); URL.revokeObjectURL(url);
+      });
+      document.getElementById('copy-emails')?.addEventListener('click', e => {
+        navigator.clipboard.writeText(subs.map(s => s.email).join(', ')).then(() => {
+          e.target.textContent = '✓ Copied';
+          setTimeout(() => e.target.textContent = '📋 複製 Email 清單', 1500);
+        });
+      });
+      document.getElementById('clear-subs')?.addEventListener('click', () => {
+        if (!confirm('確定要清空訂閱者名單？')) return;
+        localStorage.removeItem('duet-subscribers');
+        render();
+      });
+    }
+  }
+
+  render();
+});
+</script>
+<footer style="margin-top:48px;padding:16px 24px;border-top:1px solid rgba(245,239,230,0.08);color:#95938A;font-size:12px;text-align:center;font-style:italic;font-family:'Fraunces',Georgia,serif;">
+  Duet · Read science in two voices · 雙聲・讀懂科學 · All papers CC-BY<br>
+  <span style="font-size:11px;">© 2026 Duet 雙聲 · 平台版權所有 · 文章內容遵循 CC-BY 開放授權</span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Duet 雙聲 · 讀懂世界的科學</title>
+<meta name="description" content="用英文讀科學，用中文思考世界。雙語科學學習平台。">
+<meta property="og:title" content="Duet 雙聲 · 讀懂世界的科學">
+<meta property="og:description" content="用英文讀科學，用中文思考世界。CC-BY 開放科學論文重寫成 CEFR B1-B2 雙語文章 + 互動測驗。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://duetlearn.com/">
+<meta property="og:image" content="https://duetlearn.com/img/og-cover.svg">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="Duet 雙聲">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duetlearn.com/img/og-cover.svg">
+<link rel="canonical" href="https://duetlearn.com/">
+<script src="js/common.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Duet 雙聲",
+  "url":"https://duetlearn.com/",
+  "description":"雙語科學閱讀平台 — CC-BY 開放科學論文重寫成 CEFR B1-B2 雙語文章",
+  "inLanguage":["zh-TW","en"],
+  "potentialAction":{
+    "@type":"SearchAction",
+    "target":"https://duetlearn.com/?q={search_term_string}",
+    "query-input":"required name=search_term_string"
+  }
+}
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314201A'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23C8923F'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css">
+<style>
+  :root {
+    --bg: #14201A; --bg-card: #1F2D26; --bg-soft: #1A2620;
+    --ink: #F5EFE6; --ink-muted: #95938A;
+    --accent: #C8923F; --accent-soft: rgba(200,146,63,0.12);
+    --border: rgba(245,239,230,0.08); --success: #6FAA7F;
+  }
+  [data-theme="light"] {
+    --bg: #F5EFE6; --bg-card: #FFFFFF; --bg-soft: #EFE8DD;
+    --ink: #1F4438; --ink-muted: #6B6354;
+    --accent: #B8763A; --accent-soft: rgba(184,118,58,0.1);
+    --border: rgba(31,68,56,0.12);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; overflow-x: hidden; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Source Serif 4', 'Noto Serif TC', Georgia, serif;
+    font-size: 17px; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  /* ── Book-open entrance ── */
+  .cover {
+    position: fixed; inset: 0; z-index: 500;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .cover-half {
+    position: absolute; top: 0; bottom: 0; width: 50%;
+    background: #0B1610;
+  }
+  .cover-half.left  { left: 0;  animation: open-left  0.75s 1.5s cubic-bezier(0.77,0,0.18,1) forwards; }
+  .cover-half.right { right: 0; animation: open-right 0.75s 1.5s cubic-bezier(0.77,0,0.18,1) forwards; }
+  @keyframes open-left  { to { transform: translateX(-105%); } }
+  @keyframes open-right { to { transform: translateX(105%); } }
+  .cover-logo {
+    position: relative; z-index: 1; text-align: center;
+    animation: logo-fade 0.6s 0.3s ease-out both, logo-out 0.3s 1.3s ease-in forwards;
+  }
+  @keyframes logo-fade { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  @keyframes logo-out  { to { opacity: 0; } }
+  .cover-logo .cl-brand { font-family:'Fraunces',serif; font-size:52px; font-weight:700; color:#F5EFE6; letter-spacing:-0.02em; }
+  .cover-logo .cl-sub   { color:#C8923F; font-size:22px; font-family:'Noto Serif TC',serif; }
+
+  /* ── Page layout ── */
+  .page { opacity: 0; animation: page-in 0.6s 2s ease-out forwards; }
+  @keyframes page-in { to { opacity: 1; } }
+  .container { max-width: 860px; margin: 0 auto; padding: 28px 24px 96px; }
+
+  /* ── Header ── */
+  header { display:flex; justify-content:space-between; align-items:center; padding-bottom: 40px; }
+  .brand { font-family:'Fraunces',serif; font-size:24px; font-weight:700; letter-spacing:-0.01em; }
+  .brand-sub { color:var(--ink-muted); font-size:14px; margin-left:8px; font-family:'Noto Serif TC',serif; }
+  .hdr-controls { display:flex; gap:6px; }
+  .hdr-controls button {
+    background:none; border:1px solid var(--border); color:var(--ink);
+    border-radius:8px; padding:5px 11px; cursor:pointer; font-size:15px; transition:all 0.15s;
+  }
+  .hdr-controls button:hover { border-color:var(--accent); }
+  #music-btn.playing { border-color:var(--accent); color:var(--accent); animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.55} }
+
+  /* ── Hero ── */
+  .hero { text-align:center; padding: 24px 0 56px; }
+  .hero h1 {
+    font-family:'Fraunces',serif; font-size:clamp(36px,7vw,64px); font-weight:700;
+    line-height:1.1; letter-spacing:-0.02em; margin: 0 0 14px;
+  }
+  .hero .tagline { font-size:clamp(14px,2.5vw,18px); color:var(--ink-muted); margin-bottom: 32px; }
+  .hero .stats { display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+  .hero .stat { font-size:13px; color:var(--ink-muted); min-width:88px; text-align:center; }
+  .hero .stat strong { color:var(--accent); font-size:18px; font-family:'Fraunces',serif; display:block; margin-bottom:2px; }
+  @media (max-width:540px) {
+    .hero .stats { gap:12px 18px; }
+    .hero .stat { min-width:72px; font-size:12px; }
+  }
+
+  /* ── Filter bar ── */
+  .filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; }
+  .tag-btn {
+    padding:5px 14px; border-radius:999px; font-size:13px; cursor:pointer;
+    border:1px solid var(--border); background:none; color:var(--ink-muted);
+    transition:all 0.15s; font-family:inherit;
+  }
+  .tag-btn:hover { border-color:var(--accent); color:var(--ink); }
+  .tag-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .filter-sep { width:1px; background:var(--border); margin:0 4px; }
+  /* Colored CEFR pills */
+  .diff-pill { font-weight:600; }
+  .diff-pill-B1 { color:var(--success); border-color:rgba(111,170,127,0.4); }
+  .diff-pill-B1.active { background:var(--success); border-color:var(--success); color:#fff; }
+  .diff-pill-B2 { color:var(--accent); border-color:rgba(200,146,63,0.4); }
+  .diff-pill-B2.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .diff-pill-C1 { color:#A0C0F0; border-color:rgba(160,192,240,0.4); }
+  .diff-pill-C1.active { background:#A0C0F0; border-color:#A0C0F0; color:#0B1610; }
+  .diff-pill-C2 { color:#E8C07A; border-color:rgba(232,192,122,0.4); }
+  .diff-pill-C2.active { background:#E8C07A; border-color:#E8C07A; color:#0B1610; }
+
+  /* ── Article grid ── */
+  .articles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px; }
+  .card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
+    padding:22px 24px; cursor:pointer; text-decoration:none; color:inherit; display:block;
+    transition:transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    animation: card-up 0.5s ease-out both;
+  }
+  .card:hover { transform:translateY(-3px); box-shadow:0 8px 32px rgba(0,0,0,0.25); border-color:var(--accent); }
+  @keyframes card-up { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+  .card .card-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+  .card .ctag { font-size:11px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase;
+    font-family:'Fraunces',serif; background:var(--accent-soft); padding:2px 8px; border-radius:999px; }
+  .card h3 { font-family:'Fraunces',serif; font-size:19px; font-weight:600; line-height:1.25; margin:0 0 6px; }
+  .card .card-zh { font-family:'Noto Serif TC',serif; font-size:14px; color:var(--ink-muted); margin-bottom:14px; }
+  .card .tldr { font-size:14px; color:var(--ink-muted); line-height:1.55; margin-bottom:16px; }
+  .card .card-meta { display:flex; gap:10px; font-size:12px; color:var(--ink-muted); }
+  .card .card-meta span { background:var(--bg-soft); padding:2px 8px; border-radius:999px; }
+  .card .card-meta .diff-B1 { color:var(--success); background:rgba(111,170,127,0.14) !important; font-weight:600; }
+  .card .card-meta .diff-B2 { color:var(--accent); background:rgba(200,146,63,0.14) !important; font-weight:600; }
+  .card .card-meta .diff-C1 { color:#A0C0F0; background:rgba(160,192,240,0.14) !important; font-weight:600; }
+  .card .card-meta .diff-C2 { color:#E8C07A; background:rgba(232,192,122,0.14) !important; font-weight:600; }
+  .card .card-meta .diff-multi { color:var(--accent); background:var(--accent-soft) !important; font-weight:600; }
+  .card.is-read { opacity:0.72; }
+
+  /* ── Entry ribbon on recommended card ── */
+  .card { position: relative; overflow: hidden; }
+  .card-ribbon {
+    position: absolute; top: 12px; right: -26px;
+    background: var(--success); color: #fff;
+    font-family: 'Fraunces', serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 32px; transform: rotate(35deg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+
+  /* ── Welcome bar (first-visit) ── */
+  #welcome-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+    background: var(--bg-card); border-top: 1px solid var(--accent);
+    padding: 12px 24px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.35);
+    animation: slide-up 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes slide-up { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
+  #welcome-bar .wb-text { flex: 1; font-size: 14px; color: var(--ink); }
+  #welcome-bar .wb-text strong { color: var(--accent); font-family: 'Fraunces', serif; }
+  #welcome-bar .wb-cta {
+    background: var(--accent); color: #fff; border: none; border-radius: 8px;
+    padding: 8px 16px; font-family: inherit; font-size: 13px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block;
+  }
+  #welcome-bar .wb-close {
+    background: none; border: none; color: var(--ink-muted); font-size: 20px;
+    cursor: pointer; padding: 0 4px; line-height: 1; flex-shrink: 0;
+  }
+  #welcome-bar .wb-close:hover { color: var(--ink); }
+
+  /* ── Streak reminder banner ── */
+  #streak-banner {
+    background: linear-gradient(90deg, rgba(255,140,66,0.12), rgba(200,146,63,0.08));
+    border: 1px solid rgba(255,140,66,0.3); border-radius: 10px;
+    padding: 12px 18px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px; font-size: 14px;
+  }
+  #streak-banner .sb-close {
+    margin-left: auto; background: none; border: none; color: var(--ink-muted);
+    font-size: 18px; cursor: pointer; padding: 0 4px; line-height: 1;
+  }
+  .card.is-read:hover { opacity:1; }
+  .read-badge { font-size:11px; color:var(--success); background:rgba(111,170,127,0.12); padding:2px 8px; border-radius:999px; font-family:'Fraunces',serif; letter-spacing:0.05em; margin-left:auto; }
+
+  /* ── Empty state ── */
+  .no-results { text-align:center; color:var(--ink-muted); padding:48px; grid-column:1/-1; font-style:italic; }
+
+  /* ── Skeleton loading ── */
+  .skeleton-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
+    padding:22px 24px; min-height:200px;
+    background-image: linear-gradient(90deg, var(--bg-card) 0%, var(--bg-soft) 50%, var(--bg-card) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite linear;
+  }
+  @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+  /* ── Filter section (search + topic + level) ── */
+  .filter-section { margin-bottom:32px; }
+  .search-input {
+    width:100%; padding:11px 16px; background:var(--bg-card); border:1px solid var(--border);
+    border-radius:10px; color:var(--ink); font-family:inherit; font-size:15px; margin-bottom:18px;
+  }
+  .search-input:focus { outline:none; border-color:var(--accent); }
+  .search-input::placeholder { color:var(--ink-muted); }
+  .filter-group { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
+  .filter-label { font-family:'Fraunces',serif; font-size:11px; color:var(--ink-muted); letter-spacing:0.12em; text-transform:uppercase; min-width:48px; }
+  .placement-link { color:var(--accent); text-decoration:none; font-size:13px; margin-left:auto; padding:4px 10px; border-radius:6px; border:1px solid var(--accent); transition:all 0.15s; }
+  .placement-link:hover { background:var(--accent); color:#fff; }
+  @media (max-width:560px) { .placement-link { margin-left:0; width:100%; text-align:center; } }
+
+  /* Word of the Day */
+  #word-of-day { margin: 24px auto 8px; max-width: 540px; }
+  .wod-card {
+    background: linear-gradient(135deg, var(--bg-card), var(--accent-soft));
+    border:1px solid var(--accent); border-radius:14px; padding:18px 22px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .wod-card .wod-label { font-family:'Fraunces',serif; font-size:11px; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px; }
+  .wod-card .wod-term { font-family:'Fraunces',serif; font-size:18px; font-weight:600; color:var(--ink); }
+  .wod-card .wod-trans { font-family:'Noto Serif TC',serif; font-size:14px; color:var(--ink-muted); margin-top:2px; }
+  .wod-card .wod-spk { background:none; border:1px solid var(--border); border-radius:999px; padding:6px 14px; cursor:pointer; color:var(--ink-muted); font-size:13px; transition:all 0.15s; }
+  .wod-card .wod-spk:hover { border-color:var(--accent); color:var(--accent); }
+  .wod-card .wod-spk.speaking { color:var(--accent); animation: pulse 1s ease-in-out infinite; }
+
+  /* Placement banner */
+  .placement-banner {
+    background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 10px;
+    padding: 12px 18px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-size: 14px; color: var(--ink);
+    animation: slide-down 0.4s ease-out;
+  }
+  @keyframes slide-down { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:none; } }
+  .placement-banner button {
+    background: none; border: none; color: var(--ink-muted); font-size: 20px;
+    cursor: pointer; padding: 0 4px;
+  }
+  .placement-banner button:hover { color: var(--ink); }
+
+  /* Gamification HUD */
+  .game-hud {
+    display:flex; gap:14px; justify-content:center; align-items:center;
+    background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
+    padding:14px 22px; margin: 32px auto; max-width:540px; flex-wrap:wrap;
+  }
+  .hud-stat { display:flex; flex-direction:column; align-items:center; min-width:64px; }
+  .hud-stat .hud-num { font-family:'Fraunces',serif; font-size:22px; font-weight:700; color:var(--accent); line-height:1; }
+  .hud-stat .hud-label { font-size:11px; color:var(--ink-muted); letter-spacing:0.08em; text-transform:uppercase; margin-top:4px; }
+  .hud-stat.streak .hud-num { color:#FF8C42; }
+  .hud-stat.level .hud-num { color:var(--success); }
+  .hud-divider { width:1px; height:30px; background:var(--border); }
+  .hud-badges { display:flex; gap:6px; flex-wrap:wrap; max-width:200px; }
+  .hud-badge { font-size:18px; opacity:0.9; cursor:help; transition:transform 0.15s; }
+  .hud-badge:hover { transform:scale(1.3); }
+  .hud-badge.locked { filter:grayscale(1); opacity:0.25; }
+  @media (max-width:560px) { .game-hud { padding:12px 14px; gap:10px; } .hud-divider { display:none; } }
+
+  /* ── Learning Tracks ── */
+  .tracks-wrap { margin: 32px 0 24px; }
+  .tracks-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:14px; }
+  .tracks-head h2 { font-family:'Fraunces',serif; font-size:20px; font-weight:600; margin:0; }
+  .tracks-head .th-sub { font-size:12px; color:var(--ink-muted); }
+  .track-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .track-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
+    padding:18px 18px; cursor:pointer; transition:transform 0.15s, border-color 0.15s;
+    border-left:4px solid var(--accent);
+  }
+  .track-card:hover { transform:translateY(-2px); border-color:var(--accent); }
+  .track-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .track-emoji { font-size:24px; }
+  .track-title { font-family:'Fraunces',serif; font-size:15px; font-weight:600; }
+  .track-zh { font-family:'Noto Serif TC',serif; font-size:13px; color:var(--ink-muted); margin-bottom:10px; }
+  .track-bar { height:6px; background:var(--bg-soft); border-radius:999px; overflow:hidden; margin-bottom:6px; }
+  .track-fill { height:100%; border-radius:999px; transition:width 0.6s; }
+  .track-meta { font-size:11px; color:var(--ink-muted); display:flex; justify-content:space-between; }
+  /* Track expansion modal */
+  .track-modal {
+    position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:300;
+    display:flex; align-items:center; justify-content:center;
+    animation:fade-in 0.2s ease-out;
+  }
+  @keyframes fade-in { from{opacity:0} to{opacity:1} }
+  .track-modal-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
+    width:min(560px, 92%); max-height:84vh; overflow:auto;
+    padding:28px; animation:pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes pop-in { from{transform:scale(0.9);opacity:0} to{transform:scale(1);opacity:1} }
+  .tm-close { position:sticky; top:0; float:right; background:none; border:1px solid var(--border); color:var(--ink-muted); border-radius:6px; padding:4px 10px; cursor:pointer; font-size:14px; }
+  .tm-title { font-family:'Fraunces',serif; font-size:22px; font-weight:600; margin-bottom:4px; clear:both; }
+  .tm-zh { font-family:'Noto Serif TC',serif; font-size:14px; color:var(--ink-muted); margin-bottom:14px; }
+  .tm-desc { font-size:13px; color:var(--ink); margin-bottom:18px; line-height:1.6; }
+  .tm-step {
+    display:flex; gap:12px; align-items:center; padding:12px 14px;
+    background:var(--bg-soft); border:1px solid var(--border); border-radius:10px;
+    margin-bottom:8px; text-decoration:none; color:inherit; transition:all 0.15s;
+  }
+  .tm-step:hover { border-color:var(--accent); transform:translateX(3px); }
+  .tm-step.done { opacity:0.55; }
+  .tm-num {
+    width:28px; height:28px; border-radius:50%; background:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:13px;
+    flex-shrink:0; border:1px solid var(--border);
+  }
+  .tm-step.done .tm-num { background:var(--success); color:#fff; border-color:var(--success); }
+  .tm-step-info { flex:1; min-width:0; }
+  .tm-step-title { font-family:'Noto Serif TC',serif; font-size:14px; font-weight:600; line-height:1.3; }
+  .tm-step-en { font-family:'Fraunces',serif; font-size:12px; color:var(--ink-muted); margin-top:2px; }
+  .tm-step-meta { font-size:11px; color:var(--ink-muted); margin-top:3px; }
+
+  /* ── Email CTA ── */
+  .cta { margin:64px 0 32px; padding:32px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; text-align:center; }
+  .cta h3 { font-family:'Fraunces',serif; font-size:22px; margin:0 0 8px; }
+  .cta p { color:var(--ink-muted); font-size:14px; margin:0 0 20px; }
+  .cta form { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  .cta input { padding:9px 16px; border-radius:8px; border:1px solid var(--border); background:var(--bg-soft); color:var(--ink); font-family:inherit; font-size:14px; width:260px; }
+  .cta input:focus { outline:none; border-color:var(--accent); }
+  .cta button[type=submit] { padding:9px 22px; background:var(--accent); color:#fff; border:none; border-radius:8px; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; }
+
+  footer { padding-top:24px; border-top:1px solid var(--border); color:var(--ink-muted); font-size:12px; text-align:center; font-family:'Fraunces',serif; font-style:italic; margin-top:48px; }
+</style>
+</head>
+<body>
+
+<!-- Book-open cover -->
+<div class="cover" id="cover">
+  <div class="cover-half left"></div>
+  <div class="cover-half right"></div>
+  <div class="cover-logo">
+    <div class="cl-brand">Duet</div>
+    <div class="cl-sub">雙聲</div>
+  </div>
+</div>
+
+<a href="#main" class="skip-link">跳到主要內容 / Skip to main</a>
+
+<!-- Main page (fades in after cover opens) -->
+<div class="page">
+<div class="container" id="main" role="main">
+
+  <header>
+    <div>
+      <span class="brand">Duet</span>
+      <span class="brand-sub">雙聲</span>
+    </div>
+    <div class="hdr-controls">
+      <a href="about.html" style="color:var(--ink-muted);text-decoration:none;font-size:13px;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-family:'Source Serif 4',serif;">使用說明</a>
+      <button id="music-btn" title="切換背景音樂" aria-label="Toggle background music">🔇</button>
+      <button id="theme-toggle" title="切換淺色／深色主題" aria-label="Toggle dark/light theme">🌙</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>讀懂世界的科學</h1>
+    <p class="tagline">Read Science in Two Voices · 雙語科學學習平台</p>
+    <div class="stats">
+      <div class="stat"><strong id="stat-count">11</strong>篇文章</div>
+      <div class="stat"><strong>B1–C1</strong>CEFR 英文</div>
+      <div class="stat"><strong>中英</strong>雙語對照</div>
+      <div class="stat"><strong>3層</strong>互動測驗</div>
+    </div>
+    <a href="for-teachers.html" style="display:inline-block; margin-top:22px; background:none; border:1px solid var(--border); color:var(--ink-muted); padding:8px 20px; border-radius:999px; font-size:13px; text-decoration:none; transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">🏫 教師課堂資源 For Teachers →</a>
+  </section>
+
+  <div id="word-of-day"></div>
+  <div class="game-hud" id="game-hud"></div>
+
+  <div class="tracks-wrap" id="tracks-wrap"></div>
+
+  <div class="filter-section">
+    <input id="search" class="search-input" placeholder="🔎 Search articles… 搜尋文章" autocomplete="off">
+    <div class="filter-group">
+      <span class="filter-label">Topic</span>
+      <div class="filter-bar" id="cat-bar"><button class="tag-btn active" data-cat="all">All</button></div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label" title="Common European Framework of Reference for Languages — 歐洲共同語言參考標準。B1 ≈ 高中英文；B2 ≈ 大學入學程度。">Level <sup style="cursor:help;color:var(--accent);">?</sup></span>
+      <div class="filter-bar">
+        <button class="tag-btn active" data-diff="all">All</button>
+        <button class="tag-btn diff-pill diff-pill-B1" data-diff="B1" title="B1 = 能讀懂主題清楚的文章（≈ 高中英文）">B1</button>
+        <button class="tag-btn diff-pill diff-pill-B2" data-diff="B2" title="B2 = 能理解抽象主題的學術文章（≈ 大學入學）">B2</button>
+        <button class="tag-btn diff-pill diff-pill-C1" data-diff="C1" title="C1 = 能讀懂專業學術文獻（≈ 大學專業課程）">C1</button>
+        <button class="tag-btn diff-pill diff-pill-C2" data-diff="C2" title="C2 = 能讀懂研究所層級論文（≈ 母語研究者）">C2</button>
+      </div>
+      <a href="placement.html" class="placement-link">📝 Take placement test →</a>
+    </div>
+  </div>
+
+  <div class="articles-grid" id="grid">
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+  </div>
+
+  <div class="cta">
+    <h3>📬 新文章通知</h3>
+    <p>留下 email，每月新文章上架時通知你。不寄廣告、可隨時退訂。</p>
+    <form id="subscribe-form">
+      <input type="email" name="email" required placeholder="your@email.com" autocomplete="email">
+      <button type="submit">訂閱</button>
+    </form>
+    <p style="font-size:12px; opacity:0.6; margin-top:18px;">⚡ 鍵盤快捷鍵：在文章頁按 <strong>J</strong>/<strong>K</strong> 切換上下篇，<strong>M</strong> 切換音樂</p>
+  </div>
+
+  <footer>
+    <div style="margin-bottom:8px;">
+      <a href="about.html" style="color:var(--ink-muted);margin:0 10px;text-decoration:none;">使用說明</a>·
+      <a href="placement.html" style="color:var(--ink-muted);margin:0 10px;text-decoration:none;">程度測驗</a>·
+      <a href="vocab.html" style="color:var(--ink-muted);margin:0 10px;text-decoration:none;">🃏 單字複習</a>·
+      <a href="analytics.html" style="color:var(--ink-muted);margin:0 10px;text-decoration:none;">📊 我的學習紀錄</a>·
+      <a href="for-teachers.html" style="color:var(--ink-muted);margin:0 10px;text-decoration:none;">🏫 教師專區</a>
+    </div>
+    Duet · Read science in two voices · 雙聲・讀懂科學 · All papers CC-BY<br>
+    <span style="font-size:11px;">© 2026 Duet 雙聲 · 平台版權所有 · 文章內容遵循 CC-BY 開放授權</span>
+  </footer>
+</div>
+</div>
+
+<script>
+// Skip cover animation when navigating back from within the site
+(function() {
+  const sameOrigin = !!document.referrer && (function() {
+    try { return new URL(document.referrer).origin === location.origin; } catch(e) { return false; }
+  })();
+  if (sameOrigin || sessionStorage.getItem('duet-cover-shown')) {
+    const cover = document.getElementById('cover');
+    if (cover) cover.remove();
+    const page = document.querySelector('.page');
+    if (page) { page.style.opacity = '1'; page.style.animation = 'none'; }
+  } else {
+    sessionStorage.setItem('duet-cover-shown', '1');
+  }
+})();
+
+// ── Welcome chime (Web Audio, with autoplay-policy fallback) ──
+let chimePlayed = false;
+function playChime() {
+  if (chimePlayed) return;
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const fire = () => {
+      if (chimePlayed) return;
+      chimePlayed = true;
+      [[523.25, 0], [659.25, 0.18], [783.99, 0.36]].forEach(([freq, t]) => {
+        const osc = ctx.createOscillator(), gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.type = 'sine'; osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, ctx.currentTime + t);
+        gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + t + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + 1.0);
+        osc.start(ctx.currentTime + t);
+        osc.stop(ctx.currentTime + t + 1.0);
+      });
+    };
+    if (ctx.state === 'suspended') {
+      // Browser blocked autoplay — fire on first user gesture
+      const unlock = () => {
+        ctx.resume().then(fire);
+        ['pointerdown','keydown','touchstart'].forEach(ev => document.removeEventListener(ev, unlock));
+      };
+      ['pointerdown','keydown','touchstart'].forEach(ev => document.addEventListener(ev, unlock, { once:true }));
+    } else {
+      fire();
+    }
+  } catch(e) {}
+}
+setTimeout(playChime, 1400);
+// Remove cover from DOM after animation
+setTimeout(() => { const c = document.getElementById('cover'); if(c) c.remove(); }, 2400);
+
+// ── Music ──
+const TRACKS = [
+  { title:'Gymnopédie No.1 · Satie',          src:'audio/satie.mp3' },
+  { title:'Nocturne No.20 in C# min · Chopin', src:'audio/chopin.mp3' },
+  { title:'Clair de Lune · Debussy',           src:'audio/debussy.mp3' },
+  { title:'Minuet in G · Bach',                src:'audio/bach.mp3' },
+];
+const track = TRACKS[Math.floor(Math.random() * TRACKS.length)];
+const audio = new Audio(track.src);
+audio.volume = 0.28; audio.loop = true;
+const mBtn = document.getElementById('music-btn');
+mBtn.title = track.title;
+let playing = false;
+function setPlaying(v) {
+  playing = v; mBtn.classList.toggle('playing', v);
+  mBtn.textContent = v ? '🎵' : '🔇';
+}
+mBtn.addEventListener('click', () => {
+  playing ? (audio.pause(), setPlaying(false)) : audio.play().then(() => setPlaying(true)).catch(()=>{});
+});
+// Default OFF — user must click to play
+
+// ── Theme (persisted) ──
+const themeBtn = document.getElementById('theme-toggle');
+const savedTheme = localStorage.getItem('duet-theme') || 'dark';
+document.documentElement.dataset.theme = savedTheme;
+themeBtn.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+themeBtn.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  themeBtn.textContent = next === 'dark' ? '🌙' : '☀️';
+  localStorage.setItem('duet-theme', next);
+});
+
+// ── Read tracking ──
+function getReadIds() {
+  try { return new Set(JSON.parse(localStorage.getItem('duet-read') || '[]')); }
+  catch { return new Set(); }
+}
+
+// ── Load articles + filters ──
+let allArticles = [], activeCat = 'all', activeDiff = 'all', activeSearch = '';
+
+function applyFilters() {
+  let list = allArticles;
+  if (activeCat !== 'all') list = list.filter(a => a.category === activeCat);
+  if (activeDiff !== 'all') {
+    list = list.filter(a => a.multilevel || a.difficulty === activeDiff);
+  }
+  if (activeSearch) {
+    const q = activeSearch.toLowerCase();
+    list = list.filter(a =>
+      (a.title_en||'').toLowerCase().includes(q) ||
+      (a.title_zh||'').includes(activeSearch) ||
+      (a.tldr_en||'').toLowerCase().includes(q) ||
+      (a.category||'').toLowerCase().includes(q) ||
+      (a.tags||[]).some(t => t.toLowerCase().includes(q))
+    );
+  }
+  renderCards(list);
+}
+
+function buildCatFilter() {
+  const bar = document.getElementById('cat-bar');
+  const cats = [...new Set(allArticles.map(a => a.category).filter(Boolean))].sort();
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'tag-btn'; btn.dataset.cat = cat; btn.textContent = cat;
+    bar.appendChild(btn);
+  });
+  // Event delegation - works on All button + dynamic ones
+  bar.addEventListener('click', e => {
+    if (!e.target.matches('[data-cat]')) return;
+    activeCat = e.target.dataset.cat;
+    bar.querySelectorAll('[data-cat]').forEach(b => b.classList.toggle('active', b === e.target));
+    applyFilters(); updateHash();
+  });
+}
+
+document.querySelectorAll('[data-diff]').forEach(btn => btn.addEventListener('click', () => {
+  activeDiff = btn.dataset.diff;
+  document.querySelectorAll('[data-diff]').forEach(b => b.classList.toggle('active', b === btn));
+  applyFilters(); updateHash();
+}));
+
+document.getElementById('search').addEventListener('input', e => {
+  activeSearch = e.target.value.trim();
+  applyFilters();
+});
+
+function updateHash() {
+  const p = new URLSearchParams();
+  if (activeCat !== 'all') p.set('cat', activeCat);
+  if (activeDiff !== 'all') p.set('diff', activeDiff);
+  history.replaceState(null, '', p.toString() ? '#' + p.toString() : location.pathname);
+}
+
+// ── Gamification ──
+const BADGES = [
+  { id:'first',     emoji:'🌱', name:'First Step',     hint:'讀完第一篇文章' },
+  { id:'bookworm',  emoji:'📚', name:'Bookworm',       hint:'讀完 3 篇文章' },
+  { id:'scholar',   emoji:'🎓', name:'Scholar',        hint:'讀完全部 5 篇文章' },
+  { id:'streaker',  emoji:'🔥', name:'On Fire',        hint:'連續 3 天造訪' },
+  { id:'polyglot',  emoji:'🌐', name:'Polyglot',       hint:'試過全部三種語言模式' },
+  { id:'pronouncer',emoji:'🔊', name:'Pronouncer',     hint:'使用發音功能 5 次' },
+];
+
+function getStats() {
+  const def = { xp:0, level:1, streak:0, lastVisit:null, read:[], badges:[], modesTried:[], speakCount:0 };
+  try { return { ...def, ...JSON.parse(localStorage.getItem('duet-stats')||'{}') }; }
+  catch { return def; }
+}
+function saveStats(s) { localStorage.setItem('duet-stats', JSON.stringify(s)); }
+function xpToLevel(xp) { return Math.floor(Math.sqrt(xp / 50)) + 1; }
+function nextLevelXP(lv) { return (lv * lv) * 50; }
+
+function checkStreak(s) {
+  const today = new Date().toISOString().slice(0,10);
+  if (s.lastVisit === today) return s;
+  if (!s.lastVisit) { s.streak = 1; }
+  else {
+    const last = new Date(s.lastVisit);
+    const diff = Math.round((new Date(today) - last) / 86400000);
+    if (diff === 1) s.streak += 1;
+    else if (diff > 1) s.streak = 1;
+  }
+  s.lastVisit = today;
+  if (s.streak >= 3 && !s.badges.includes('streaker')) s.badges.push('streaker');
+  return s;
+}
+
+function checkReadBadges(s) {
+  const n = s.read.length;
+  if (n >= 1 && !s.badges.includes('first')) s.badges.push('first');
+  if (n >= 3 && !s.badges.includes('bookworm')) s.badges.push('bookworm');
+  if (n >= 5 && !s.badges.includes('scholar')) s.badges.push('scholar');
+  return s;
+}
+
+function renderHUD() {
+  const s = checkStreak(getStats());
+  // sync read list from duet-read
+  try {
+    const r = JSON.parse(localStorage.getItem('duet-read')||'[]');
+    s.read = [...new Set([...(s.read||[]), ...r])];
+  } catch {}
+  checkReadBadges(s);
+  s.level = xpToLevel(s.xp);
+  saveStats(s);
+  const hud = document.getElementById('game-hud');
+  const nextLv = nextLevelXP(s.level);
+  const badgeHtml = BADGES.map(b => {
+    const earned = s.badges.includes(b.id);
+    return `<span class="hud-badge ${earned?'':'locked'}" title="${b.emoji} ${b.name} — ${b.hint}${earned?' ✓':''}">${b.emoji}</span>`;
+  }).join('');
+  const streakIcon = s.streak >= 2 ? '🔥 ' : '';
+  hud.innerHTML = `
+    <div class="hud-stat streak">
+      <div class="hud-num">${streakIcon}${s.streak}</div>
+      <div class="hud-label">${s.streak >= 2 ? 'Day Streak' : 'Day'}</div>
+    </div>
+    <div class="hud-divider"></div>
+    <div class="hud-stat level">
+      <div class="hud-num">Lv ${s.level}</div>
+      <div class="hud-label">${s.xp} XP</div>
+    </div>
+    <div class="hud-divider"></div>
+    <div class="hud-stat">
+      <div class="hud-num">${s.read.length}/${allArticles.length||5}</div>
+      <div class="hud-label">Read</div>
+    </div>
+    <div class="hud-divider"></div>
+    <div class="hud-badges">${badgeHtml}</div>`;
+}
+
+async function loadArticles() {
+  allArticles = await fetch('data/manifest.json').then(r => r.json());
+  document.getElementById('stat-count').textContent = allArticles.length;
+  renderWordOfDay();
+  renderTracks();
+  buildCatFilter();
+  // Apply URL hash on load (#cat=Music&diff=B2)
+  const p = new URLSearchParams(location.hash.slice(1));
+  const cat = p.get('cat'), diff = p.get('diff');
+  if (cat) {
+    activeCat = cat;
+    document.querySelectorAll('[data-cat]').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  }
+  if (diff) {
+    activeDiff = diff;
+    document.querySelectorAll('[data-diff]').forEach(b => b.classList.toggle('active', b.dataset.diff === diff));
+    // Show banner if user arrived from placement test
+    if (document.referrer.includes('placement.html') || sessionStorage.getItem('from-placement')) {
+      sessionStorage.removeItem('from-placement');
+      showPlacementBanner(diff);
+    }
+  }
+  applyFilters();
+  renderHUD();
+}
+
+async function renderWordOfDay() {
+  // Pick a deterministic-per-day article and term
+  const day = new Date().toISOString().slice(0, 10);
+  const seed = [...day].reduce((a, c) => a + c.charCodeAt(0), 0);
+  const article = allArticles[seed % allArticles.length];
+  if (!article) return;
+  try {
+    const data = await fetch(`data/articles/${article.id}.json`).then(r => r.json());
+    const glossary = data.glossary || [];
+    if (!glossary.length) return;
+    const term = glossary[seed % glossary.length];
+    const wod = document.getElementById('word-of-day');
+    wod.innerHTML = `
+      <div class="wod-card">
+        <div style="flex:1; min-width:0;">
+          <div class="wod-label">📖 Word of the Day</div>
+          <div class="wod-term">${esc(term.term)}${term.pos ? ` <span style="font-size:12px;color:var(--ink-muted);font-style:italic;">${esc(term.pos)}</span>` : ''}</div>
+          ${term.translation ? `<div class="wod-trans">${esc(term.translation)}</div>` : ''}
+        </div>
+        <button class="wod-spk" id="wod-spk">🔊</button>
+      </div>`;
+    document.getElementById('wod-spk').addEventListener('click', e => {
+      if (window.Duet) Duet.speak(term.term, null, e.currentTarget);
+    });
+  } catch {}
+}
+
+function showPlacementBanner(diff) {
+  const banner = document.createElement('div');
+  banner.className = 'placement-banner';
+  const desc = diff === 'B1' ? '入門' : diff === 'B2' ? '中級' : '進階';
+  banner.innerHTML = `
+    <span>📝 根據程度測驗推薦：以下是 <strong>${diff} ${desc}</strong> 文章。也可以隨時切換難度。</span>
+    <button onclick="this.parentElement.remove()">×</button>`;
+  document.querySelector('.filter-section').before(banner);
+}
+
+async function renderTracks() {
+  const wrap = document.getElementById('tracks-wrap');
+  if (!wrap) return;
+  let tracks;
+  try { tracks = await fetch('data/tracks.json').then(r => r.json()); }
+  catch { return; }
+  if (!tracks?.length) return;
+  const readSet = new Set(getReadIds());
+  const byId = Object.fromEntries(allArticles.map(a => [a.id, a]));
+  let html = `
+    <div class="tracks-head">
+      <h2>🛤️ 學習路徑</h2>
+      <span class="th-sub">Curated reading paths · 點任一條深入主題</span>
+    </div>
+    <div class="track-row">`;
+  tracks.forEach(t => {
+    const valid = t.articles.filter(id => byId[id]);
+    const done = valid.filter(id => readSet.has(id)).length;
+    const pct = valid.length ? Math.round(done / valid.length * 100) : 0;
+    html += `
+      <div class="track-card" data-track="${t.id}" style="border-left-color:${t.color};">
+        <div class="track-head">
+          <span class="track-emoji">${t.emoji}</span>
+          <span class="track-title">${esc(t.title_en)}</span>
+        </div>
+        <div class="track-zh">${esc(t.title_zh)}</div>
+        <div class="track-bar"><div class="track-fill" style="width:${pct}%;background:${t.color};"></div></div>
+        <div class="track-meta"><span>${done} / ${valid.length} 篇完成</span><span>${pct}%</span></div>
+      </div>`;
+  });
+  html += `</div>`;
+  wrap.innerHTML = html;
+  wrap.querySelectorAll('.track-card').forEach(card => {
+    card.addEventListener('click', () => openTrackModal(tracks.find(t => t.id === card.dataset.track), byId, readSet));
+  });
+}
+
+function openTrackModal(track, byId, readSet) {
+  const modal = document.createElement('div');
+  modal.className = 'track-modal';
+  let stepsHtml = '';
+  track.articles.forEach((id, i) => {
+    const a = byId[id];
+    if (!a) return;
+    const done = readSet.has(id);
+    const diff = a.multilevel ? 'B1–C2' : a.difficulty;
+    stepsHtml += `
+      <a href="reader.html?id=${id}" class="tm-step ${done ? 'done' : ''}">
+        <div class="tm-num">${done ? '✓' : (i + 1)}</div>
+        <div class="tm-step-info">
+          <div class="tm-step-title">${esc(a.title_zh)}</div>
+          <div class="tm-step-en">${esc(a.title_en)}</div>
+          <div class="tm-step-meta">CEFR ${diff} · ☕ ${a.estimated_minutes} min</div>
+        </div>
+      </a>`;
+  });
+  modal.innerHTML = `
+    <div class="track-modal-card">
+      <button class="tm-close">✕</button>
+      <div class="tm-title">${track.emoji} ${esc(track.title_en)}</div>
+      <div class="tm-zh">${esc(track.title_zh)}</div>
+      <div class="tm-desc">${esc(track.description_zh)}</div>
+      ${stepsHtml}
+    </div>`;
+  document.body.appendChild(modal);
+  const close = () => modal.remove();
+  modal.querySelector('.tm-close').addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', function k(e) {
+    if (e.key === 'Escape') { close(); document.removeEventListener('keydown', k); }
+  });
+}
+
+// Find the easiest unread article id for the ribbon
+function _getRecommendedId(list, readIds) {
+  const order = ['B1','B2','C1','C2'];
+  for (const diff of order) {
+    const found = list.find(a => !a.multilevel && a.difficulty === diff && !readIds.has(a.id));
+    if (found) return found.id;
+  }
+  return list[0]?.id;
+}
+
+function renderCards(list) {
+  const grid = document.getElementById('grid');
+  const readIds = getReadIds();
+  if (!list.length) {
+    grid.innerHTML = '<div class="no-results">沒有符合的文章 · No articles found</div>';
+    return;
+  }
+  const recommendedId = _getRecommendedId(list, readIds);
+  grid.innerHTML = '';
+  list.forEach((a, i) => {
+    const card = document.createElement('a');
+    card.className = 'card' + (readIds.has(a.id) ? ' is-read' : '');
+    card.href = `reader.html?id=${a.id}`;
+    card.style.animationDelay = (i * 60) + 'ms';
+    card.setAttribute('aria-label', `${a.title_en}${a.id === recommendedId ? ' — 推薦入門' : ''}`);
+    const topTags = a.tags.slice(0, 3).map(t =>
+      `<span class="ctag">${t}</span>`
+    ).join('');
+    const readBadge = readIds.has(a.id) ? '<span class="read-badge">✓ 已讀</span>' : '';
+    const ribbon = (a.id === recommendedId && !readIds.has(a.id))
+      ? '<div class="card-ribbon" aria-label="推薦入門">入門推薦</div>' : '';
+    card.innerHTML = `
+      ${ribbon}
+      <div class="card-tags">${topTags}${readBadge}</div>
+      <h3>${esc(a.title_en)}</h3>
+      <div class="card-zh">${esc(a.title_zh)}</div>
+      <div class="tldr">${esc(a.tldr_en)}</div>
+      <div class="card-meta">
+        <span>☕ ${a.estimated_minutes} min</span>
+        ${a.multilevel
+          ? '<span class="diff-multi">🌀 B1–C2 多級</span>'
+          : `<span class="diff-${a.difficulty}">CEFR ${a.difficulty}</span>`}
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+// ── Email subscribe (Formspree if configured, else localStorage stash for admin export) ──
+async function handleSubscribe(e) {
+  e.preventDefault();
+  const form = e.target;
+  const email = form.querySelector('input[name=email]').value.trim();
+  if (!email) return;
+  const endpoint = window.Duet?.FORMSPREE_ENDPOINT;
+  let saved = false;
+  if (endpoint) {
+    try {
+      const res = await fetch(endpoint, {
+        method:'POST',
+        headers:{'Accept':'application/json','Content-Type':'application/json'},
+        body: JSON.stringify({ email, source:'duetlearn.com', _subject:'New Duet subscriber' })
+      });
+      saved = res.ok;
+    } catch {}
+  }
+  // Always also stash locally as a backup (admin can export from analytics page)
+  try {
+    const list = JSON.parse(localStorage.getItem('duet-subscribers') || '[]');
+    if (!list.find(x => x.email === email)) {
+      list.push({ email, ts: new Date().toISOString() });
+      localStorage.setItem('duet-subscribers', JSON.stringify(list));
+    }
+  } catch {}
+  form.innerHTML = `<p style="color:var(--success);margin:0;">✓ 已收到 ${esc(email)}！${saved ? '新文章上架時會通知你。' : '（暫存本機，待管理員匯出）'}</p>`;
+}
+document.getElementById('subscribe-form')?.addEventListener('submit', handleSubscribe);
+
+loadArticles();
+
+// ── First-visit welcome bar ──
+(function initWelcomeBar() {
+  if (localStorage.getItem('duet-visited')) return;
+  localStorage.setItem('duet-visited', '1');
+  const bar = document.createElement('div');
+  bar.id = 'welcome-bar';
+  bar.setAttribute('role', 'complementary');
+  bar.setAttribute('aria-label', '歡迎訊息');
+  bar.innerHTML = `
+    <div class="wb-text">👋 <strong>歡迎來到 Duet 雙聲！</strong> 用英文讀科學，用中文思考世界。選一篇文章開始吧。</div>
+    <a class="wb-cta" id="wb-start" href="#grid">開始閱讀 →</a>
+    <button class="wb-close" id="wb-close" aria-label="關閉歡迎訊息">×</button>`;
+  document.body.appendChild(bar);
+  document.getElementById('wb-close').addEventListener('click', () => bar.remove());
+  document.getElementById('wb-start').addEventListener('click', () => bar.remove());
+  setTimeout(() => bar?.remove(), 12000);
+})();
+
+// ── Streak reminder (if last visit > 2 days ago) ──
+(function initStreakBanner() {
+  const s = getStats();
+  if (!s.lastVisit || !s.streak) return;
+  const today = new Date().toISOString().slice(0, 10);
+  if (s.lastVisit === today) return;
+  const daysSince = Math.round((new Date(today) - new Date(s.lastVisit)) / 86400000);
+  if (daysSince < 2) return;
+  // Show banner before the grid
+  const grid = document.getElementById('grid');
+  if (!grid) return;
+  const banner = document.createElement('div');
+  banner.id = 'streak-banner';
+  banner.setAttribute('role', 'alert');
+  banner.innerHTML = `
+    🔥 <strong>${daysSince} 天</strong>沒來了！繼續你的閱讀，別讓連續紀錄中斷。
+    <a href="#grid" style="color:var(--accent);font-weight:600;margin-left:8px;text-decoration:none;">繼續讀 →</a>
+    <button class="sb-close" aria-label="關閉提醒">×</button>`;
+  grid.before(banner);
+  banner.querySelector('.sb-close').addEventListener('click', () => banner.remove());
+})();
+</script>
+</body>
+</html>
