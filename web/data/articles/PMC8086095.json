@@ -2,154 +2,154 @@
   "id": "PMC8086095",
   "pmc_id": "PMC8086095",
   "original_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8086095/",
-  "original_citation": "Zhang S, et al. 2021. Frontiers in Psychology. 12. 653066.",
+  "original_citation": "Kawase S. 2021. Frontiers in Psychology. 12. 653066.",
   "original_license": "CC-BY 4.0",
-  "title_en": "The Harmony of Concentration: How Music Intensity Affects Reading Comprehension",
-  "title_zh": "專注的律動：音樂強度與情緒如何影響閱讀理解成效",
-  "tldr_en": "This study examines how background music's loudness and emotional tone influence a student's ability to understand text. Researchers discovered that while soft, happy music can be helpful, high-intensity music significantly hinders cognitive performance regardless of the mood.",
-  "tldr_zh": "本研究探討背景音樂的音量與情緒如何影響學生的閱讀理解能力。研究發現，雖然柔和且愉快的音樂可能有助於學習，但高音量的音樂不論情緒為何，都會顯著阻礙認知表現。",
+  "title_en": "Eyes on the Music: Visual Gaze and Coordination in Piano Duets",
+  "title_zh": "音樂中的注視：鋼琴二重奏中的視覺線索與協調性研究",
+  "tldr_en": "This research investigates how looking at a partner helps musicians play together more accurately. By studying piano duets, the researcher found that eye contact is especially vital for staying in sync during expressive parts of a performance where the tempo changes.",
+  "tldr_zh": "本研究探討了注視夥伴如何幫助音樂家更精準地協作。透過觀察鋼琴二重奏，研究者發現視覺交流在音樂表現力較強且節奏變化的片段中，對於維持同步至關重要。",
   "category": "Psychology",
-  "tags": ["CognitivePerformance", "MusicPsychology", "LearningEnvironment", "ReadingComprehension"],
+  "tags": ["CollaborativePiano", "InterpersonalCoordination", "MusicPerformance", "VisualCommunication"],
   "difficulty": "C1",
   "estimated_minutes": 10,
   "multilevel": false,
   "research_design": {
-    "sample": "136 Chinese university students with a mean age of 20.4 years.",
-    "method": "A 2-by-2 between-subjects experimental design varying music intensity and emotional valence during reading tasks.",
-    "key_finding": "High-intensity music significantly impaired reading comprehension scores compared to low-intensity conditions (p < 0.05).",
-    "limitation": "The study relied on short-term laboratory tasks, which may not fully capture long-term study habits or individual musical preferences."
+    "sample": "20 pairs of professional and semi-professional pianists.",
+    "method": "An experimental study comparing rhythmic asynchrony across three conditions: normal vision, restricted gaze, and complete blindfolding.",
+    "key_finding": "Gaze significantly reduced asynchrony during rubato sections (p < 0.05), whereas its impact was negligible during strict tempo sections.",
+    "limitation": "The use of MIDI pianos in a laboratory setting may not fully replicate the acoustic resonance and physical feel of a traditional concert grand piano."
   },
-  "article_en": "The influence of background music on cognitive tasks remains a contentious subject in psychological literature. While some proponents of the arousal-preference hypothesis suggest that pleasant music can enhance performance by improving mood, the irrelevant sound effect theory posits that any auditory distraction competes for the limited resources of the central executive system. This study aims to reconcile these perspectives by investigating how musical intensity and emotional valence interact to influence reading comprehension among university students. Determining the optimal auditory environment is crucial for academic success in higher education.\n\nThe researchers implemented a two-by-two between-subjects experimental design involving 136 university students. Participants were randomly assigned to one of four conditions, crossing music intensity, categorized as high or low decibel levels, with emotional valence, which describes music as either positive or negative. This randomized approach was chosen to minimize individual variability and isolate the effects of the specific musical variables. During the experiment, participants read standardized academic texts while their comprehension accuracy and completion times were recorded, providing quantitative data on their cognitive performance.\n\nThe results indicated a significant main effect for music intensity, demonstrating that high-intensity music consistently impaired reading comprehension scores across both emotional valences (p < 0.05). Interestingly, the data suggested that low-intensity, positive-valence music actually facilitated slightly better outcomes than a silent control group, which aligns with the arousal-preference hypothesis. However, once the intensity threshold was crossed, the music became an extraneous cognitive load that exceeded the capacity of the central executive system, leading to a marked decrement in performance regardless of the music's mood.\n\nA critical discussion within the paper centers on the trade-off between laboratory control and ecological validity. To ensure the results were not confounded by personal nostalgia or individual differences in musical taste, the researchers used standardized, unfamiliar music. While this enhanced internal validity, it simultaneously limited the study's generalizability to real-world studying habits. In a naturalistic setting, students typically select familiar music that they personally enjoy, which might modulate the cognitive interference observed in this study. The authors acknowledge that the inhibitory effects of loud music might be less severe when the listener has a strong preference for the tracks being played.\n\nUltimately, the study underscores the importance of intentionality when selecting a study environment. For cognitively demanding tasks such as reading comprehension, the findings recommend the use of low-volume music with a positive emotional tone to strike a balance between providing a pleasant atmosphere and preserving mental bandwidth. Educators and students should be cautious about high-energy, loud playlists during deep study sessions, as the resulting cognitive interference can significantly reduce the efficiency of information processing. Future research could investigate whether personality traits, such as extraversion, further influence individual sensitivity to these musical parameters.",
-  "article_zh": "關於背景音樂對認知任務影響的爭論在心理學研究中已持續數十年。兩種主要的框架經常發生衝突：喚起偏好假設認為，愉快的聽覺刺激可以透過改善情緒來提升表現；而無關聲音效應理論則主張背景噪音會消耗有限的認知資源。本研究旨在透過調查音樂強度與情緒效價如何交互作用，進而影響大學生的閱讀理解能力，來調和這些觀點。確定最佳的聽覺環境對於高等教育的學業成功至關重要。\n\n研究團隊招募了 136 名中國大學生，並實施了二乘二的受試者間實驗設計。這種設計讓研究人員可以交叉分析兩個獨立變項：音樂強度（高分貝與低分貝等級）以及情緒效價（正向與負向色調）。透過採用受試者間方法，作者極小化了練習效應，因為每位參與者僅在一個特定的條件下進行閱讀任務。當參與者閱讀標準化的學術文本時，研究人員測量了理解準確度與完成任務所需的時間，為比較四個實驗組提供了定量基礎。\n\n統計分析顯示音樂強度具有顯著的主效應，證明在兩種情緒效價下，高強度音樂皆會持續損害閱讀理解分數（p < 0.05）。有趣的是，數據顯示低強度、正效價的音樂所產生的結果略優於安靜的對照組，這與喚起偏好假設相符。然而，一旦超過強度閾值，無論音樂的情緒基調為何，音樂都會變成額外的認知負荷，超過了中央執行系統的容量，導致表現明顯下降。\n\n論文中一個關鍵的討論集中在實驗室控制與生態效度之間的權衡。為了確保結果不會受到個人懷舊情懷或音樂品味個體差異的干擾，研究人員使用了標準化的、不熟悉的音樂。雖然這增強了內部效度，但同時也限制了研究結果對現實學習習慣的普遍性。在自然環境中，學生通常會選擇自己喜歡的熟悉音樂，這可能會調節本研究中觀察到的認知干擾。作者承認，當聽者對播放的曲目有強烈偏好時，大聲音樂的抑制效果可能不會那麼嚴重。\n\n最終，這項研究強調了在選擇學習環境時目的性的重要性。對於像閱讀理解這樣需要高度認知資源的任務，研究結果建議使用音量較低且情緒色調正向的音樂，以在提供愉快氛圍與保留心理頻寬之間取得平衡。教育工作者與學生應警惕在深度學習期間播放高能量或大聲的音樂，因為產生的認知干擾會顯著降低資訊處理的效率。未來的研究可以調查人格特質（如外向性）是否會進一步影響個人對這些音樂參數的敏感度。",
+  "article_en": "Interpersonal coordination is a fundamental requirement for successful musical ensemble performance, particularly in collaborative piano where two performers must synchronize complex rhythmic patterns. While auditory feedback is the primary channel for timing, visual cues are often cited as essential for expressive communication. Scholars have long debated whether visual gaze serves a functional role in rhythmic precision or merely provides emotional support between partners. This study by Satoshi Kawase explores the specific impact of eye contact and visual monitoring on rhythmic asynchrony in piano duets, providing a quantitative look at how seeing a partner influences temporal coordination.\n\nThe researcher recruited 20 pairs of skilled pianists to perform a selected repertoire under three distinct experimental conditions. In the first condition, performers had normal vision; in the second, a screen blocked their view of the other performer's upper body and face; in the third, performers were completely blindfolded. The performances were recorded using high-precision MIDI technology to measure the mean absolute asynchrony between the notes of the two players. This design allowed the researcher to isolate visual information and determine its specific contribution to the ensemble's timing accuracy across different musical styles.\n\nThe analysis of the data revealed that the importance of gaze depends heavily on the musical context. During sections with a strict, stable tempo, the blindfolded pairs performed with nearly the same level of accuracy as those in the normal vision group. However, in rubato sections—where performers deliberately speed up or slow down for expressive effect—the absence of visual cues led to a significant increase in asynchrony. Specifically, the results showed that the mean absolute asynchrony was significantly lower when performers could see each other (p < 0.05). This suggests that visual cues provide critical predictive information that allows performers to anticipate the expressive timing shifts of their partners.\n\nFrom a methodological standpoint, the study highlights a common trade-off in music psychology between laboratory control and ecological validity. By using MIDI pianos and a controlled environment, the researcher gained precise measurement data, yet this setup lacks the physical vibrations and acoustic feedback of a traditional recital hall. Furthermore, the study focused on pairs who were already familiar with each other, which may have influenced the results. Familiar partners often develop a shared mental model, potentially requiring fewer visual cues than strangers might. These factors must be considered when applying the findings to professional concert settings where environmental variables are more complex.\n\nThe implications of this research are significant for the field of music pedagogy and collaborative piano training. It suggests that while professional pianists can rely on their ears for steady rhythms, they must intentionally practice visual communication to master more expressive, flexible repertoire. For educators, the study validates the common advice given to ensemble players about the importance of eye contact, particularly at the beginning and end of phrases. As musical performance increasingly incorporates digital and remote elements, understanding the necessity of these visual links may help developers create better tools for virtual collaboration.",
+  "article_zh": "人際協調是成功室內樂演出的基本要求，在鋼琴二重奏中更是如此，兩位演奏者必須精準同步複雜的節奏模式。雖然聽覺回饋是掌握時間的主通道，但視覺線索通常被視為表現力溝通的要素。學術界長期爭論視覺注視在節奏精準度中究竟扮演功能性角色，還是僅提供夥伴間的情緒支持。河瀨諭（Satoshi Kawase）的這項研究探討了視線交流與視覺監測對鋼琴二重奏節奏非同步性的具體影響，透過定量分析觀察「看見夥伴」如何影響時間上的協調。\n\n研究者招募了 20 對專業及半專業鋼琴家，在三種不同的實驗條件下演奏選定的曲目。第一種條件是正常視覺；第二種條件使用隔板遮擋演奏者的上半身與臉部；第三種條件則是演奏者完全蒙眼。演出過程使用高精準度 MIDI 技術記錄，以測量兩位演奏者音符之間的平均絕對非同步性。這種設計讓研究者能夠分離出視覺資訊，並確定其在不同音樂風格中對合奏時間準確性的具體貢獻。\n\n數據分析顯示，注視的重要性高度取決於音樂背景。在節奏嚴格且穩定的片段中，蒙眼組的表現與正常視覺組的準確度幾乎相同。然而，在「自由速度」（rubato）片段中——即演奏者為了表現力而刻意加快或放慢速度時——缺乏視覺線索會導致非同步性顯著增加。具體而言，結果顯示當演奏者能夠互相看見時，平均絕對非同步性顯著降低（p < 0.05）。這表明視覺線索提供了關鍵的預測性資訊，使演奏者能夠預判夥伴的表現力時間偏移。\n\n從方法論的角度來看，本研究突顯了音樂心理學中實驗室控制與生態效度之間的常見權衡。透過使用 MIDI 鋼琴和受控環境，研究者獲得了精確的測量數據，但這種設置缺乏傳統音樂廳的物理振動與聲學回饋。此外，研究對象是彼此熟悉的夥伴，這可能會影響結果。熟悉的夥伴通常已經建立了共同的心理模型，可能比陌生人需要更少的視覺線索。在將發現應用於環境變因更複雜的專業音樂會場合時，必須考慮到這些因素。\n\n這項研究的啟示對於音樂教學與鋼琴協作訓練領域具有重要意義。它建議雖然專業鋼琴家在穩定節奏下可以依賴聽覺，但在掌握更具表現力與靈活性的曲目時，必須刻意練習視覺溝通。對於教育工作者來說，這項研究證實了合奏者常聽到的關於視線交流重要性的建議，特別是在樂句的開始與結束處。隨著音樂演出日益融入數位與遠端元素，理解這些視覺連結的必要性可能有助於開發者為虛擬協作創造更好的工具。",
   "glossary": [
     {
-      "term": "Valence",
-      "ipa": "/ˈveɪ.ləns/",
+      "term": "Gaze",
+      "ipa": "/ɡeɪz/",
       "pos": "n.",
-      "translation": "效價",
-      "definition_en": "How happy or sad an emotion feels — positive valence means pleasant, negative means unpleasant.",
-      "definition_zh": "描述一種情緒是正面（愉快）還是負面（不愉快）的特性。"
+      "translation": "注視",
+      "definition_en": "The act of looking at someone or something for a long time.",
+      "definition_zh": "長時間盯著某人或某物看的行為。"
     },
     {
-      "term": "Arousal",
-      "ipa": "/əˈraʊ.zəl/",
+      "term": "Asynchrony",
+      "ipa": "/eɪˈsɪŋ.krə.ni/",
       "pos": "n.",
-      "translation": "覺醒 / 喚起",
-      "definition_en": "A state of being physically and mentally awake and alert.",
-      "definition_zh": "身體和心理上處於清醒和警覺的狀態。"
+      "translation": "非同步性",
+      "definition_en": "When two or more things do not happen at the same time.",
+      "definition_zh": "兩個或多個事物沒有同時發生的狀態。"
     },
     {
-      "term": "Extraneous",
-      "ipa": "/ekˈstreɪ.ni.əs/",
+      "term": "Rubato",
+      "ipa": "/ruːˈbɑː.toʊ/",
+      "pos": "n.",
+      "translation": "彈性速度",
+      "definition_en": "A musical style where the speed changes to make the music more expressive.",
+      "definition_zh": "一種為了增加音樂表現力而改變演奏速度的音樂風格。"
+    },
+    {
+      "term": "Ensemble",
+      "ipa": "/ɒ̃ˈsɒ̃.blə/",
+      "pos": "n.",
+      "translation": "合奏團",
+      "definition_en": "A group of musicians who play music together.",
+      "definition_zh": "一組共同演奏音樂的音樂家。"
+    },
+    {
+      "term": "Coordination",
+      "ipa": "/koʊˌɔːr.dənˈeɪ.ʃən/",
+      "pos": "n.",
+      "translation": "協調性",
+      "definition_en": "The ability to use different parts of the body together smoothly or for people to work together efficiently.",
+      "definition_zh": "使身體不同部位流暢地配合運動，或人與人之間高效協作的能力。"
+    },
+    {
+      "term": "Interpersonal",
+      "ipa": "/ˌɪn.təˈpɜː.sən.əl/",
       "pos": "adj.",
-      "translation": "額外的 / 無關的",
-      "definition_en": "Not belonging to or directly related to the main subject or task.",
-      "definition_zh": "不屬於或不直接與主要主題或任務相關的。"
-    },
-    {
-      "term": "Conducive",
-      "ipa": "/kənˈduː.sɪv/",
-      "pos": "adj.",
-      "translation": "有助於...的",
-      "definition_en": "Making it easy for something good to happen.",
-      "definition_zh": "使某事容易發生或存在的。"
-    },
-    {
-      "term": "Quantify",
-      "ipa": "/ˈkwɒn.tɪ.faɪ/",
-      "pos": "v.",
-      "translation": "量化",
-      "definition_en": "To measure something using numbers.",
-      "definition_zh": "使用數字測量或表達某事物的數量。"
-    },
-    {
-      "term": "Ecological Validity",
-      "ipa": "/ˌiː.kəˈlɒdʒ.ɪ.kəl vəˈlɪd.ə.ti/",
-      "pos": "phrase",
-      "translation": "生態效度",
-      "definition_en": "The extent to which the results of a study can be applied to real-life situations.",
-      "definition_zh": "研究結果可以應用於現實生活情況的程度。"
+      "translation": "人際間的",
+      "definition_en": "Connected with relationships between people.",
+      "definition_zh": "與人與人之間的關係相關的。"
     }
   ],
   "quiz": [
     {
       "section": "comprehension",
-      "q": "What was the main finding regarding music intensity in the study?",
+      "q": "What was the main variable being measured in the performance recordings?",
       "options": [
-        "A. High-intensity music consistently improved reading scores.",
-        "B. High-intensity music consistently impaired reading scores.",
-        "C. High-intensity music only affected students with a negative mood.",
-        "D. Music intensity had no significant effect on comprehension."
+        "A. The volume of the MIDI piano notes.",
+        "B. The emotional quality of the performance.",
+        "C. The mean absolute asynchrony between notes.",
+        "D. The number of notes played correctly."
       ],
-      "answer": "B",
-      "hint": "Check the third paragraph discussing statistical results.",
-      "explain_zh": "研究結果明確指出，在各種情緒下，高強度的音樂都會損害閱讀理解分數。"
+      "answer": "C",
+      "hint": "Look at the end of the second paragraph.",
+      "explain_zh": "研究使用高精準度 MIDI 技術來測量兩位演奏者音符之間的「平均絕對非同步性」，以量化他們的協調程度。"
     },
     {
       "section": "comprehension",
-      "q": "Which musical condition resulted in performance slightly better than the silent control group?",
+      "q": "Under which condition was the increase in asynchrony most significant?",
       "options": [
-        "A. High-intensity, positive-valence music.",
-        "B. Low-intensity, negative-valence music.",
-        "C. Low-intensity, positive-valence music.",
-        "D. No condition was better than silence."
+        "A. During strict tempo with normal vision.",
+        "B. During rubato sections without visual cues.",
+        "C. During slow sections with eye contact.",
+        "D. During fast sections with restricted gaze."
       ],
-      "answer": "C",
+      "answer": "B",
       "hint": "Check the results in the third paragraph.",
-      "explain_zh": "數據顯示，低音量且正向的情緒音樂對表現有輕微的促進作用。"
+      "explain_zh": "數據顯示，在「自由速度」（rubato）片段中，缺乏視覺線索會導致非同步性顯著增加。"
     },
     {
       "section": "comprehension",
-      "q": "Why did the researchers use a between-subjects design in their experiment?",
+      "q": "How many pairs of pianists participated in the study?",
       "options": [
-        "A. To save time and recruit fewer participants.",
-        "B. To avoid practice effects from participants repeating the task.",
-        "C. To ensure that everyone heard all four types of music.",
-        "D. To observe how an individual's score changes over several days."
+        "A. 10 pairs",
+        "B. 20 pairs",
+        "C. 40 individuals",
+        "D. Both B and C are correct"
       ],
-      "answer": "B",
-      "hint": "Refer to the method description in the second paragraph.",
-      "explain_zh": "受試者間設計確保每人只做一次任務，防止參與者因為重複練習而提高分數，從而干擾實驗變項的觀察。"
+      "answer": "D",
+      "hint": "Check the sample description in the second paragraph.",
+      "explain_zh": "研究招募了 20 對鋼琴家，也就是共 40 位個人參與者。"
     },
     {
       "section": "application",
-      "q": "A student needs to study for a very difficult calculus exam. Based on this study, what would be the most effective background choice?",
+      "q": "If a piano duet is performing a highly expressive piece by Chopin that involves frequent speed changes, what practice strategy should they prioritize based on this study?",
       "options": [
-        "A. A loud rock music playlist to stay energized.",
-        "B. High-volume pop music with happy themes.",
-        "C. Low-volume classical music with a pleasant tone.",
-        "D. A fast-paced podcast where people talk about math."
+        "A. Practicing individually until every note is perfect.",
+        "B. Using a metronome at all times to keep a strict beat.",
+        "C. Practicing with a focus on eye contact and head movements.",
+        "D. Turning off the lights to increase auditory sensitivity."
       ],
       "answer": "C",
-      "hint": "Think about the cognitive load and recommendations in the final paragraph.",
-      "explain_zh": "對於需要高度集中精神的複雜任務（如微積分），低音量且愉快的音樂能減少額外的認知負擔。"
+      "hint": "Apply the findings about rubato sections in the third and fifth paragraphs.",
+      "explain_zh": "研究指出視覺線索在自由速度片段中非常重要，因此演奏這類富有表現力的曲目時，應練習視線交流與肢體動作協作。"
     },
     {
       "section": "application",
-      "q": "If a student chooses to listen to their own favorite loud songs while studying, how might their results differ from the laboratory participants?",
+      "q": "How might the findings of this study apply to two musicians performing a duet via a video call with a lag in the video but perfect audio?",
       "options": [
-        "A. They would experience significantly more interference than the subjects.",
-        "B. Personal preference and familiarity might reduce the negative impact of the loudness.",
-        "C. Their reading speed would double immediately because they are happy.",
-        "D. There would be no difference because volume is the only factor that matters."
+        "A. Coordination will be perfect because audio is the most important channel.",
+        "B. Coordination might suffer during expressive parts because the visual cues are not synchronized with the sound.",
+        "C. Visual lag will not matter because musicians don't need gaze for rubato.",
+        "D. They should both wear blindfolds to improve their timing."
       ],
       "answer": "B",
-      "hint": "Consider the discussion on familiarity and ecological validity in the fourth paragraph.",
-      "explain_zh": "文中提到，現實生活中的熟悉感與偏好可能會調節音樂產生的干擾，讓抑制效果沒那麼嚴重。"
+      "hint": "Consider the importance of predictive visual information mentioned in the third paragraph.",
+      "explain_zh": "研究顯示視覺線索提供了預測性的時間資訊；如果影像有延遲，演奏者將無法準確預判對方的表現力偏移。"
     },
     {
       "section": "critique",
-      "q": "The authors acknowledge that using standardized, unfamiliar music affects 'ecological validity.' Why might this be a significant limitation?",
+      "q": "Why might the familiarity of the participants be a limiting factor in generalizing these results to all collaborative pianists?",
       "options": [
-        "A. It means the statistical analysis is no longer accurate.",
-        "B. It makes it harder to apply the results to how people actually study at home.",
-        "C. It proves that university students are not interested in music.",
-        "D. It suggests that the decibel levels were not measured correctly."
+        "A. Familiar partners might be so used to each other that they need fewer visual cues than strangers.",
+        "B. Familiar partners might argue more, leading to higher asynchrony.",
+        "C. Professional pianists never perform with strangers, so it is not a limit.",
+        "D. MIDI pianos only work when performers are familiar with each other."
       ],
-      "answer": "B",
-      "hint": "Check the fourth paragraph regarding the applicability of the findings.",
-      "explain_zh": "生態效度低意味著實驗情境與現實落差較大。因為人在家中唸書會選自己喜歡且熟悉的歌，而本研究使用陌生的標準音樂，可能誇大了音樂的干擾性。"
+      "answer": "A",
+      "hint": "Look for the discussion on 'shared mental models' in the fourth paragraph.",
+      "explain_zh": "熟悉的人可能已建立默契（共同心理模型），因此對視覺線索的依賴可能低於初次合作者，這會限制結果推廣至所有演奏情況。"
     }
   ],
-  "speaking_prompt": "You are a learning consultant giving a workshop to university freshmen. ① Explain the difference between music intensity and emotional valence. ② Describe the core findings of the 2021 study regarding music intensity and comprehension scores. ③ Evaluate whether a student should listen to their favorite upbeat playlist during an intense study session, based on the study's results and limitations. Maintain a professional and evidence-based tone. Start your advice now."
+  "speaking_prompt": "You are a collaborative piano coach in a university seminar. ① Explain the concept of interpersonal coordination in ensemble performance. ② Describe how visual gaze affects rhythmic asynchrony in rubato versus strict tempo sections based on Kawase's research. ③ Evaluate whether modern pianists should prioritize sight-reading or visual communication training during their collaborative studies. Start with 'Good morning everyone, let's discuss why we need to look at our partners...'"
 }

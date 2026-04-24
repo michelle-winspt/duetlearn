@@ -1,0 +1,155 @@
+{
+  "id": "PMC10674009",
+  "pmc_id": "PMC10674009",
+  "original_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10674009/",
+  "original_citation": "Peltola T, et al. 2023. Scientific Reports. 13. 20739.",
+  "original_license": "CC-BY 4.0",
+  "title_en": "Beyond Displeasure: The Physiological Impact of Disliked Music",
+  "title_zh": "不只是不悅：厭惡音樂對人體生理之影響研究",
+  "tldr_en": "This study investigates how our bodies react to music we dislike compared to music we enjoy. Researchers found that listening to hated songs actually triggers a physical stress response, increasing heart rate and skin sweat, proving that bad music is a biological stressor.",
+  "tldr_zh": "本研究調查了人體對厭惡音樂與喜愛音樂的反應差異。研究人員發現，聽討厭的歌實際上會觸發身體的壓力反應，導致心跳加快和皮膚出汗，證實了負面的音樂體驗是一種生物性壓力源。",
+  "category": "Psychology",
+  "tags": ["MusicPsychology", "Psychophysiology", "StressResponse", "EmotionalArousal"],
+  "difficulty": "C1",
+  "estimated_minutes": 10,
+  "multilevel": false,
+  "research_design": {
+    "sample": "102 healthy adults with varying musical backgrounds.",
+    "method": "A within-subjects experimental design comparing physiological responses (HR, SCR, EMG) to self-selected liked, disliked, and neutral music.",
+    "key_finding": "Disliked music evoked significantly higher heart rates and skin conductance levels compared to neutral music (p < 0.01).",
+    "limitation": "The self-selection of music meant that acoustic features like tempo and loudness were not standardized across participants."
+  },
+  "article_en": "While the psychological literature is replete with studies documenting the therapeutic benefits of preferred music, the impact of negative aesthetic experiences remains significantly under-researched. Most music psychology frameworks focus on how melodies facilitate relaxation or enhance cognitive performance. However, in contemporary society, individuals are frequently exposed to music they find unpleasant or irritating in public spaces, offices, and retail environments. This study sought to characterize the psychophysiological signature of disliked music, testing whether the subjective experience of aversion translates into a measurable biological stress response. Understanding these mechanisms is vital for evaluating the hidden cognitive costs of environmental noise.\n\nTo investigate this, the research team recruited 102 participants and employed a within-subjects design. Each participant provided their own examples of highly liked and highly disliked musical tracks, while the experimenters provided standardized neutral clips. While participants listened to these selections, researchers utilized several biosensors to monitor autonomous nervous system activity. Specifically, they measured heart rate, skin conductance levels—which indicate sweat gland activity—and facial electromyography (EMG) to detect subtle muscle contractions associated with emotional expressions like frowning or disgust. This multi-modal approach allowed for a comprehensive mapping of the body's internal reaction to auditory aversion.\n\nThe statistical analysis revealed a robust physiological distinction between musical conditions. Most notably, disliked music did not merely result in a lack of engagement; it triggered a significant increase in both heart rate and skin conductance compared to neutral music (p < 0.01). These markers are classic indicators of sympathetic nervous system arousal, suggesting that the brain perceives disliked music as a mild environmental stressor. Furthermore, the facial EMG data showed increased activity in the corrugator supercilii muscle, commonly associated with anger and concentration, and the levator labii muscle, which is linked to disgust. These findings demonstrate that disliked music evokes a state of high-arousal negative affect, physically taxing the listener rather than simply boring them.\n\nA critical methodological consideration discussed by the authors is the decision to use self-selected music. By allowing participants to choose their own tracks, the researchers ensured that the stimuli were genuinely meaningful and evocative for each individual. However, this choice introduces a lack of acoustic control. For example, a participant might hate a song because of its aggressive tempo or loud percussion, making it difficult to separate the psychological aversion from the physical response to the sound's volume. While this limits the ability to isolate specific acoustic triggers, the researchers argue that it enhances the ecological validity of the study, as it captures how people actually experience music in their daily lives.\n\nThe implications of this research extend beyond the laboratory into urban planning and workplace design. The discovery that disliked music acts as a physiological stressor suggests that 'forced listening' in shared environments may contribute to chronic stress and reduced well-being. For professionals in fields like healthcare or education, these findings underscore the importance of silence or auditory autonomy to prevent unnecessary cognitive fatigue. As we continue to integrate music into more aspects of our daily routines, recognizing the biological cost of bad sound is an essential step toward creating healthier, more inclusive acoustic environments. Future research may focus on how these responses vary in individuals with sensory processing disorders.",
+  "article_zh": "雖然心理學文獻中充斥著記錄喜愛音樂之治療效益的研究，但負面審美體驗的影響仍顯著缺乏研究。大多數音樂心理學框架都集中在旋律如何促進放鬆或增強認知表現。然而，在當代社會中，個人在公共空間、辦公室和零售環境中，經常被迫接觸到他們認為不愉快或煩人的音樂。本研究旨在界定「厭惡音樂」的心理生理特徵，測試厭惡的主觀體驗是否會轉化為可測量的生物壓力反應。理解這些機制對於評估環境噪音所隱藏的認知成本至關重要。\n\n為了進行調查，研究團隊招募了 102 名參與者並採用了受試者內設計。每位參與者提供自己高度喜愛與高度厭惡的音樂曲目，而實驗者則提供標準化的中性片段。當參與者聆聽這些選擇時，研究人員利用多種生物感測器來監測自主神經系統的活動。具體而言，他們測量了心率、反映汗腺活動的皮膚電導水平，以及面部肌電圖（EMG），以偵測與皺眉或厭惡等情緒表達相關的細微肌肉收縮。這種多模態方法允許對身體對聽覺厭惡的內部反應進行全面繪製。\n\n統計分析顯示了不同音樂情境之間強健的生理區分。最值得注意的是，討厭的音樂不僅僅導致缺乏參與感；與中性音樂相比，它觸發了心率和皮膚電導的顯著增加（p < 0.01）。這些指標是交感神經系統覺醒的經典指標，顯示大腦將討厭的音樂視為一種輕微的環境壓力源。此外，面部肌電圖數據顯示，常與憤怒和專注相關的皺眉肌，以及與厭惡相關的上唇提肌活動增加。這些發現證明，討厭的音樂會引發高覺醒的負面情緒狀態，這在物理上會消耗聆聽者，而非僅僅讓他們感到無聊。\n\n作者討論的一個關鍵方法論考量是使用「自選音樂」的決定。透過讓參與者選擇自己的曲目，研究人員確保了刺激物對每個人來說都是真正具有意義且能引起共鳴的。然而，這種選擇引入了缺乏聲學控制的問題。例如，參與者可能因為一首歌的侵略性節奏或響亮的打擊樂而討厭它，這使得難以將心理上的厭惡與對聲音音量的物理反應分開。雖然這限制了隔離特定聲學觸發因素的能力，但研究人員認為這增強了研究的生態效度，因為它捕捉了人們在日常生活中實際體驗音樂的方式。\n\n這項研究的啟示從實驗室延伸到了城市規劃和工作場所設計。發現討厭的音樂作為生理壓力源，顯示在共享環境中「強迫聆聽」可能會導致慢性壓力並降低福祉。對於醫療或教育等領域的專業人士而言，這些發現強調了安靜或聽覺自主權的重要性，以防止不必要的認知疲勞。隨著我們繼續將音樂融入日常生活的更多面向，認識到不良聲音的生物成本是邁向創造更健康、更具包容性的聲學環境的重要一步。未來的研究可能會集中在這些反應在感官處理障礙患者中如何變化。",
+  "glossary": [
+    {
+      "term": "Physiological",
+      "ipa": "/ˌfɪz.i.əˈlɒdʒ.ɪ.kəl/",
+      "pos": "adj.",
+      "translation": "生理的",
+      "definition_en": "Relating to the way in which a living body or body part functions.",
+      "definition_zh": "與生物體或身體部位運作方式相關的。"
+    },
+    {
+      "term": "Arousal",
+      "ipa": "/əˈraʊ.zəl/",
+      "pos": "n.",
+      "translation": "覺醒 / 喚起",
+      "definition_en": "A state in which you feel excited or very alert.",
+      "definition_zh": "身體和心理上處於高度警覺或興奮的狀態。"
+    },
+    {
+      "term": "Skin Conductance",
+      "ipa": "/skɪn kənˈdʌk.təns/",
+      "pos": "n.",
+      "translation": "皮膚電導",
+      "definition_en": "A measure of how easily electricity passes through the skin, which changes based on sweat.",
+      "definition_zh": "衡量電力通過皮膚難易程度的指標，會隨著汗水的多寡而改變。"
+    },
+    {
+      "term": "Aversion",
+      "ipa": "/əˈvɜː.ʒən/",
+      "pos": "n.",
+      "translation": "厭惡",
+      "definition_en": "A feeling of strong dislike or a desire to avoid something.",
+      "definition_zh": "一種強烈的不喜歡或想要避開某事物的感覺。"
+    },
+    {
+      "term": "Electromyography (EMG)",
+      "ipa": "/iˌlek.troʊ.maɪˈɒɡ.rə.fi/",
+      "pos": "n.",
+      "translation": "肌電圖",
+      "definition_en": "A technique used to record the electrical activity produced by muscles.",
+      "definition_zh": "一種用來記錄肌肉產生的電活動的技術。"
+    },
+    {
+      "term": "Ecological Validity",
+      "ipa": "/ˌiː.kəˈlɒdʒ.ɪ.kəl vəˈlɪd.ə.ti/",
+      "pos": "phrase",
+      "translation": "生態效度",
+      "definition_en": "The extent to which the findings of a research study are able to be generalized to real-life settings.",
+      "definition_zh": "研究結果能夠推廣到現實生活情境的程度。"
+    }
+  ],
+  "quiz": [
+    {
+      "section": "comprehension",
+      "q": "What happened to the heart rate and skin conductance of participants when they heard music they disliked?",
+      "options": [
+        "A. Both indicators decreased significantly as the body relaxed.",
+        "B. Both indicators increased, signaling a physical stress response.",
+        "C. Heart rate increased, but skin conductance remained stable.",
+        "D. There was no measurable biological change compared to neutral music."
+      ],
+      "answer": "B",
+      "hint": "Check the statistical analysis findings in the third paragraph.",
+      "explain_zh": "研究數據顯示，厭惡的音樂引發了心率和皮膚電導的顯著增加，這是交感神經系統壓力反應的表現。"
+    },
+    {
+      "section": "comprehension",
+      "q": "Which facial muscle was specifically mentioned as showing increased activity during disliked music?",
+      "options": [
+        "A. Zygomaticus major (smiling muscle).",
+        "B. Corrugator supercilii (frowning muscle).",
+        "C. Masseter (jaw muscle).",
+        "D. Orbicularis oculi (eye muscle)."
+      ],
+      "answer": "B",
+      "hint": "Look for the EMG data mentioned in the third paragraph.",
+      "explain_zh": "文中提到皺眉肌（corrugator supercilii）的活動增加，這通常與負面情緒如憤怒或高度專注有關。"
+    },
+    {
+      "section": "comprehension",
+      "q": "According to the study, why is characterising disliked music as 'boring' incorrect?",
+      "options": [
+        "A. Because boring music does not affect the heart.",
+        "B. Because disliked music triggers high-arousal negative affect, which is physically taxing.",
+        "C. Because people only dislike music that they find too exciting.",
+        "D. Because boredom actually results in a decrease in skin sweat."
+      ],
+      "answer": "B",
+      "hint": "Check the end of the third paragraph.",
+      "explain_zh": "研究發現厭惡音樂引發的是「高覺醒」的負面情緒，而非低能量的無聊感，這在生理上會對人體造成負擔。"
+    },
+    {
+      "section": "application",
+      "q": "If a city manager wants to reduce stress for citizens waiting at a noisy bus stop, based on this study, what would be the best audio strategy?",
+      "options": [
+        "A. Playing loud, popular music to distract people from the traffic noise.",
+        "B. Ensuring the environment is silent or allowing individuals to control their own audio.",
+        "C. Playing experimenter-selected 'neutral' music for everyone.",
+        "D. Playing classical music at the highest possible volume."
+      ],
+      "answer": "B",
+      "hint": "Consider the implications for 'forced listening' in the final paragraph.",
+      "explain_zh": "由於「強迫聆聽」不喜歡的音樂會造成生理壓力，因此維持安靜或提供聽覺自主權（讓個人控制音訊）是最佳策略。"
+    },
+    {
+      "section": "application",
+      "q": "A researcher wants to design a follow-up study for children with high sound sensitivity. Which tool from the current study would be most useful for detecting a stress response without asking the child any questions?",
+      "options": [
+        "A. A detailed survey about musical taste.",
+        "B. Biosensors for heart rate and skin conductance.",
+        "C. Interviews about the child's past emotional experiences.",
+        "D. Standardized IQ tests during the music listening."
+      ],
+      "answer": "B",
+      "hint": "Think about the objective measurement tools mentioned in the second paragraph.",
+      "explain_zh": "心率與皮膚電導感測器能提供客觀的生理數據，不需受試者語言表達，非常適合無法準確描述感受的兒童群體。"
+    },
+    {
+      "section": "critique",
+      "q": "What is the primary trade-off mentioned regarding the use of self-selected music in this experiment?",
+      "options": [
+        "A. Higher cost vs lower participant interest.",
+        "B. Ecological validity vs precise acoustic control.",
+        "C. Speed of the study vs accuracy of the sensors.",
+        "D. Heart rate data vs facial muscle data."
+      ],
+      "answer": "B",
+      "hint": "Look for the methodological consideration in the fourth paragraph.",
+      "explain_zh": "使用自選音樂能讓實驗更貼近現實（生態效度），但卻無法精確控制聲音的音量、節奏等物理特性（聲學控制），導致變因較多。"
+    }
+  ],
+  "speaking_prompt": "You are an urban planner speaking at a conference on 'Healthy Cities.' ① Explain the concept of the psychophysiological response to disliked music. ② Describe the key findings from Peltola's study regarding heart rate and environmental stressors. ③ Evaluate the practice of playing background music in public transportation and recommend a policy change based on these biological findings. Maintain a persuasive and professional tone. Start with 'Good afternoon colleagues, we need to talk about the hidden biological cost of background noise...'"
+}
